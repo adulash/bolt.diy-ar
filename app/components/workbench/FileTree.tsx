@@ -1,4 +1,5 @@
 import { memo, useCallback, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
+import { useTranslation } from 'react-i18next';
 import type { FileMap } from '~/lib/stores/files';
 import { classNames } from '~/utils/classNames';
 import { createScopedLogger, renderLogger } from '~/utils/logger';
@@ -284,6 +285,7 @@ function FileContextMenu({
   fullPath,
   children,
 }: FolderContextMenuProps & { fullPath: string }) {
+  const { t } = useTranslation('workbench');
   const [isCreatingFile, setIsCreatingFile] = useState(false);
   const [isCreatingFolder, setIsCreatingFolder] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
@@ -518,8 +520,8 @@ function FileContextMenu({
               </ContextMenuItem>
             </ContextMenu.Group>
             <ContextMenu.Group className="p-1">
-              <ContextMenuItem onSelect={onCopyPath}>Copy path</ContextMenuItem>
-              <ContextMenuItem onSelect={onCopyRelativePath}>Copy relative path</ContextMenuItem>
+              <ContextMenuItem onSelect={onCopyPath}>{t('fileTree.copyPath')}</ContextMenuItem>
+              <ContextMenuItem onSelect={onCopyRelativePath}>{t('fileTree.copyRelativePath')}</ContextMenuItem>
             </ContextMenu.Group>
             {/* Add lock/unlock options for files and folders */}
             <ContextMenu.Group className="p-1 border-t-px border-solid border-bolt-elements-borderColor">
@@ -588,6 +590,8 @@ function FileContextMenu({
 }
 
 function Folder({ folder, collapsed, selected = false, onCopyPath, onCopyRelativePath, onClick }: FolderProps) {
+  const { t } = useTranslation('workbench');
+
   // Check if the folder is locked
   const { isLocked } = workbenchStore.isFolderLocked(folder.fullPath);
 
@@ -613,7 +617,7 @@ function Folder({ folder, collapsed, selected = false, onCopyPath, onCopyRelativ
           {isLocked && (
             <span
               className={classNames('shrink-0', 'i-ph:lock-simple scale-80 text-red-500')}
-              title={'Folder is locked'}
+              title={t('fileTree.folderLocked')}
             />
           )}
         </div>
@@ -641,6 +645,7 @@ function File({
   unsavedChanges = false,
   fileHistory = {},
 }: FileProps) {
+  const { t } = useTranslation('workbench');
   const { depth, name, fullPath } = file;
 
   // Check if the file is locked
@@ -717,7 +722,7 @@ function File({
             {locked && (
               <span
                 className={classNames('shrink-0', 'i-ph:lock-simple scale-80 text-red-500')}
-                title={'File is locked'}
+                title={t('fileTree.fileLocked')}
               />
             )}
             {unsavedChanges && <span className="i-ph:circle-fill scale-68 shrink-0 text-orange-500" />}

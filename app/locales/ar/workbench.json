@@ -1,1 +1,59 @@
-{}
+{
+  "tabs": {
+    "code": "الكود",
+    "diff": "الفروق",
+    "preview": "المعاينة"
+  },
+  "fileChanges": {
+    "title": "تغييرات الملفات",
+    "searchPlaceholder": "ابحث في الملفات...",
+    "noMatching": "لا توجد ملفات مطابقة",
+    "noModified": "لا توجد ملفات معدّلة",
+    "tryAnother": "جرّب بحثاً آخر",
+    "changesAppear": "ستظهر التغييرات هنا أثناء التحرير",
+    "copiedToClipboard": "تم نسخ قائمة الملفات إلى الحافظة"
+  },
+  "sync": {
+    "sync": "مزامنة",
+    "syncing": "جارٍ المزامنة...",
+    "syncFiles": "مزامنة الملفات",
+    "syncSuccess": "تمت مزامنة الملفات بنجاح",
+    "syncFailed": "تعذّرت مزامنة الملفات",
+    "updateFailed": "تعذّر تحديث محتوى الملف"
+  },
+  "editorTabs": {
+    "files": "الملفات",
+    "search": "بحث",
+    "locks": "الأقفال"
+  },
+  "terminal": {
+    "boltTerminal": "طرفية Bolt",
+    "terminal": "طرفية",
+    "reset": "إعادة تعيين الطرفية",
+    "close": "إغلاق"
+  },
+  "fileTree": {
+    "copyPath": "نسخ المسار",
+    "copyRelativePath": "نسخ المسار النسبي",
+    "folderLocked": "المجلد مقفل",
+    "fileLocked": "الملف مقفل"
+  },
+  "lock": {
+    "noItemsSelected": "لم يتم تحديد عناصر لإلغاء قفلها.",
+    "searchPlaceholder": "بحث...",
+    "selectAllAria": "تحديد كل العناصر",
+    "unlockAllSelected": "إلغاء قفل كل العناصر المحددة",
+    "unlock": "إلغاء القفل"
+  },
+  "search": {
+    "placeholder": "بحث"
+  },
+  "preview": {
+    "dragResize": "اسحب لتغيير العرض",
+    "urlPath": "مسار العنوان",
+    "showQr": "عرض رمز QR",
+    "newWindowOptions": "خيارات النافذة الجديدة",
+    "fullscreen": "ملء الشاشة",
+    "exitFullscreen": "الخروج من ملء الشاشة"
+  }
+}

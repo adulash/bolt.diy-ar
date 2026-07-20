@@ -1,4 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useStore } from '@nanostores/react';
 import { IconButton } from '~/components/ui/IconButton';
 import { workbenchStore } from '~/lib/stores/workbench';
@@ -53,6 +54,7 @@ const WINDOW_SIZES: WindowSize[] = [
 ];
 
 export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
+  const { t } = useTranslation('workbench');
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
@@ -199,7 +201,7 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
         onMouseOut={(e) =>
           (e.currentTarget.style.background = 'var(--bolt-elements-background-depth-3, rgba(0,0,0,.15))')
         }
-        title="Drag to resize width"
+        title={t('preview.dragResize')}
       >
         <GripIcon />
       </div>
@@ -685,7 +687,7 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
             previews={previews}
           />
           <input
-            title="URL Path"
+            title={t('preview.urlPath')}
             ref={inputRef}
             className="w-full bg-transparent outline-none force-ltr"
             dir="ltr"
@@ -722,7 +724,9 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
             title={isDeviceModeOn ? 'Switch to Responsive Mode' : 'Switch to Device Mode'}
           />
 
-          {expoUrl && <IconButton icon="i-ph:qr-code" onClick={() => setIsExpoQrModalOpen(true)} title="Show QR" />}
+          {expoUrl && (
+            <IconButton icon="i-ph:qr-code" onClick={() => setIsExpoQrModalOpen(true)} title={t('preview.showQr')} />
+          )}
 
           <ExpoQrModal open={isExpoQrModalOpen} onClose={() => setIsExpoQrModalOpen(false)} />
 
@@ -751,14 +755,14 @@ export const Preview = memo(({ setSelectedElement }: PreviewProps) => {
           <IconButton
             icon={isFullscreen ? 'i-ph:arrows-in' : 'i-ph:arrows-out'}
             onClick={toggleFullscreen}
-            title={isFullscreen ? 'Exit Full Screen' : 'Full Screen'}
+            title={isFullscreen ? t('preview.exitFullscreen') : t('preview.fullscreen')}
           />
 
           <div className="flex items-center relative">
             <IconButton
               icon="i-ph:list"
               onClick={() => setIsWindowSizeDropdownOpen(!isWindowSizeDropdownOpen)}
-              title="New Window Options"
+              title={t('preview.newWindowOptions')}
             />
 
             {isWindowSizeDropdownOpen && (
