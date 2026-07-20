@@ -1,1 +1,59 @@
-{}
+{
+  "tabs": {
+    "code": "Code",
+    "diff": "Diff",
+    "preview": "Preview"
+  },
+  "fileChanges": {
+    "title": "File Changes",
+    "searchPlaceholder": "Search files...",
+    "noMatching": "No matching files",
+    "noModified": "No modified files",
+    "tryAnother": "Try another search",
+    "changesAppear": "Changes will appear here as you edit",
+    "copiedToClipboard": "File list copied to clipboard"
+  },
+  "sync": {
+    "sync": "Sync",
+    "syncing": "Syncing...",
+    "syncFiles": "Sync Files",
+    "syncSuccess": "Files synced successfully",
+    "syncFailed": "Failed to sync files",
+    "updateFailed": "Failed to update file content"
+  },
+  "editorTabs": {
+    "files": "Files",
+    "search": "Search",
+    "locks": "Locks"
+  },
+  "terminal": {
+    "boltTerminal": "Bolt Terminal",
+    "terminal": "Terminal",
+    "reset": "Reset Terminal",
+    "close": "Close"
+  },
+  "fileTree": {
+    "copyPath": "Copy path",
+    "copyRelativePath": "Copy relative path",
+    "folderLocked": "Folder is locked",
+    "fileLocked": "File is locked"
+  },
+  "lock": {
+    "noItemsSelected": "No items selected to unlock.",
+    "searchPlaceholder": "Search...",
+    "selectAllAria": "Select all items",
+    "unlockAllSelected": "Unlock all selected items",
+    "unlock": "Unlock"
+  },
+  "search": {
+    "placeholder": "Search"
+  },
+  "preview": {
+    "dragResize": "Drag to resize width",
+    "urlPath": "URL Path",
+    "showQr": "Show QR",
+    "newWindowOptions": "New Window Options",
+    "fullscreen": "Full Screen",
+    "exitFullscreen": "Exit Full Screen"
+  }
+}

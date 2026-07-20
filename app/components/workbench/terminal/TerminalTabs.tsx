@@ -1,4 +1,5 @@
 import { useStore } from '@nanostores/react';
+import { useTranslation } from 'react-i18next';
 import React, { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { Panel, type ImperativePanelHandle } from 'react-resizable-panels';
 import { IconButton } from '~/components/ui/IconButton';
@@ -16,6 +17,7 @@ const MAX_TERMINALS = 3;
 export const DEFAULT_TERMINAL_SIZE = 25;
 
 export const TerminalTabs = memo(() => {
+  const { t } = useTranslation('workbench');
   const showTerminal = useStore(workbenchStore.showTerminal);
   const theme = useStore(themeStore);
 
@@ -153,7 +155,7 @@ export const TerminalTabs = memo(() => {
                       onClick={() => setActiveTerminal(index)}
                     >
                       <div className="i-ph:terminal-window-duotone text-lg" />
-                      Bolt Terminal
+                      {t('terminal.boltTerminal')}
                     </button>
                   ) : (
                     <React.Fragment>
@@ -170,7 +172,7 @@ export const TerminalTabs = memo(() => {
                         onClick={() => setActiveTerminal(index)}
                       >
                         <div className="i-ph:terminal-window-duotone text-lg" />
-                        Terminal {terminalCount > 1 && index}
+                        {t('terminal.terminal')} {terminalCount > 1 && index}
                         <button
                           className="bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary hover:bg-transparent rounded"
                           onClick={(e) => {
@@ -189,7 +191,7 @@ export const TerminalTabs = memo(() => {
             {terminalCount < MAX_TERMINALS && <IconButton icon="i-ph:plus" size="md" onClick={addTerminal} />}
             <IconButton
               icon="i-ph:arrow-clockwise"
-              title="Reset Terminal"
+              title={t('terminal.reset')}
               size="md"
               onClick={() => {
                 const ref = terminalRefs.current.get(activeTerminal);
@@ -210,7 +212,7 @@ export const TerminalTabs = memo(() => {
             <IconButton
               className="ms-auto"
               icon="i-ph:caret-down"
-              title="Close"
+              title={t('terminal.close')}
               size="md"
               onClick={() => workbenchStore.toggleTerminal(false)}
             />

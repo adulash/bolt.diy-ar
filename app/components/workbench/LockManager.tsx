@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { workbenchStore } from '~/lib/stores/workbench';
 import { classNames } from '~/utils/classNames';
 import { Checkbox } from '~/components/ui/Checkbox';
@@ -10,6 +11,7 @@ interface LockedItem {
 }
 
 export function LockManager() {
+  const { t } = useTranslation('workbench');
   const [lockedItems, setLockedItems] = useState<LockedItem[]>([]);
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
   const [filter, setFilter] = useState<'all' | 'files' | 'folders'>('all');
@@ -105,7 +107,7 @@ export function LockManager() {
   // Handle unlocking selected items
   const handleUnlockSelected = () => {
     if (selectedItems.size === 0) {
-      toast.error('No items selected to unlock.');
+      toast.error(t('lock.noItemsSelected'));
       return;
     }
 
@@ -148,7 +150,7 @@ export function LockManager() {
           <span className="absolute start-2 top-1/2 -translate-y-1/2 text-bolt-elements-textTertiary i-ph:magnifying-glass text-xs pointer-events-none" />
           <input
             type="text"
-            placeholder="Search..."
+            placeholder={t('lock.searchPlaceholder')}
             className="w-full text-xs ps-6 pe-2 py-0.5 h-6 bg-bolt-elements-background-depth-2 text-bolt-elements-textPrimary rounded border border-bolt-elements-borderColor focus:outline-none"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
@@ -174,7 +176,7 @@ export function LockManager() {
             checked={selectAllCheckedState}
             onCheckedChange={handleSelectAll}
             className="w-3 h-3 rounded border-bolt-elements-borderColor me-2"
-            aria-label="Select all items"
+            aria-label={t('lock.selectAllAria')}
             disabled={filteredAndSortedItems.length === 0} // Disable if no items to select
           />
           <span>All</span>
@@ -183,7 +185,7 @@ export function LockManager() {
           <button
             className="ms-auto px-2 py-0.5 rounded bg-bolt-elements-button-secondary-background hover:bg-bolt-elements-button-secondary-backgroundHover text-bolt-elements-button-secondary-text text-xs flex items-center gap-1"
             onClick={handleUnlockSelected}
-            title="Unlock all selected items"
+            title={t('lock.unlockAllSelected')}
           >
             Unlock all
           </button>
@@ -241,7 +243,7 @@ export function LockManager() {
 
                     toast.success(`${item.path.replace('/home/project/', '')} unlocked`);
                   }}
-                  title="Unlock"
+                  title={t('lock.unlock')}
                 >
                   <span className="i-ph:lock-open text-xs" />
                 </button>

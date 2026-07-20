@@ -1,4 +1,5 @@
 import { useStore } from '@nanostores/react';
+import { useTranslation } from 'react-i18next';
 import { motion, type HTMLMotionProps, type Variants } from 'framer-motion';
 import { computed } from 'nanostores';
 import { memo, useCallback, useEffect, useState, useMemo } from 'react';
@@ -42,20 +43,20 @@ interface WorkspaceProps {
 
 const viewTransition = { ease: cubicEasingFn };
 
-const sliderOptions: SliderOptions<WorkbenchViewType> = {
+const makeSliderOptions = (t: (key: string) => string): SliderOptions<WorkbenchViewType> => ({
   left: {
     value: 'code',
-    text: 'Code',
+    text: t('tabs.code'),
   },
   middle: {
     value: 'diff',
-    text: 'Diff',
+    text: t('tabs.diff'),
   },
   right: {
     value: 'preview',
-    text: 'Preview',
+    text: t('tabs.preview'),
   },
-};
+});
 
 const workbenchVariants = {
   closed: {
@@ -82,6 +83,7 @@ const FileModifiedDropdown = memo(
     fileHistory: Record<string, FileHistory>;
     onSelectFile: (filePath: string) => void;
   }) => {
+    const { t } = useTranslation('workbench');
     const modifiedFiles = Object.entries(fileHistory);
     const hasChanges = modifiedFiles.length > 0;
     const [searchQuery, setSearchQuery] = useState('');
@@ -96,7 +98,7 @@ const FileModifiedDropdown = memo(
           {({ open }: { open: boolean }) => (
             <>
               <Popover.Button className="flex items-center gap-2 px-3 py-1.5 text-sm rounded-lg bg-bolt-elements-background-depth-2 hover:bg-bolt-elements-background-depth-3 transition-colors text-bolt-elements-item-contentDefault">
-                <span>File Changes</span>
+                <span>{t('fileChanges.title')}</span>
                 {hasChanges && (
                   <span className="w-5 h-5 rounded-full bg-accent-500/20 text-accent-500 text-xs flex items-center justify-center border border-accent-500/30">
                     {modifiedFiles.length}
@@ -117,7 +119,7 @@ const FileModifiedDropdown = memo(
                     <div className="relative mx-2 mb-2">
                       <input
                         type="text"
-                        placeholder="Search files..."
+                        placeholder={t('fileChanges.searchPlaceholder')}
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                         className="w-full ps-8 pe-3 py-1.5 text-sm rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor focus:outline-none focus:ring-2 focus:ring-blue-500/50"
@@ -245,10 +247,10 @@ const FileModifiedDropdown = memo(
                             <div className="i-ph:file-dashed" />
                           </div>
                           <p className="text-sm font-medium text-bolt-elements-textPrimary">
-                            {searchQuery ? 'No matching files' : 'No modified files'}
+                            {searchQuery ? t('fileChanges.noMatching') : t('fileChanges.noModified')}
                           </p>
                           <p className="text-xs text-bolt-elements-textTertiary mt-1">
-                            {searchQuery ? 'Try another search' : 'Changes will appear here as you edit'}
+                            {searchQuery ? t('fileChanges.tryAnother') : t('fileChanges.changesAppear')}
                           </p>
                         </div>
                       )}
@@ -260,7 +262,7 @@ const FileModifiedDropdown = memo(
                       <button
                         onClick={() => {
                           navigator.clipboard.writeText(filteredFiles.map(([filePath]) => filePath).join('\n'));
-                          toast('File list copied to clipboard', {
+                          toast(t('fileChanges.copiedToClipboard'), {
                             icon: <div className="i-ph:check-circle text-accent-500" />,
                           });
                         }}
@@ -289,6 +291,9 @@ export const Workbench = memo(
     setSelectedElement,
   }: WorkspaceProps) => {
     renderLogger.trace('Workbench');
+
+    const { t } = useTranslation('workbench');
+    const sliderOptions = makeSliderOptions(t);
 
     const [fileHistory, setFileHistory] = useState<Record<string, FileHistory>>({});
 
@@ -344,7 +349,7 @@ export const Workbench = memo(
           previewStore.refreshAllPreviews();
         })
         .catch(() => {
-          toast.error('Failed to update file content');
+          toast.error(t('sync.updateFailed'));
         });
     }, []);
 
@@ -363,10 +368,10 @@ export const Workbench = memo(
       try {
         const directoryHandle = await window.showDirectoryPicker();
         await workbenchStore.syncFiles(directoryHandle);
-        toast.success('Files synced successfully');
+        toast.success(t('sync.syncSuccess'));
       } catch (error) {
         console.error('Error syncing files:', error);
-        toast.error('Failed to sync files');
+        toast.error(t('sync.syncFailed'));
       } finally {
         setIsSyncing(false);
       }
@@ -417,7 +422,7 @@ export const Workbench = memo(
                             disabled={isSyncing || streaming}
                             className="rounded-md items-center justify-center [&:is(:disabled,.disabled)]:cursor-not-allowed [&:is(:disabled,.disabled)]:opacity-60 px-3 py-1.5 text-xs bg-accent-500 text-white hover:text-bolt-elements-item-contentAccent [&:not(:disabled,.disabled)]:hover:bg-bolt-elements-button-primary-backgroundHover outline-accent-500 flex gap-1.7"
                           >
-                            {isSyncing ? 'Syncing...' : 'Sync'}
+                            {isSyncing ? t('sync.syncing') : t('sync.sync')}
                             <span className={classNames('i-ph:caret-down transition-transform')} />
                           </DropdownMenu.Trigger>
                           <DropdownMenu.Content
@@ -445,7 +450,7 @@ export const Workbench = memo(
                                 ) : (
                                   <div className="i-ph:cloud-arrow-down" />
                                 )}
-                                <span>{isSyncing ? 'Syncing...' : 'Sync Files'}</span>
+                                <span>{isSyncing ? t('sync.syncing') : t('sync.syncFiles')}</span>
                               </div>
                             </DropdownMenu.Item>
                           </DropdownMenu.Content>
