@@ -8,16 +8,16 @@
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -6px;
-    right: -5px;
+    inset-inline-start: -6px;
+    inset-inline-end: -5px;
     z-index: z-index.$zIndexMax;
   }
 
   &[data-panel-group-direction='vertical']:after {
     content: '';
     position: absolute;
-    left: 0;
-    right: 0;
+    inset-inline-start: 0;
+    inset-inline-end: 0;
     top: -5px;
     bottom: -6px;
     z-index: z-index.$zIndexMax;

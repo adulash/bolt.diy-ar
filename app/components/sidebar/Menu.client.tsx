@@ -15,27 +15,55 @@ import { useSearchFilter } from '~/lib/hooks/useSearchFilter';
 import { classNames } from '~/utils/classNames';
 import { useStore } from '@nanostores/react';
 import { profileStore } from '~/lib/stores/profile';
+import { localeDirection, localeStore } from '~/lib/stores/locale';
 
-const menuVariants = {
-  closed: {
-    opacity: 0,
-    visibility: 'hidden',
-    left: '-340px',
-    transition: {
-      duration: 0.2,
-      ease: cubicEasingFn,
+/*
+ * The sidebar docks to the inline-start edge: left in LTR, right in RTL.
+ * framer-motion animates physical inline styles, so the variants are built
+ * per direction.
+ */
+const menuVariantsByDir = {
+  ltr: {
+    closed: {
+      opacity: 0,
+      visibility: 'hidden',
+      left: '-340px',
+      transition: {
+        duration: 0.2,
+        ease: cubicEasingFn,
+      },
+    },
+    open: {
+      opacity: 1,
+      visibility: 'initial',
+      left: 0,
+      transition: {
+        duration: 0.2,
+        ease: cubicEasingFn,
+      },
     },
   },
-  open: {
-    opacity: 1,
-    visibility: 'initial',
-    left: 0,
-    transition: {
-      duration: 0.2,
-      ease: cubicEasingFn,
+  rtl: {
+    closed: {
+      opacity: 0,
+      visibility: 'hidden',
+      right: '-340px',
+      transition: {
+        duration: 0.2,
+        ease: cubicEasingFn,
+      },
+    },
+    open: {
+      opacity: 1,
+      visibility: 'initial',
+      right: 0,
+      transition: {
+        duration: 0.2,
+        ease: cubicEasingFn,
+      },
     },
   },
-} satisfies Variants;
+} satisfies Record<'ltr' | 'rtl', Variants>;
 
 type DialogContent =
   | { type: 'delete'; item: ChatHistoryItem }
@@ -67,6 +95,8 @@ function CurrentDateTime() {
 export const Menu = () => {
   const { duplicateCurrentChat, exportChat } = useChatHistory();
   const menuRef = useRef<HTMLDivElement>(null);
+  const locale = useStore(localeStore);
+  const dir = localeDirection(locale);
   const [list, setList] = useState<ChatHistoryItem[]>([]);
   const [open, setOpen] = useState(false);
   const [dialogContent, setDialogContent] = useState<DialogContent>(null);
@@ -288,12 +318,23 @@ export const Menu = () => {
         return;
       }
 
-      if (event.pageX < enterThreshold) {
-        setOpen(true);
-      }
+      // The sidebar docks to the inline-start edge (left in LTR, right in RTL).
+      if (dir === 'rtl') {
+        if (event.pageX > window.innerWidth - enterThreshold) {
+          setOpen(true);
+        }
 
-      if (menuRef.current && event.clientX > menuRef.current.getBoundingClientRect().right + exitThreshold) {
-        setOpen(false);
+        if (menuRef.current && event.clientX < menuRef.current.getBoundingClientRect().left - exitThreshold) {
+          setOpen(false);
+        }
+      } else {
+        if (event.pageX < enterThreshold) {
+          setOpen(true);
+        }
+
+        if (menuRef.current && event.clientX > menuRef.current.getBoundingClientRect().right + exitThreshold) {
+          setOpen(false);
+        }
       }
     }
 
@@ -302,7 +343,7 @@ export const Menu = () => {
     return () => {
       window.removeEventListener('mousemove', onMouseMove);
     };
-  }, [isSettingsOpen]);
+  }, [isSettingsOpen, dir]);
 
   const handleDuplicate = async (id: string) => {
     await duplicateCurrentChat(id);
@@ -326,19 +367,20 @@ export const Menu = () => {
   return (
     <>
       <motion.div
+        key={dir}
         ref={menuRef}
         initial="closed"
         animate={open ? 'open' : 'closed'}
-        variants={menuVariants}
+        variants={menuVariantsByDir[dir]}
         style={{ width: '340px' }}
         className={classNames(
-          'flex selection-accent flex-col side-menu fixed top-0 h-full rounded-r-2xl',
-          'bg-white dark:bg-gray-950 border-r border-bolt-elements-borderColor',
+          'flex selection-accent flex-col side-menu fixed top-0 h-full rounded-e-2xl',
+          'bg-white dark:bg-gray-950 border-e border-bolt-elements-borderColor',
           'shadow-sm text-sm',
           isSettingsOpen ? 'z-40' : 'z-sidebar',
         )}
       >
-        <div className="h-12 flex items-center justify-between px-4 border-b border-gray-100 dark:border-gray-800/50 bg-gray-50/50 dark:bg-gray-900/50 rounded-tr-2xl">
+        <div className="h-12 flex items-center justify-between px-4 border-b border-gray-100 dark:border-gray-800/50 bg-gray-50/50 dark:bg-gray-900/50 rounded-se-2xl">
           <div className="text-gray-900 dark:text-white font-medium"></div>
           <div className="flex items-center gap-3">
             <HelpButton onClick={() => window.open('https://stackblitz-labs.github.io/bolt.diy/', '_blank')} />
@@ -385,11 +427,11 @@ export const Menu = () => {
               </button>
             </div>
             <div className="relative w-full">
-              <div className="absolute left-3 top-1/2 -translate-y-1/2">
+              <div className="absolute start-3 top-1/2 -translate-y-1/2">
                 <span className="i-ph:magnifying-glass h-4 w-4 text-gray-400 dark:text-gray-500" />
               </div>
               <input
-                className="w-full bg-gray-50 dark:bg-gray-900 relative pl-9 pr-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-500 border border-gray-200 dark:border-gray-800"
+                className="w-full bg-gray-50 dark:bg-gray-900 relative ps-9 pe-3 py-2 rounded-lg focus:outline-none focus:ring-1 focus:ring-purple-500/50 text-sm text-gray-900 dark:text-gray-100 placeholder-gray-500 dark:placeholder-gray-500 border border-gray-200 dark:border-gray-800"
                 type="search"
                 placeholder="Search chats..."
                 onChange={handleSearchChange}
@@ -427,7 +469,7 @@ export const Menu = () => {
                   <div className="text-xs font-medium text-gray-500 dark:text-gray-400 sticky top-0 z-1 bg-white dark:bg-gray-950 px-4 py-1">
                     {category}
                   </div>
-                  <div className="space-y-0.5 pr-1">
+                  <div className="space-y-0.5 pe-1">
                     {items.map((item) => (
                       <HistoryItem
                         key={item.id}
@@ -490,7 +532,7 @@ export const Menu = () => {
                           {dialogContent.items.length === 1 ? 'chat' : 'chats'}:
                         </p>
                         <div className="mt-2 max-h-32 overflow-auto border border-gray-100 dark:border-gray-800 rounded-md bg-gray-50 dark:bg-gray-900 p-2">
-                          <ul className="list-disc pl-5 space-y-1">
+                          <ul className="list-disc ps-5 space-y-1">
                             {dialogContent.items.map((item) => (
                               <li key={item.id} className="text-sm">
                                 <span className="font-medium text-gray-900 dark:text-white">{item.description}</span>

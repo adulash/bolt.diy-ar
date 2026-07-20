@@ -208,7 +208,7 @@ export const TerminalTabs = memo(() => {
               }}
             />
             <IconButton
-              className="ml-auto"
+              className="ms-auto"
               icon="i-ph:caret-down"
               title="Close"
               size="md"

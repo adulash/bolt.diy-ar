@@ -152,7 +152,7 @@ export const AssistantMessage = memo(
                 </div>
               )}
               {(onRewind || onFork) && messageId && (
-                <div className="flex gap-2 flex-col lg:flex-row ml-auto">
+                <div className="flex gap-2 flex-col lg:flex-row ms-auto">
                   {onRewind && (
                     <WithTooltip tooltip="Revert to this message">
                       <button
@@ -176,9 +176,18 @@ export const AssistantMessage = memo(
             </div>
           </div>
         </>
-        <Markdown append={append} chatMode={chatMode} setChatMode={setChatMode} model={model} provider={provider} html>
-          {content}
-        </Markdown>
+        <div dir="auto">
+          <Markdown
+            append={append}
+            chatMode={chatMode}
+            setChatMode={setChatMode}
+            model={model}
+            provider={provider}
+            html
+          >
+            {content}
+          </Markdown>
+        </div>
         {toolInvocations && toolInvocations.length > 0 && (
           <ToolInvocations
             toolInvocations={toolInvocations}

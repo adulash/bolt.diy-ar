@@ -112,7 +112,7 @@ export const ToolInvocations = memo(({ toolInvocations, toolCallAnnotations, add
           <div className="p-2.5">
             <div className="i-ph:wrench text-xl text-bolt-elements-textSecondary hover:text-bolt-elements-textPrimary transition-colors"></div>
           </div>
-          <div className="p-2.5 w-full text-left">
+          <div className="p-2.5 w-full text-start">
             <div className="w-full text-bolt-elements-textPrimary font-medium leading-5 text-sm">
               MCP Tool Invocations{' '}
               {hasToolResults && (
@@ -153,7 +153,7 @@ export const ToolInvocations = memo(({ toolInvocations, toolCallAnnotations, add
           >
             <div className="bg-bolt-elements-artifacts-borderColor h-[1px]" />
 
-            <div className="px-3 py-3 text-left bg-bolt-elements-background-depth-2">
+            <div className="px-3 py-3 text-start bg-bolt-elements-background-depth-2">
               <ToolCallsList
                 toolInvocations={toolCalls}
                 toolCallAnnotations={toolCallAnnotations}
@@ -174,7 +174,7 @@ export const ToolInvocations = memo(({ toolInvocations, toolCallAnnotations, add
           >
             <div className="bg-bolt-elements-artifacts-borderColor h-[1px]" />
 
-            <div className="p-5 text-left bg-bolt-elements-actions-background">
+            <div className="p-5 text-start bg-bolt-elements-actions-background">
               <ToolResultsList toolInvocations={toolResults} toolCallAnnotations={toolCallAnnotations} theme={theme} />
             </div>
           </motion.div>
@@ -241,7 +241,7 @@ const ToolResultsList = memo(({ toolInvocations, toolCallAnnotations, theme }: T
                 <div className="text-bolt-elements-textPrimary font-semibold">{annotation?.serverName}</div>
               </div>
 
-              <div className="ml-6 mb-2">
+              <div className="ms-6 mb-2">
                 <div className="text-bolt-elements-textSecondary text-xs mb-1">
                   Tool: <span className="text-bolt-elements-textPrimary font-semibold">{toolName}</span>
                 </div>
@@ -356,14 +356,14 @@ const ToolCallsList = memo(({ toolInvocations, toolCallAnnotations, addToolResul
               <div className="bg-bolt-elements-background-depth-3 rounded-lg p-2">
                 <div key={toolCallId} className="flex gap-1">
                   <div className="flex flex-col items-center ">
-                    <span className="mr-auto font-light font-normal text-md text-bolt-elements-textPrimary rounded-md">
+                    <span className="me-auto font-light font-normal text-md text-bolt-elements-textPrimary rounded-md">
                       {toolName}
                     </span>
                     <span className="text-xs text-bolt-elements-textSecondary font-light break-words max-w-64">
                       {annotation?.toolDescription}
                     </span>
                   </div>
-                  <div className="flex items-center justify-end gap-2 ml-auto">
+                  <div className="flex items-center justify-end gap-2 ms-auto">
                     <button
                       className={classNames(
                         'h-10 px-2.5 py-1.5 rounded-lg text-xs h-auto',
@@ -379,7 +379,7 @@ const ToolCallsList = memo(({ toolInvocations, toolCallAnnotations, addToolResul
                         })
                       }
                     >
-                      Cancel <span className="opacity-70 text-xs ml-1">{isMac ? '⌘⌫' : 'Ctrl+Backspace'}</span>
+                      Cancel <span className="opacity-70 text-xs ms-1">{isMac ? '⌘⌫' : 'Ctrl+Backspace'}</span>
                     </button>
                     <button
                       className={classNames(
@@ -395,7 +395,7 @@ const ToolCallsList = memo(({ toolInvocations, toolCallAnnotations, addToolResul
                         })
                       }
                     >
-                      Run tool <span className="opacity-70 text-xs ml-1">{isMac ? '⌘↵' : 'Ctrl+Enter'}</span>
+                      Run tool <span className="opacity-70 text-xs ms-1">{isMac ? '⌘↵' : 'Ctrl+Enter'}</span>
                     </button>
                   </div>
                 </div>

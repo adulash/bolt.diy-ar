@@ -42,9 +42,9 @@ export default function McpServerList({
                   aria-expanded={isExpanded}
                 >
                   <div
-                    className={`i-ph:${isExpanded ? 'caret-down' : 'caret-right'} w-3 h-3 transition-transform duration-150`}
+                    className={`i-ph:${isExpanded ? 'caret-down' : 'caret-right icon-flip'} w-3 h-3 transition-transform duration-150`}
                   />
-                  <span className="font-medium truncate text-left">{serverName}</span>
+                  <span className="font-medium truncate text-start">{serverName}</span>
                 </div>
 
                 <div className="flex-1 min-w-0 truncate">
@@ -58,7 +58,7 @@ export default function McpServerList({
                 </div>
               </div>
 
-              <div className="ml-2 flex-shrink-0">
+              <div className="ms-2 flex-shrink-0">
                 {checkingServers ? (
                   <McpStatusBadge status="checking" />
                 ) : (
@@ -69,15 +69,15 @@ export default function McpServerList({
 
             {/* Error message */}
             {!isAvailable && mcpServer.error && (
-              <div className="mt-1.5 ml-6 text-xs text-red-600 dark:text-red-400">Error: {mcpServer.error}</div>
+              <div className="mt-1.5 ms-6 text-xs text-red-600 dark:text-red-400">Error: {mcpServer.error}</div>
             )}
 
             {/* Tool list */}
             {isExpanded && isAvailable && (
               <div className="mt-2">
-                <div className="text-bolt-elements-textSecondary text-xs font-medium ml-1 mb-1.5">Available Tools:</div>
+                <div className="text-bolt-elements-textSecondary text-xs font-medium ms-1 mb-1.5">Available Tools:</div>
                 {serverTools.length === 0 ? (
-                  <div className="ml-4 text-xs text-bolt-elements-textSecondary">No tools available</div>
+                  <div className="ms-4 text-xs text-bolt-elements-textSecondary">No tools available</div>
                 ) : (
                   <div className="mt-1 space-y-2">
                     {serverTools.map(([toolName, toolSchema]) => (

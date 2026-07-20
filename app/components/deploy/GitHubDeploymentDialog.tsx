@@ -601,7 +601,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                     </Dialog.Close>
                   </div>
 
-                  <div className="bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 rounded-lg p-4 text-left border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
+                  <div className="bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 rounded-lg p-4 text-start border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
                     <p className="text-sm font-medium text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark mb-2 flex items-center gap-2">
                       <span className="i-ph:github-logo w-4 h-4 text-purple-500" />
                       Repository URL
@@ -629,14 +629,14 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                       <span className="i-ph:files w-4 h-4 text-purple-500" />
                       Pushed Files ({pushedFiles.length})
                     </p>
-                    <div className="max-h-[200px] overflow-y-auto custom-scrollbar pr-2">
+                    <div className="max-h-[200px] overflow-y-auto custom-scrollbar pe-2">
                       {pushedFiles.slice(0, 100).map((file) => (
                         <div
                           key={file.path}
                           className="flex items-center justify-between py-1.5 text-sm text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark border-b border-bolt-elements-borderColor/30 dark:border-bolt-elements-borderColor-dark/30 last:border-0"
                         >
                           <span className="font-mono truncate flex-1 text-xs">{file.path}</span>
-                          <span className="text-xs px-2 py-0.5 rounded-full bg-bolt-elements-background-depth-3 dark:bg-bolt-elements-background-depth-4 text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark ml-2">
+                          <span className="text-xs px-2 py-0.5 rounded-full bg-bolt-elements-background-depth-3 dark:bg-bolt-elements-background-depth-4 text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary-dark ms-2">
                             {(file.size / 1024).toFixed(1)} KB
                           </span>
                         </div>
@@ -713,7 +713,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                   <Dialog.Close asChild>
                     <button
                       onClick={handleClose}
-                      className="absolute right-0 top-0 p-2 rounded-lg transition-all duration-200 ease-in-out bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary dark:text-bolt-elements-textTertiary-dark dark:hover:text-bolt-elements-textPrimary-dark hover:bg-bolt-elements-background-depth-2 dark:hover:bg-bolt-elements-background-depth-3 focus:outline-none focus:ring-2 focus:ring-bolt-elements-borderColor dark:focus:ring-bolt-elements-borderColor-dark"
+                      className="absolute end-0 top-0 p-2 rounded-lg transition-all duration-200 ease-in-out bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary dark:text-bolt-elements-textTertiary-dark dark:hover:text-bolt-elements-textPrimary-dark hover:bg-bolt-elements-background-depth-2 dark:hover:bg-bolt-elements-background-depth-3 focus:outline-none focus:ring-2 focus:ring-bolt-elements-borderColor dark:focus:ring-bolt-elements-borderColor-dark"
                     >
                       <span className="i-ph:x block w-5 h-5" aria-hidden="true" />
                       <span className="sr-only">Close dialog</span>
@@ -807,7 +807,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                   <Dialog.Close asChild>
                     <button
                       onClick={handleClose}
-                      className="ml-auto p-2 rounded-lg transition-all duration-200 ease-in-out bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary dark:text-bolt-elements-textTertiary-dark dark:hover:text-bolt-elements-textPrimary-dark hover:bg-bolt-elements-background-depth-2 dark:hover:bg-bolt-elements-background-depth-3 focus:outline-none focus:ring-2 focus:ring-bolt-elements-borderColor dark:focus:ring-bolt-elements-borderColor-dark"
+                      className="ms-auto p-2 rounded-lg transition-all duration-200 ease-in-out bg-transparent text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary dark:text-bolt-elements-textTertiary-dark dark:hover:text-bolt-elements-textPrimary-dark hover:bg-bolt-elements-background-depth-2 dark:hover:bg-bolt-elements-background-depth-3 focus:outline-none focus:ring-2 focus:ring-bolt-elements-borderColor dark:focus:ring-bolt-elements-borderColor-dark"
                     >
                       <span className="i-ph:x block w-5 h-5" aria-hidden="true" />
                       <span className="sr-only">Close dialog</span>
@@ -818,7 +818,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                 <div className="flex items-center gap-3 mb-6 p-4 bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 rounded-lg border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
                   <div className="relative">
                     <img src={user.avatar_url} alt={user.login} className="w-10 h-10 rounded-full" />
-                    <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center text-white">
+                    <div className="absolute -bottom-1 -end-1 w-5 h-5 rounded-full bg-purple-500 flex items-center justify-center text-white">
                       <div className="i-ph:github-logo w-3 h-3" />
                     </div>
                   </div>
@@ -841,7 +841,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                       Repository Name
                     </label>
                     <div className="relative">
-                      <div className="absolute left-3 top-1/2 -translate-y-1/2 text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark">
+                      <div className="absolute start-3 top-1/2 -translate-y-1/2 text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark">
                         <span className="i-ph:git-branch w-4 h-4" />
                       </div>
                       <input
@@ -863,7 +863,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                           }
                         }}
                         placeholder="my-awesome-project"
-                        className="w-full pl-10 px-4 py-2 rounded-lg bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark placeholder-bolt-elements-textTertiary dark:placeholder-bolt-elements-textTertiary-dark focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        className="w-full ps-10 px-4 py-2 rounded-lg bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark placeholder-bolt-elements-textTertiary dark:placeholder-bolt-elements-textTertiary-dark focus:outline-none focus:ring-2 focus:ring-purple-500"
                         required
                         maxLength={100}
                         pattern="[a-zA-Z0-9\-_\s]+"
@@ -908,7 +908,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                         variant="compact"
                       />
                     ) : (
-                      <div className="space-y-2 max-h-[200px] overflow-y-auto pr-2 custom-scrollbar">
+                      <div className="space-y-2 max-h-[200px] overflow-y-auto pe-2 custom-scrollbar">
                         {filteredRepos.length === 0 && repoSearchQuery.trim() !== '' ? (
                           <EmptyState
                             icon="i-ph:magnifying-glass"
@@ -922,7 +922,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                               key={repo.full_name}
                               type="button"
                               onClick={() => setRepoName(repo.name)}
-                              className="w-full p-3 text-left rounded-lg bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 hover:bg-bolt-elements-background-depth-3 dark:hover:bg-bolt-elements-background-depth-4 transition-colors group border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark hover:border-purple-500/30"
+                              className="w-full p-3 text-start rounded-lg bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3 hover:bg-bolt-elements-background-depth-3 dark:hover:bg-bolt-elements-background-depth-4 transition-colors group border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark hover:border-purple-500/30"
                               whileHover={{ scale: 1.01 }}
                               whileTap={{ scale: 0.99 }}
                             >
@@ -989,7 +989,7 @@ export function GitHubDeploymentDialog({ isOpen, onClose, projectName, files }: 
                         Make repository private
                       </label>
                     </div>
-                    <p className="text-xs text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark mt-2 ml-6">
+                    <p className="text-xs text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark mt-2 ms-6">
                       Private repositories are only visible to you and people you share them with
                     </p>
                   </div>

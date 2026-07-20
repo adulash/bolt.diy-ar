@@ -309,7 +309,7 @@ export function GitHubCacheManager({ className = '', showStats = true }: GitHubC
                   size="sm"
                   onClick={() => handleClearSpecific(entry.key)}
                   disabled={isLoading}
-                  className="ml-2"
+                  className="ms-2"
                 >
                   <Trash2 className="w-3 h-3 text-red-500" />
                 </Button>

@@ -88,7 +88,7 @@ export const Artifact = memo(({ artifactId }: ArtifactProps) => {
               workbenchStore.showWorkbench.set(!showWorkbench);
             }}
           >
-            <div className="px-5 p-3.5 w-full text-left">
+            <div className="px-5 p-3.5 w-full text-start">
               <div className="w-full text-bolt-elements-textPrimary font-medium leading-5 text-sm">
                 {/* Use the dynamic title here */}
                 {dynamicTitle}
@@ -146,7 +146,7 @@ export const Artifact = memo(({ artifactId }: ArtifactProps) => {
             >
               <div className="bg-bolt-elements-artifacts-borderColor h-[1px]" />
 
-              <div className="p-5 text-left bg-bolt-elements-actions-background">
+              <div className="p-5 text-start bg-bolt-elements-actions-background">
                 <ActionList actions={actions} />
               </div>
             </motion.div>

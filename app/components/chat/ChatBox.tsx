@@ -155,7 +155,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
       {props.selectedElement && (
         <div className="flex mx-1.5 gap-2 items-center justify-between rounded-lg rounded-b-none border border-b-none border-bolt-elements-borderColor text-bolt-elements-textPrimary flex py-1 px-2.5 font-medium text-xs">
           <div className="flex gap-2 items-center lowercase">
-            <code className="bg-accent-500 rounded-4px px-1.5 py-1 mr-0.5 text-white">
+            <code className="bg-accent-500 rounded-4px px-1.5 py-1 me-0.5 text-white">
               {props?.selectedElement?.tagName}
             </code>
             selected for inspection
@@ -174,7 +174,7 @@ export const ChatBox: React.FC<ChatBoxProps> = (props) => {
         <textarea
           ref={props.textareaRef}
           className={classNames(
-            'w-full pl-4 pt-4 pr-16 outline-none resize-none text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary bg-transparent text-sm',
+            'w-full ps-4 pt-4 pe-16 outline-none resize-none text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary bg-transparent text-sm',
             'transition-all duration-200',
             'hover:border-bolt-elements-focus',
           )}

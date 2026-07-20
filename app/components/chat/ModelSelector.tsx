@@ -513,7 +513,7 @@ export const ModelSelector = ({
                   onChange={(e) => setProviderSearchQuery(e.target.value)}
                   placeholder="Search providers... (⌘K to clear)"
                   className={classNames(
-                    'w-full pl-8 pr-8 py-1.5 rounded-md text-sm',
+                    'w-full ps-8 pe-8 py-1.5 rounded-md text-sm',
                     'bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor',
                     'text-bolt-elements-textPrimary placeholder:text-bolt-elements-textTertiary',
                     'focus:outline-none focus:ring-2 focus:ring-bolt-elements-focus',
@@ -523,7 +523,7 @@ export const ModelSelector = ({
                   role="searchbox"
                   aria-label="Search providers"
                 />
-                <div className="absolute left-2.5 top-1/2 -translate-y-1/2">
+                <div className="absolute start-2.5 top-1/2 -translate-y-1/2">
                   <span className="i-ph:magnifying-glass text-bolt-elements-textTertiary" />
                 </div>
                 {providerSearchQuery && (
@@ -533,7 +533,7 @@ export const ModelSelector = ({
                       e.stopPropagation();
                       clearProviderSearch();
                     }}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
+                    className="absolute end-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
                     aria-label="Clear search"
                   >
                     <span className="i-ph:x text-bolt-elements-textTertiary text-xs" />
@@ -720,7 +720,7 @@ export const ModelSelector = ({
                   onChange={(e) => setModelSearchQuery(e.target.value)}
                   placeholder="Search models... (⌘K to clear)"
                   className={classNames(
-                    'w-full pl-8 pr-8 py-1.5 rounded-md text-sm',
+                    'w-full ps-8 pe-8 py-1.5 rounded-md text-sm',
                     'bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor',
                     'text-bolt-elements-textPrimary placeholder:text-bolt-elements-textTertiary',
                     'focus:outline-none focus:ring-2 focus:ring-bolt-elements-focus',
@@ -730,7 +730,7 @@ export const ModelSelector = ({
                   role="searchbox"
                   aria-label="Search models"
                 />
-                <div className="absolute left-2.5 top-1/2 -translate-y-1/2">
+                <div className="absolute start-2.5 top-1/2 -translate-y-1/2">
                   <span className="i-ph:magnifying-glass text-bolt-elements-textTertiary" />
                 </div>
                 {modelSearchQuery && (
@@ -740,7 +740,7 @@ export const ModelSelector = ({
                       e.stopPropagation();
                       clearModelSearch();
                     }}
-                    className="absolute right-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
+                    className="absolute end-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
                     aria-label="Clear search"
                   >
                     <span className="i-ph:x text-bolt-elements-textTertiary text-xs" />
@@ -847,7 +847,7 @@ export const ModelSelector = ({
                           )}
                         </div>
                       </div>
-                      <div className="flex items-center gap-1 ml-2">
+                      <div className="flex items-center gap-1 ms-2">
                         {isModelLikelyFree(modelOption, provider?.name) && (
                           <span className="i-ph:gift text-xs text-purple-400" title="Free model" />
                         )}

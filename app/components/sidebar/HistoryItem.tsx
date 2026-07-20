@@ -75,7 +75,7 @@ export function HistoryItem({
       onClick={selectionMode ? handleItemClick : undefined}
     >
       {selectionMode && (
-        <div className="flex items-center mr-2" onClick={(e) => e.stopPropagation()}>
+        <div className="flex items-center me-2" onClick={(e) => e.stopPropagation()}>
           <Checkbox
             id={`select-${item.id}`}
             checked={isSelected}
@@ -109,11 +109,11 @@ export function HistoryItem({
           onClick={selectionMode ? handleItemClick : undefined}
         >
           <WithTooltip tooltip={currentDescription}>
-            <span className="truncate pr-24">{currentDescription}</span>
+            <span className="truncate pe-24">{currentDescription}</span>
           </WithTooltip>
           <div
             className={classNames(
-              'absolute right-0 top-0 bottom-0 flex items-center bg-transparent px-2 transition-colors',
+              'absolute end-0 top-0 bottom-0 flex items-center bg-transparent px-2 transition-colors',
             )}
           >
             <div className="flex items-center gap-2.5 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">

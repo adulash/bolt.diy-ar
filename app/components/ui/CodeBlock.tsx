@@ -41,8 +41,10 @@ export function CodeBlock({
       className={classNames(
         'rounded-lg overflow-hidden border border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark',
         'bg-bolt-elements-background-depth-2 dark:bg-bolt-elements-background-depth-3',
+        'force-ltr',
         className,
       )}
+      dir="ltr"
     >
       {/* Header */}
       <div className="flex items-center justify-between px-4 py-2 bg-bolt-elements-background-depth-3 dark:bg-bolt-elements-background-depth-4 border-b border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
@@ -86,11 +88,11 @@ export function CodeBlock({
                 )}
               >
                 {showLineNumbers && (
-                  <td className="py-1 pl-4 pr-2 text-right select-none text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark border-r border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
+                  <td className="py-1 ps-4 pe-2 text-end select-none text-bolt-elements-textTertiary dark:text-bolt-elements-textTertiary-dark border-e border-bolt-elements-borderColor dark:border-bolt-elements-borderColor-dark">
                     <span className="inline-block min-w-[1.5rem] text-xs">{index + 1}</span>
                   </td>
                 )}
-                <td className="py-1 pl-4 pr-4 text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark whitespace-pre">
+                <td className="py-1 ps-4 pe-4 text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary-dark whitespace-pre">
                   {line || ' '}
                 </td>
               </tr>

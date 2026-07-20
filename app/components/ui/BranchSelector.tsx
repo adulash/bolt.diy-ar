@@ -175,7 +175,7 @@ export function BranchSelector({
                 </div>
                 <p className="text-sm text-red-600 text-center">{error}</p>
                 <Button onClick={fetchBranches} variant="outline" size="sm">
-                  <RefreshCw className="w-4 h-4 mr-2" />
+                  <RefreshCw className="w-4 h-4 me-2" />
                   Retry
                 </Button>
               </div>
@@ -203,7 +203,7 @@ export function BranchSelector({
                           key={branch.name}
                           onClick={() => handleBranchSelect(branch.name)}
                           className={classNames(
-                            'w-full text-left p-3 rounded-lg transition-all duration-200 border',
+                            'w-full text-start p-3 rounded-lg transition-all duration-200 border',
                             selectedBranch === branch.name
                               ? 'bg-blue-50 border-blue-200 text-blue-900 dark:bg-blue-950 dark:border-blue-800 dark:text-blue-100'
                               : 'bg-bolt-elements-background-depth-1 border-transparent hover:bg-bolt-elements-background-depth-2',

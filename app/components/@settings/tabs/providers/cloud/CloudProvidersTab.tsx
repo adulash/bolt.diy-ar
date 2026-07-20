@@ -181,7 +181,7 @@ const CloudProvidersTab = () => {
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
             >
-              <div className="absolute top-0 right-0 p-2 flex gap-1">
+              <div className="absolute top-0 end-0 p-2 flex gap-1">
                 {URL_CONFIGURABLE_PROVIDERS.includes(provider.name) && (
                   <motion.span
                     className="px-2 py-0.5 text-xs rounded-full bg-purple-500/10 text-purple-500 font-medium"
