@@ -255,8 +255,8 @@
         "label": "Features"
       },
       "providers": {
-        "description": "id: 'connections', label: 'Connections', description: 'External service connections",
-        "label": "id: 'ui', label: 'UI', description: 'UI configuration and preferences"
+        "description": "AI provider configuration",
+        "label": "Providers"
       },
       "ui": {
         "description": "UI configuration and preferences",
@@ -291,7 +291,7 @@
     },
     "toasts": {
       "dbUnavailable": "Database not available",
-      "exportChatsFailed": "Failed to export chats: {{error}}`,",
+      "exportChatsFailed": "Failed to export chats: {{error}}",
       "loadChatsFailed": "Failed to load chats: {{error}}",
       "noChatsToExport": "No chats available to export",
       "unknownError": "Unknown error"
@@ -573,6 +573,97 @@
     },
     "viewExampleServers": "View example servers"
   },
+  "netlify": {
+    "actions": {
+      "clearCache": "Clear Cache",
+      "deleteSite": "Delete Site",
+      "manageEnvironment": "Manage Environment",
+      "siteAnalytics": "Site Analytics",
+      "triggerBuild": "Trigger Build",
+      "viewFunctions": "View Functions"
+    },
+    "allDeploymentsCount_one": "All Deployments ({{count}})",
+    "allDeploymentsCount_other": "All Deployments ({{count}})",
+    "branchLabel": "Branch: {{branch}}",
+    "buildStatus": {
+      "completed": "Completed"
+    },
+    "buildsCount_one": "{{count}} Build",
+    "buildsCount_other": "{{count}} Builds",
+    "confirmAction": "Are you sure you want to {{action}}?",
+    "deployActions": {
+      "lock": "Lock",
+      "publish": "Publish",
+      "unlock": "Unlock"
+    },
+    "deploymentsCount_one": "{{count}} Deployment",
+    "deploymentsCount_other": "{{count}} Deployments",
+    "health": {
+      "building": "Building",
+      "customDomain": "Custom Domain",
+      "sslEnabled": "SSL Enabled"
+    },
+    "noTokenProvided": "No token provided",
+    "publishedAgo": "Published {{time}} ago",
+    "recentBuildsCount_one": "Recent Builds ({{count}})",
+    "recentBuildsCount_other": "Recent Builds ({{count}})",
+    "showAll": "Show all ({{count}})",
+    "showLess": "Show less",
+    "sitesCount_one": "{{count}} Site",
+    "sitesCount_other": "{{count}} Sites",
+    "stats": {
+      "activeSites": "Active sites",
+      "deploymentAnalytics": "Deployment Analytics",
+      "failed": "Failed",
+      "last24Hours": "Last 24 hours",
+      "last7Days": "Last 7 days",
+      "liveSites": "Live Sites",
+      "overview": "Overview",
+      "recentActivity": "Recent Activity",
+      "siteHealthOverview": "Site Health Overview",
+      "successRate": "Success Rate",
+      "successful": "Successful",
+      "title": "Netlify Stats",
+      "totalBuilds": "Total Builds",
+      "totalDeployments": "Total Deployments",
+      "totalSites": "Total Sites"
+    },
+    "timeAgo": "{{time}} ago",
+    "toast": {
+      "analyticsFreeAccount": "Analytics not available on free accounts. Showing basic site info instead.",
+      "analyticsFreeAccountInfo": "Analytics unavailable on free accounts.",
+      "analyticsLoadFailed": "Failed to load analytics: {{error}}",
+      "analyticsLoaded": "Site analytics loaded successfully",
+      "buildTriggerFailed": "Failed to trigger build: {{error}}",
+      "buildTriggerFailedFree": "Build trigger failed. This feature may not be available on free accounts.",
+      "buildTriggered": "Build triggered successfully! ID: {{id}}",
+      "buildTriggeredCacheClear": "Build triggered with cache clear",
+      "cacheCleared": "Site cache cleared successfully",
+      "cachePurgeFreeAccount": "Cache purge not available on free accounts. Try triggering a build instead.",
+      "cachePurgeNotFound": "Cache purge endpoint not found. This feature may not be available.",
+      "clearCacheFailed": "Failed to clear site cache: {{error}}",
+      "connectFailed": "Connection failed: {{error}}",
+      "enterToken": "Please enter a Netlify API token",
+      "envVarsLimitedFree": "Environment variables management is limited on free accounts",
+      "envVarsLoadFailed": "Failed to load environment variables: {{error}}",
+      "envVarsLoaded": "Environment variables loaded: {{length}} variables",
+      "functionsCount": "Site has {{length}} serverless functions",
+      "functionsLimitedFree": "Functions may be limited or unavailable on free accounts",
+      "functionsLoadFailed": "Failed to load functions: {{error}}",
+      "noEnvVars": "Site has no environment variables configured",
+      "noFunctions": "Site has no serverless functions",
+      "siteDeleteFailed": "Failed to delete site: {{error}}",
+      "siteDeleted": "Site deleted successfully",
+      "siteNotFound": "Site not found. This may be a free account limitation.",
+      "siteStatus": "{{name}}: {{status}}",
+      "statsFetchFailed": "Failed to fetch stats: {{error}}",
+      "statsUpdated": "Netlify stats updated"
+    },
+    "unknown": "Unknown",
+    "updatedAgo": "Updated {{time}} ago",
+    "yourSitesCount_one": "Your Sites ({{count}})",
+    "yourSitesCount_other": "Your Sites ({{count}})"
+  },
   "notifications": {
     "category": "Category: {{category}}",
     "clearAll": "Clear All",
@@ -655,7 +746,7 @@
       "errorBoundary": {
         "description": "An error occurred while loading local providers. Try reloading the page.",
         "errorDetails": "Error details",
-        "title": "<p className=\"text-sm text-red-400 mb-4\">There was an error loading the local providers section.</p>",
+        "title": "There was an error loading the local providers section.",
         "tryAgain": "Try Again"
       },
       "getLmStudio": "Get LM Studio",
@@ -681,7 +772,7 @@
       "modelUpdated": "Successfully updated {{model}}",
       "noModelsAvailable": "No models available",
       "noModelsInstalled": "No models installed",
-      "noProviders": "<p className=\"text-sm text-bolt-elements-textSecondary\">",
+      "noProviders": "No local providers enabled",
       "noProvidersDescription": "Enable a local provider to run models on your machine",
       "ownedBy": "Owned by: {{owner}}",
       "providerDisabled": "{{name}} disabled",
@@ -743,7 +834,7 @@
         "step1": "1. Download & Install",
         "step2": "2. Configure Local Server",
         "subtitle": "Desktop app for running local models",
-        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">"
+        "title": "LM Studio"
       },
       "localai": {
         "adv1": "Full OpenAI API compatibility",
@@ -758,7 +849,7 @@
         "installOptions": "Installation Options",
         "quickInstall": "Quick install",
         "subtitle": "Self-hosted OpenAI-compatible API",
-        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">"
+        "title": "LocalAI"
       },
       "ollama": {
         "cli": "Command Line (Advanced)",
@@ -793,7 +884,7 @@
         "tip2": "Use quantized versions for faster loading",
         "tip3": "Desktop app auto-manages model storage",
         "tip4": "Web UI available at localhost:11434",
-        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">",
+        "title": "Ollama",
         "ui1": "Model library browser",
         "ui2": "One-click model downloads",
         "ui3": "Built-in chat interface",
@@ -815,7 +906,7 @@
         "sw2": "Enable quantization (4-bit, 8-bit models)",
         "sw3": "Reduce context length for chat applications",
         "sw4": "Use streaming responses for better UX",
-        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">Tips to improve local AI performance</p>"
+        "title": "Performance Optimization"
       },
       "recommended": "Recommended",
       "subtitle": "Set up a local AI provider to run models on your machine",
@@ -827,7 +918,7 @@
         "ram": "RAM",
         "ramSpec": "16GB minimum, 32GB+ recommended",
         "subtitle": "Minimum requirements for running local models",
-        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">Recommended hardware for optimal performance</p>"
+        "title": "System Requirements"
       },
       "title": "Local Provider Setup Guide"
     }
