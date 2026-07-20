@@ -1,1 +1,69 @@
-{}
+{
+  "chatBox": {
+    "placeholderBuild": "كيف يمكن لـ Bolt مساعدتك اليوم؟",
+    "placeholderDiscuss": "ما الذي تودّ مناقشته؟",
+    "enhancePrompt": "تحسين الطلب",
+    "promptEnhanced": "تم تحسين الطلب!",
+    "discuss": "نقاش",
+    "modelSettings": "إعدادات النموذج"
+  },
+  "modelSelector": {
+    "selectProvider": "اختر المزوّد",
+    "searchProvidersPlaceholder": "ابحث في المزوّدين... (⌘K للمسح)",
+    "searchModelsPlaceholder": "ابحث في النماذج... (⌘K للمسح)",
+    "searchProvidersAria": "البحث في المزوّدين",
+    "searchModelsAria": "البحث في النماذج",
+    "clearSearchAria": "مسح البحث",
+    "providerRunning": "{{name}} يعمل الآن",
+    "providerUnreachable": "تعذّر الوصول إلى {{name}}",
+    "checking": "جارٍ التحقق...",
+    "noProvidersMatch": "لا يوجد مزوّد مطابق لـ \"{{query}}\"",
+    "noProvidersFound": "لا يوجد مزوّدون",
+    "providerSearchHint": "جرّب البحث بأسماء المزوّدين مثل \"OpenAI\" أو \"Anthropic\" أو \"Google\"",
+    "noModelsMatch": "لا يوجد نموذج مطابق لـ \"{{query}}\"",
+    "noModelsMatchFreeOnly": "لا يوجد نموذج مطابق لـ \"{{query}}\" (المجانية فقط)",
+    "noFreeModels": "لا تتوفر نماذج مجانية",
+    "noModelsLocal": "لم يُعثر على نماذج — هل {{name}} يعمل؟",
+    "noModels": "لا تتوفر نماذج",
+    "localHint": "تأكد من أن {{name}} يعمل وأن لديه نموذجاً محمّلاً واحداً على الأقل.",
+    "ollamaHint": "جرّب: ollama pull llama3.2",
+    "lmstudioHint": "حمّل نموذجاً في LM Studio أولاً.",
+    "modelSearchHint": "جرّب البحث بأسماء النماذج أو حجم السياق (مثل \"128k\" أو \"1M\") أو القدرات",
+    "freeFilterHint": "جرّب تعطيل مرشّح \"النماذج المجانية فقط\" لعرض جميع النماذج",
+    "freeModelsOnly": "النماذج المجانية فقط",
+    "freeModelCount_zero": "لا نماذج مجانية",
+    "freeModelCount_one": "نموذج مجاني واحد",
+    "freeModelCount_two": "نموذجان مجانيان",
+    "freeModelCount_few": "{{count}} نماذج مجانية",
+    "freeModelCount_many": "{{count}} نموذجاً مجانياً",
+    "freeModelCount_other": "{{count}} نموذج مجاني"
+  },
+  "apiKey": {
+    "label": "مفتاح API لـ {{name}}:",
+    "placeholder": "أدخل مفتاح API",
+    "save": "حفظ مفتاح API",
+    "cancel": "إلغاء",
+    "edit": "تعديل مفتاح API",
+    "get": "الحصول على مفتاح API",
+    "setViaUI": "مضبوط عبر الواجهة",
+    "setViaEnv": "مضبوط عبر متغير البيئة",
+    "notSet": "غير مضبوط (اضبطه عبر الواجهة أو متغير البيئة)"
+  },
+  "alerts": {
+    "previewErrorTitle": "خطأ في المعاينة",
+    "terminalErrorTitle": "خطأ في الطرفية",
+    "previewErrorMessage": "واجهنا خطأ أثناء تشغيل المعاينة. هل تريد أن يحلّل Bolt المشكلة ويساعد في حلّها؟",
+    "terminalErrorMessage": "واجهنا خطأ أثناء تنفيذ أوامر الطرفية. هل تريد أن يحلّل Bolt المشكلة ويساعد في حلّها؟",
+    "errorPrefix": "الخطأ:",
+    "askBolt": "اسأل Bolt",
+    "dismiss": "تجاهل"
+  },
+  "examples": {
+    "e1": "أنشئ لي موقعاً تعريفياً لمقهى بتصميم عصري",
+    "e2": "ابنِ تطبيق مهام يومية بـ React وTailwind",
+    "e3": "ابنِ مدونة بسيطة باستخدام Astro",
+    "e4": "أنشئ نموذج موافقة على ملفات تعريف الارتباط بواجهة Material UI",
+    "e5": "اصنع لعبة غزاة الفضاء",
+    "e6": "اصنع لعبة إكس-أو بـ HTML وCSS وJS فقط"
+  }
+}
