@@ -4,5 +4,66 @@
     "ar": "العربية",
     "en": "English",
     "switchTo": "تبديل اللغة"
+  },
+  "theme": {
+    "toggle": "تبديل المظهر"
+  },
+  "header": {
+    "reportBug": "الإبلاغ عن خلل",
+    "debugLog": "سجل التصحيح",
+    "downloadDebugLog": "تنزيل سجل التصحيح"
+  },
+  "sidebar": {
+    "newChat": "محادثة جديدة",
+    "searchPlaceholder": "ابحث في المحادثات...",
+    "searchAria": "البحث في المحادثات",
+    "yourChats": "محادثاتك",
+    "selectAll": "تحديد الكل",
+    "deselectAll": "إلغاء تحديد الكل",
+    "deleteSelected": "حذف المحدد",
+    "noConversations": "لا توجد محادثات سابقة",
+    "noMatches": "لا توجد نتائج مطابقة",
+    "guestUser": "مستخدم زائر",
+    "enterSelectionMode": "تفعيل وضع التحديد",
+    "exitSelectionMode": "إنهاء وضع التحديد"
+  },
+  "history": {
+    "export": "تصدير",
+    "duplicate": "نسخ",
+    "rename": "إعادة تسمية",
+    "delete": "حذف"
+  },
+  "dates": {
+    "today": "اليوم",
+    "yesterday": "أمس",
+    "past30Days": "آخر 30 يوماً"
+  },
+  "dialogs": {
+    "cancel": "إلغاء",
+    "delete": "حذف",
+    "deleteChatTitle": "حذف المحادثة؟",
+    "deleteChatAbout": "أنت على وشك حذف",
+    "deleteChatQuestion": "هل أنت متأكد من حذف هذه المحادثة؟",
+    "bulkDeleteTitle": "حذف المحادثات المحددة؟",
+    "bulkDeleteAbout_zero": "لم يتم تحديد أي محادثة للحذف:",
+    "bulkDeleteAbout_one": "أنت على وشك حذف محادثة واحدة:",
+    "bulkDeleteAbout_two": "أنت على وشك حذف محادثتين:",
+    "bulkDeleteAbout_few": "أنت على وشك حذف {{count}} محادثات:",
+    "bulkDeleteAbout_many": "أنت على وشك حذف {{count}} محادثة:",
+    "bulkDeleteAbout_other": "أنت على وشك حذف {{count}} محادثة:",
+    "bulkDeleteQuestion": "هل أنت متأكد من حذف هذه المحادثات؟"
+  },
+  "toasts": {
+    "chatDeleted": "تم حذف المحادثة بنجاح",
+    "chatDeleteFailed": "تعذّر حذف المحادثة",
+    "selectAtLeastOne": "حدد محادثة واحدة على الأقل للحذف",
+    "couldNotFindSelected": "تعذّر العثور على المحادثات المحددة",
+    "chatsDeleted_zero": "لم يتم حذف أي محادثة",
+    "chatsDeleted_one": "تم حذف محادثة واحدة بنجاح",
+    "chatsDeleted_two": "تم حذف محادثتين بنجاح",
+    "chatsDeleted_few": "تم حذف {{count}} محادثات بنجاح",
+    "chatsDeleted_many": "تم حذف {{count}} محادثة بنجاح",
+    "chatsDeleted_other": "تم حذف {{count}} محادثة بنجاح",
+    "bulkDeletePartial": "تم حذف {{deleted}} من أصل {{total}} محادثة. فشل حذف {{failed}}."
   }
 }

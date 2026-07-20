@@ -4,5 +4,58 @@
     "ar": "العربية",
     "en": "English",
     "switchTo": "Switch language"
+  },
+  "theme": {
+    "toggle": "Toggle Theme"
+  },
+  "header": {
+    "reportBug": "Report Bug",
+    "debugLog": "Debug Log",
+    "downloadDebugLog": "Download Debug Log"
+  },
+  "sidebar": {
+    "newChat": "Start new chat",
+    "searchPlaceholder": "Search chats...",
+    "searchAria": "Search chats",
+    "yourChats": "Your Chats",
+    "selectAll": "Select all",
+    "deselectAll": "Deselect all",
+    "deleteSelected": "Delete selected",
+    "noConversations": "No previous conversations",
+    "noMatches": "No matches found",
+    "guestUser": "Guest User",
+    "enterSelectionMode": "Enter selection mode",
+    "exitSelectionMode": "Exit selection mode"
+  },
+  "history": {
+    "export": "Export",
+    "duplicate": "Duplicate",
+    "rename": "Rename",
+    "delete": "Delete"
+  },
+  "dates": {
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "past30Days": "Past 30 Days"
+  },
+  "dialogs": {
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "deleteChatTitle": "Delete Chat?",
+    "deleteChatAbout": "You are about to delete",
+    "deleteChatQuestion": "Are you sure you want to delete this chat?",
+    "bulkDeleteTitle": "Delete Selected Chats?",
+    "bulkDeleteAbout_one": "You are about to delete {{count}} chat:",
+    "bulkDeleteAbout_other": "You are about to delete {{count}} chats:",
+    "bulkDeleteQuestion": "Are you sure you want to delete these chats?"
+  },
+  "toasts": {
+    "chatDeleted": "Chat deleted successfully",
+    "chatDeleteFailed": "Failed to delete conversation",
+    "selectAtLeastOne": "Select at least one chat to delete",
+    "couldNotFindSelected": "Could not find selected chats",
+    "chatsDeleted_one": "{{count}} chat deleted successfully",
+    "chatsDeleted_other": "{{count}} chats deleted successfully",
+    "bulkDeletePartial": "Deleted {{deleted}} of {{total}} chats. {{failed}} failed."
   }
 }
