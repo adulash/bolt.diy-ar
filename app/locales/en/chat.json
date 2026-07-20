@@ -1,1 +1,65 @@
-{}
+{
+  "chatBox": {
+    "placeholderBuild": "How can Bolt help you today?",
+    "placeholderDiscuss": "What would you like to discuss?",
+    "enhancePrompt": "Enhance prompt",
+    "promptEnhanced": "Prompt enhanced!",
+    "discuss": "Discuss",
+    "modelSettings": "Model Settings"
+  },
+  "modelSelector": {
+    "selectProvider": "Select provider",
+    "searchProvidersPlaceholder": "Search providers... (⌘K to clear)",
+    "searchModelsPlaceholder": "Search models... (⌘K to clear)",
+    "searchProvidersAria": "Search providers",
+    "searchModelsAria": "Search models",
+    "clearSearchAria": "Clear search",
+    "providerRunning": "{{name}} is running",
+    "providerUnreachable": "{{name}} is not reachable",
+    "checking": "Checking...",
+    "noProvidersMatch": "No providers match \"{{query}}\"",
+    "noProvidersFound": "No providers found",
+    "providerSearchHint": "Try searching for provider names like \"OpenAI\", \"Anthropic\", or \"Google\"",
+    "noModelsMatch": "No models match \"{{query}}\"",
+    "noModelsMatchFreeOnly": "No models match \"{{query}}\" (free only)",
+    "noFreeModels": "No free models available",
+    "noModelsLocal": "No models found — is {{name}} running?",
+    "noModels": "No models available",
+    "localHint": "Make sure {{name}} is running and has at least one model loaded.",
+    "ollamaHint": "Try: ollama pull llama3.2",
+    "lmstudioHint": "Load a model in LM Studio first.",
+    "modelSearchHint": "Try searching for model names, context sizes (e.g., \"128k\", \"1M\"), or capabilities",
+    "freeFilterHint": "Try disabling the \"Free models only\" filter to see all available models",
+    "freeModelsOnly": "Free models only",
+    "freeModelCount_one": "{{count}} free model",
+    "freeModelCount_other": "{{count}} free models"
+  },
+  "apiKey": {
+    "label": "{{name}} API Key:",
+    "placeholder": "Enter API Key",
+    "save": "Save API Key",
+    "cancel": "Cancel",
+    "edit": "Edit API Key",
+    "get": "Get API Key",
+    "setViaUI": "Set via UI",
+    "setViaEnv": "Set via environment variable",
+    "notSet": "Not Set (Please set via UI or ENV_VAR)"
+  },
+  "alerts": {
+    "previewErrorTitle": "Preview Error",
+    "terminalErrorTitle": "Terminal Error",
+    "previewErrorMessage": "We encountered an error while running the preview. Would you like Bolt to analyze and help resolve this issue?",
+    "terminalErrorMessage": "We encountered an error while running terminal commands. Would you like Bolt to analyze and help resolve this issue?",
+    "errorPrefix": "Error:",
+    "askBolt": "Ask Bolt",
+    "dismiss": "Dismiss"
+  },
+  "examples": {
+    "e1": "Create a mobile app about bolt.diy",
+    "e2": "Build a todo app in React using Tailwind",
+    "e3": "Build a simple blog using Astro",
+    "e4": "Create a cookie consent form using Material UI",
+    "e5": "Make a space invaders game",
+    "e6": "Make a Tic Tac Toe game in html, css and js only"
+  }
+}

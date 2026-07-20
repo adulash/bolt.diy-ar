@@ -1,4 +1,5 @@
 import type { ProviderInfo } from '~/types/model';
+import { useTranslation } from 'react-i18next';
 import { useEffect, useState, useRef, useMemo, useCallback } from 'react';
 import type { KeyboardEvent } from 'react';
 import type { ModelInfo } from '~/lib/modules/llm/types';
@@ -115,6 +116,7 @@ export const ModelSelector = ({
   providerList,
   modelLoading,
 }: ModelSelectorProps) => {
+  const { t } = useTranslation('chat');
   const [modelSearchQuery, setModelSearchQuery] = useState('');
   const [debouncedModelSearchQuery, setDebouncedModelSearchQuery] = useState('');
   const [isModelDropdownOpen, setIsModelDropdownOpen] = useState(false);
@@ -480,14 +482,14 @@ export const ModelSelector = ({
                   )}
                   title={
                     localProviderStatus[provider.name] === 'connected'
-                      ? `${provider.name} is running`
+                      ? t('modelSelector.providerRunning', { name: provider.name })
                       : localProviderStatus[provider.name] === 'disconnected'
-                        ? `${provider.name} is not reachable`
-                        : 'Checking...'
+                        ? t('modelSelector.providerUnreachable', { name: provider.name })
+                        : t('modelSelector.checking')
                   }
                 />
               )}
-              {provider?.name || 'Select provider'}
+              {provider?.name || t('modelSelector.selectProvider')}
             </div>
             <div
               className={classNames(
@@ -511,7 +513,7 @@ export const ModelSelector = ({
                   type="text"
                   value={providerSearchQuery}
                   onChange={(e) => setProviderSearchQuery(e.target.value)}
-                  placeholder="Search providers... (⌘K to clear)"
+                  placeholder={t('modelSelector.searchProvidersPlaceholder')}
                   className={classNames(
                     'w-full ps-8 pe-8 py-1.5 rounded-md text-sm',
                     'bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor',
@@ -521,7 +523,7 @@ export const ModelSelector = ({
                   )}
                   onClick={(e) => e.stopPropagation()}
                   role="searchbox"
-                  aria-label="Search providers"
+                  aria-label={t('modelSelector.searchProvidersAria')}
                 />
                 <div className="absolute start-2.5 top-1/2 -translate-y-1/2">
                   <span className="i-ph:magnifying-glass text-bolt-elements-textTertiary" />
@@ -534,7 +536,7 @@ export const ModelSelector = ({
                       clearProviderSearch();
                     }}
                     className="absolute end-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
-                    aria-label="Clear search"
+                    aria-label={t('modelSelector.clearSearchAria')}
                   >
                     <span className="i-ph:x text-bolt-elements-textTertiary text-xs" />
                   </button>
@@ -562,12 +564,12 @@ export const ModelSelector = ({
                 <div className="px-3 py-3 text-sm">
                   <div className="text-bolt-elements-textTertiary mb-1">
                     {debouncedProviderSearchQuery
-                      ? `No providers match "${debouncedProviderSearchQuery}"`
-                      : 'No providers found'}
+                      ? t('modelSelector.noProvidersMatch', { query: debouncedProviderSearchQuery })
+                      : t('modelSelector.noProvidersFound')}
                   </div>
                   {debouncedProviderSearchQuery && (
                     <div className="text-xs text-bolt-elements-textTertiary">
-                      Try searching for provider names like "OpenAI", "Anthropic", or "Google"
+                      {t('modelSelector.providerSearchHint')}
                     </div>
                   )}
                 </div>
@@ -693,11 +695,11 @@ export const ModelSelector = ({
                     )}
                   >
                     <span className="i-ph:gift text-xs" />
-                    Free models only
+                    {t('modelSelector.freeModelsOnly')}
                   </button>
                   {showFreeModelsOnly && (
                     <span className="text-xs text-bolt-elements-textTertiary">
-                      {filteredModels.length} free model{filteredModels.length !== 1 ? 's' : ''}
+                      {t('modelSelector.freeModelCount', { count: filteredModels.length })}
                     </span>
                   )}
                 </div>
@@ -718,7 +720,7 @@ export const ModelSelector = ({
                   type="text"
                   value={modelSearchQuery}
                   onChange={(e) => setModelSearchQuery(e.target.value)}
-                  placeholder="Search models... (⌘K to clear)"
+                  placeholder={t('modelSelector.searchModelsPlaceholder')}
                   className={classNames(
                     'w-full ps-8 pe-8 py-1.5 rounded-md text-sm',
                     'bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor',
@@ -728,7 +730,7 @@ export const ModelSelector = ({
                   )}
                   onClick={(e) => e.stopPropagation()}
                   role="searchbox"
-                  aria-label="Search models"
+                  aria-label={t('modelSelector.searchModelsAria')}
                 />
                 <div className="absolute start-2.5 top-1/2 -translate-y-1/2">
                   <span className="i-ph:magnifying-glass text-bolt-elements-textTertiary" />
@@ -741,7 +743,7 @@ export const ModelSelector = ({
                       clearModelSearch();
                     }}
                     className="absolute end-2.5 top-1/2 -translate-y-1/2 p-0.5 rounded hover:bg-bolt-elements-background-depth-3 transition-colors"
-                    aria-label="Clear search"
+                    aria-label={t('modelSelector.clearSearchAria')}
                   >
                     <span className="i-ph:x text-bolt-elements-textTertiary text-xs" />
                   </button>
@@ -776,29 +778,27 @@ export const ModelSelector = ({
                 <div className="px-3 py-3 text-sm">
                   <div className="text-bolt-elements-textTertiary mb-1">
                     {debouncedModelSearchQuery
-                      ? `No models match "${debouncedModelSearchQuery}"${showFreeModelsOnly ? ' (free only)' : ''}`
+                      ? showFreeModelsOnly
+                        ? t('modelSelector.noModelsMatchFreeOnly', { query: debouncedModelSearchQuery })
+                        : t('modelSelector.noModelsMatch', { query: debouncedModelSearchQuery })
                       : showFreeModelsOnly
-                        ? 'No free models available'
+                        ? t('modelSelector.noFreeModels')
                         : provider?.name && LOCAL_PROVIDERS.includes(provider.name)
-                          ? `No models found — is ${provider.name} running?`
-                          : 'No models available'}
+                          ? t('modelSelector.noModelsLocal', { name: provider.name })
+                          : t('modelSelector.noModels')}
                   </div>
                   {!debouncedModelSearchQuery && provider?.name && LOCAL_PROVIDERS.includes(provider.name) && (
                     <div className="text-xs text-bolt-elements-textTertiary mt-1">
-                      Make sure {provider.name} is running and has at least one model loaded.
-                      {provider.name === 'Ollama' && ' Try: ollama pull llama3.2'}
-                      {provider.name === 'LMStudio' && ' Load a model in LM Studio first.'}
+                      {t('modelSelector.localHint', { name: provider.name })}
+                      {provider.name === 'Ollama' && ` ${t('modelSelector.ollamaHint')}`}
+                      {provider.name === 'LMStudio' && ` ${t('modelSelector.lmstudioHint')}`}
                     </div>
                   )}
                   {debouncedModelSearchQuery && (
-                    <div className="text-xs text-bolt-elements-textTertiary">
-                      Try searching for model names, context sizes (e.g., "128k", "1M"), or capabilities
-                    </div>
+                    <div className="text-xs text-bolt-elements-textTertiary">{t('modelSelector.modelSearchHint')}</div>
                   )}
                   {showFreeModelsOnly && !debouncedModelSearchQuery && (
-                    <div className="text-xs text-bolt-elements-textTertiary">
-                      Try disabling the "Free models only" filter to see all available models
-                    </div>
+                    <div className="text-xs text-bolt-elements-textTertiary">{t('modelSelector.freeFilterHint')}</div>
                   )}
                 </div>
               ) : (
