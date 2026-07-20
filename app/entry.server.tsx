@@ -5,6 +5,7 @@ import { renderToReadableStream } from 'react-dom/server';
 import { renderHeadToString } from 'remix-island';
 import { Head } from './root';
 import { themeStore } from '~/lib/stores/theme';
+import { DEFAULT_LOCALE, localeDirection } from '~/lib/stores/locale';
 
 export default async function handleRequest(
   request: Request,
@@ -30,7 +31,7 @@ export default async function handleRequest(
       controller.enqueue(
         new Uint8Array(
           new TextEncoder().encode(
-            `<!DOCTYPE html><html lang="en" data-theme="${themeStore.value}"><head>${head}</head><body><div id="root" class="w-full h-full">`,
+            `<!DOCTYPE html><html lang="${DEFAULT_LOCALE}" dir="${localeDirection(DEFAULT_LOCALE)}" data-theme="${themeStore.value}"><head>${head}</head><body><div id="root" class="w-full h-full">`,
           ),
         ),
       );

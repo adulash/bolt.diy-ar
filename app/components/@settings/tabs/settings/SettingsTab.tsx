@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
+import { useStore } from '@nanostores/react';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '~/utils/classNames';
 import { Switch } from '~/components/ui/Switch';
 import type { UserProfile } from '~/components/@settings/core/types';
 import { isMac } from '~/utils/os';
+import { localeStore, setLocale, type Locale } from '~/lib/stores/locale';
 
 // Helper to get modifier key symbols/text
 const getModifierSymbol = (modifier: string): string => {
@@ -21,6 +24,8 @@ const getModifierSymbol = (modifier: string): string => {
 };
 
 export default function SettingsTab() {
+  const { t } = useTranslation('common');
+  const locale = useStore(localeStore);
   const [currentTimezone, setCurrentTimezone] = useState('');
   const [settings, setSettings] = useState<UserProfile>(() => {
     const saved = localStorage.getItem('bolt_user_profile');
@@ -76,11 +81,15 @@ export default function SettingsTab() {
         <div>
           <div className="flex items-center gap-2 mb-2">
             <div className="i-ph:translate-fill w-4 h-4 text-bolt-elements-textSecondary" />
-            <label className="block text-sm text-bolt-elements-textSecondary">Language</label>
+            <label className="block text-sm text-bolt-elements-textSecondary">{t('language.label')}</label>
           </div>
           <select
-            value={settings.language}
-            onChange={(e) => setSettings((prev) => ({ ...prev, language: e.target.value }))}
+            value={locale}
+            onChange={(e) => {
+              const newLocale = e.target.value as Locale;
+              setLocale(newLocale);
+              setSettings((prev) => ({ ...prev, language: newLocale }));
+            }}
             className={classNames(
               'w-full px-3 py-2 rounded-lg text-sm',
               'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
@@ -90,16 +99,8 @@ export default function SettingsTab() {
               'transition-all duration-200',
             )}
           >
-            <option value="en">English</option>
-            <option value="es">Español</option>
-            <option value="fr">Français</option>
-            <option value="de">Deutsch</option>
-            <option value="it">Italiano</option>
-            <option value="pt">Português</option>
-            <option value="ru">Русский</option>
-            <option value="zh">中文</option>
-            <option value="ja">日本語</option>
-            <option value="ko">한국어</option>
+            <option value="ar">{t('language.ar')}</option>
+            <option value="en">{t('language.en')}</option>
           </select>
         </div>
 
