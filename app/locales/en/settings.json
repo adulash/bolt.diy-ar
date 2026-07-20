@@ -922,5 +922,117 @@
       },
       "title": "Local Provider Setup Guide"
     }
+  },
+  "supabase": {
+    "accessToken": "Access Token",
+    "actions": {
+      "viewApiDocs": "View API Docs",
+      "viewAuth": "View Auth",
+      "viewDashboard": "View Dashboard",
+      "viewDatabase": "View Database",
+      "viewEdgeFunctions": "View Edge Functions",
+      "viewFunctions": "View Functions",
+      "viewLogs": "View Logs",
+      "viewRealtime": "View Realtime",
+      "viewSettings": "View Settings",
+      "viewStorage": "View Storage"
+    },
+    "connectedTo": "Connected to Supabase",
+    "fetching": "Fetching...",
+    "getApiKeys": "Get API Keys",
+    "getYourToken": "Get your token",
+    "resources": {
+      "buckets": "Buckets",
+      "database": "Database",
+      "functions": "Functions",
+      "storage": "Storage",
+      "tables": "Tables"
+    },
+    "stats": {
+      "activeProjects": "Active Projects",
+      "authEnabled": "Auth Enabled",
+      "healthRate": "Health Rate",
+      "inactiveProjects": "Inactive Projects",
+      "overview": "Supabase Overview",
+      "performanceAnalytics": "Performance Analytics",
+      "regionsUsed": "Regions Used",
+      "resourceOverview": "Resource Overview",
+      "totalProjects": "Total Projects",
+      "totalUsers": "Total Users"
+    },
+    "title": "Supabase Integration",
+    "toast": {
+      "apiKeysFetched": "API keys fetched successfully",
+      "connectFailed": "Failed to connect to Supabase",
+      "connected": "Successfully connected to Supabase",
+      "disconnected": "Disconnected from Supabase",
+      "enterToken": "Please enter a Supabase access token",
+      "keyCopied": "Key copied to clipboard",
+      "urlCopied": "URL copied to clipboard"
+    },
+    "tokenPlaceholder": "Enter your Supabase access token"
+  },
+  "vercel": {
+    "actions": {
+      "deleteProject": "Delete Project",
+      "redeploy": "Redeploy",
+      "viewAnalytics": "View Analytics",
+      "viewDashboard": "View Dashboard",
+      "viewDeployments": "View Deployments",
+      "viewDomains": "View Domains",
+      "viewFunctions": "View Functions",
+      "viewLogs": "View Logs",
+      "viewSettings": "View Settings"
+    },
+    "confirmAction": "Are you sure you want to {{action}}?",
+    "connectionHeading": "Vercel Connection",
+    "defaultUser": "Vercel User",
+    "envTipAfter": "in your .env.local for automatic connection.",
+    "envTipBefore": "You can also set",
+    "getYourToken": "Get your token",
+    "health": {
+      "building": "Building",
+      "customDomain": "Custom Domain",
+      "healthy": "Healthy",
+      "issues": "Issues"
+    },
+    "noEmail": "No email available",
+    "personalAccessToken": "Personal Access Token",
+    "sections": {
+      "domains": "Domains",
+      "projects": "Projects",
+      "usage": "Usage"
+    },
+    "stats": {
+      "active": "Active",
+      "activeDeployments": "Active Deployments",
+      "deployedProjects": "Deployed Projects",
+      "failed": "Failed",
+      "frameworksUsed": "Frameworks Used",
+      "overview": "Vercel Overview",
+      "performanceAnalytics": "Performance Analytics",
+      "projectHealthOverview": "Project Health Overview",
+      "recentDeploys": "Recent deploys",
+      "successRate": "Success Rate",
+      "totalDomains": "Total domains",
+      "totalProjects": "Total Projects"
+    },
+    "title": "Vercel Integration",
+    "toast": {
+      "authFailed": "Failed to authenticate with Vercel",
+      "autoConnectSuccess": "Manual auto-connect successful",
+      "connectFailed": "Failed to connect to Vercel",
+      "connected": "Successfully connected to Vercel",
+      "connectedAuto": "Connected to Vercel automatically",
+      "disconnected": "Disconnected from Vercel",
+      "invalidOrUnauthorized": "Invalid token or unauthorized",
+      "invalidToken": "Invalid Vercel token",
+      "projectDeleteFailed": "Failed to delete project",
+      "projectDeleted": "Project deleted successfully",
+      "redeployFailed": "Failed to redeploy project",
+      "redeployInitiated": "Project redeployment initiated",
+      "tokenRequired": "Token is required"
+    },
+    "tokenPlaceholder": "Enter your Vercel personal access token"
   }
 }

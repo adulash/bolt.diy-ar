@@ -1014,5 +1014,117 @@
       },
       "title": "دليل إعداد المزوّدين المحليين"
     }
+  },
+  "supabase": {
+    "accessToken": "رمز الوصول",
+    "actions": {
+      "viewApiDocs": "عرض توثيق API",
+      "viewAuth": "عرض المصادقة",
+      "viewDashboard": "عرض لوحة التحكم",
+      "viewDatabase": "عرض قاعدة البيانات",
+      "viewEdgeFunctions": "عرض Edge Functions",
+      "viewFunctions": "عرض الدوال",
+      "viewLogs": "عرض السجلات",
+      "viewRealtime": "عرض Realtime",
+      "viewSettings": "عرض الإعدادات",
+      "viewStorage": "عرض التخزين"
+    },
+    "connectedTo": "متصل بـ Supabase",
+    "fetching": "جارٍ الجلب...",
+    "getApiKeys": "الحصول على مفاتيح API",
+    "getYourToken": "احصل على رمزك",
+    "resources": {
+      "buckets": "الحاويات",
+      "database": "قاعدة البيانات",
+      "functions": "الدوال",
+      "storage": "التخزين",
+      "tables": "الجداول"
+    },
+    "stats": {
+      "activeProjects": "المشاريع النشطة",
+      "authEnabled": "المصادقة مفعّلة",
+      "healthRate": "معدل السلامة",
+      "inactiveProjects": "المشاريع غير النشطة",
+      "overview": "نظرة عامة على Supabase",
+      "performanceAnalytics": "تحليلات الأداء",
+      "regionsUsed": "المناطق المستخدمة",
+      "resourceOverview": "نظرة عامة على الموارد",
+      "totalProjects": "إجمالي المشاريع",
+      "totalUsers": "إجمالي المستخدمين"
+    },
+    "title": "تكامل Supabase",
+    "toast": {
+      "apiKeysFetched": "تم جلب مفاتيح API بنجاح",
+      "connectFailed": "تعذّر الاتصال بـ Supabase",
+      "connected": "تم الاتصال بـ Supabase بنجاح",
+      "disconnected": "تم قطع الاتصال بـ Supabase",
+      "enterToken": "أدخل رمز وصول Supabase",
+      "keyCopied": "تم نسخ المفتاح إلى الحافظة",
+      "urlCopied": "تم نسخ الرابط إلى الحافظة"
+    },
+    "tokenPlaceholder": "أدخل رمز وصول Supabase"
+  },
+  "vercel": {
+    "actions": {
+      "deleteProject": "حذف المشروع",
+      "redeploy": "إعادة النشر",
+      "viewAnalytics": "عرض التحليلات",
+      "viewDashboard": "عرض لوحة التحكم",
+      "viewDeployments": "عرض عمليات النشر",
+      "viewDomains": "عرض النطاقات",
+      "viewFunctions": "عرض الدوال",
+      "viewLogs": "عرض السجلات",
+      "viewSettings": "عرض الإعدادات"
+    },
+    "confirmAction": "هل أنت متأكد من: {{action}}؟",
+    "connectionHeading": "اتصال Vercel",
+    "defaultUser": "مستخدم Vercel",
+    "envTipAfter": "في ملف .env.local للاتصال التلقائي.",
+    "envTipBefore": "يمكنك أيضاً ضبط",
+    "getYourToken": "احصل على رمزك",
+    "health": {
+      "building": "جارٍ البناء",
+      "customDomain": "نطاق مخصص",
+      "healthy": "سليم",
+      "issues": "مشاكل"
+    },
+    "noEmail": "لا يوجد بريد إلكتروني",
+    "personalAccessToken": "رمز الوصول الشخصي",
+    "sections": {
+      "domains": "النطاقات",
+      "projects": "المشاريع",
+      "usage": "الاستخدام"
+    },
+    "stats": {
+      "active": "نشط",
+      "activeDeployments": "عمليات النشر النشطة",
+      "deployedProjects": "المشاريع المنشورة",
+      "failed": "فشل",
+      "frameworksUsed": "أطر العمل المستخدمة",
+      "overview": "نظرة عامة على Vercel",
+      "performanceAnalytics": "تحليلات الأداء",
+      "projectHealthOverview": "نظرة عامة على سلامة المشروع",
+      "recentDeploys": "عمليات النشر الأخيرة",
+      "successRate": "معدل النجاح",
+      "totalDomains": "إجمالي النطاقات",
+      "totalProjects": "إجمالي المشاريع"
+    },
+    "title": "تكامل Vercel",
+    "toast": {
+      "authFailed": "تعذّرت المصادقة مع Vercel",
+      "autoConnectSuccess": "نجح الاتصال التلقائي اليدوي",
+      "connectFailed": "تعذّر الاتصال بـ Vercel",
+      "connected": "تم الاتصال بـ Vercel بنجاح",
+      "connectedAuto": "تم الاتصال بـ Vercel تلقائياً",
+      "disconnected": "تم قطع الاتصال بـ Vercel",
+      "invalidOrUnauthorized": "رمز غير صالح أو غير مصرّح",
+      "invalidToken": "رمز Vercel غير صالح",
+      "projectDeleteFailed": "تعذّر حذف المشروع",
+      "projectDeleted": "تم حذف المشروع بنجاح",
+      "redeployFailed": "تعذّرت إعادة نشر المشروع",
+      "redeployInitiated": "تم بدء إعادة نشر المشروع",
+      "tokenRequired": "الرمز مطلوب"
+    },
+    "tokenPlaceholder": "أدخل رمز وصول Vercel الشخصي"
   }
 }

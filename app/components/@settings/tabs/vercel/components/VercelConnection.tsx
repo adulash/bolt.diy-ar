@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { useStore } from '@nanostores/react';
@@ -14,6 +15,7 @@ import {
 } from '~/lib/stores/vercel';
 
 export default function VercelConnection() {
+  const { t } = useTranslation('settings');
   console.log('VercelConnection component mounted');
 
   const connection = useStore(vercelConnection);
@@ -53,7 +55,7 @@ export default function VercelConnection() {
         const result = await autoConnectVercel();
 
         if (result.success) {
-          toast.success('Connected to Vercel automatically');
+          toast.success(t('vercel.toast.connectedAuto'));
         } else {
           console.error('Vercel auto-connection failed:', result.error);
         }
@@ -92,11 +94,11 @@ export default function VercelConnection() {
       });
 
       await fetchVercelStats(connection.token);
-      toast.success('Successfully connected to Vercel');
+      toast.success(t('vercel.toast.connected'));
     } catch (error) {
       console.error('Auth error:', error);
-      logStore.logError('Failed to authenticate with Vercel', { error });
-      toast.error('Failed to connect to Vercel');
+      logStore.logError(t('vercel.toast.authFailed'), { error });
+      toast.error(t('vercel.toast.connectFailed'));
       updateVercelConnection({ user: null, token: '' });
     } finally {
       isConnecting.set(false);
@@ -105,7 +107,7 @@ export default function VercelConnection() {
 
   const handleDisconnect = () => {
     updateVercelConnection({ user: null, token: '' });
-    toast.success('Disconnected from Vercel');
+    toast.success(t('vercel.toast.disconnected'));
   };
 
   console.log('connection', connection);
@@ -127,20 +129,22 @@ export default function VercelConnection() {
               crossOrigin="anonymous"
               src={`https://cdn.simpleicons.org/vercel/black`}
             />
-            <h3 className="text-base font-medium text-bolt-elements-textPrimary">Vercel Connection</h3>
+            <h3 className="text-base font-medium text-bolt-elements-textPrimary">{t('vercel.connectionHeading')}</h3>
           </div>
         </div>
 
         {!connection.user ? (
           <div className="space-y-4">
             <div>
-              <label className="block text-sm text-bolt-elements-textSecondary mb-2">Personal Access Token</label>
+              <label className="block text-sm text-bolt-elements-textSecondary mb-2">
+                {t('vercel.personalAccessToken')}
+              </label>
               <input
                 type="password"
                 value={connection.token}
                 onChange={(e) => updateVercelConnection({ ...connection, token: e.target.value })}
                 disabled={connecting}
-                placeholder="Enter your Vercel personal access token"
+                placeholder={t('vercel.tokenPlaceholder')}
                 className={classNames(
                   'w-full px-3 py-2 rounded-lg text-sm',
                   'bg-[#F8F8F8] dark:bg-[#1A1A1A]',
@@ -157,7 +161,7 @@ export default function VercelConnection() {
                   rel="noopener noreferrer"
                   className="text-bolt-elements-borderColorActive hover:underline inline-flex items-center gap-1"
                 >
-                  Get your token
+                  {t('vercel.getYourToken')}
                   <div className="i-ph:arrow-square-out w-4 h-4" />
                 </a>
                 <div className="mt-2 text-xs text-bolt-elements-textSecondary bg-bolt-elements-background-depth-1 p-2 rounded">
@@ -194,12 +198,12 @@ export default function VercelConnection() {
                 {connecting ? (
                   <>
                     <div className="i-ph:spinner-gap animate-spin" />
-                    Connecting...
+                    {t('connections.connecting')}
                   </>
                 ) : (
                   <>
                     <div className="i-ph:plug-charging w-4 h-4" />
-                    Connect
+                    {t('connections.connect')}
                   </>
                 )}
               </button>
@@ -212,7 +216,7 @@ export default function VercelConnection() {
                   const result = await autoConnectVercel();
 
                   if (result.success) {
-                    toast.success('Manual auto-connect successful');
+                    toast.success(t('vercel.toast.autoConnectSuccess'));
                   } else {
                     toast.error(`Manual auto-connect failed: ${result.error}`);
                   }
@@ -236,11 +240,11 @@ export default function VercelConnection() {
                   )}
                 >
                   <div className="i-ph:plug w-4 h-4" />
-                  Disconnect
+                  {t('connections.disconnect')}
                 </button>
                 <span className="text-sm text-bolt-elements-textSecondary flex items-center gap-1">
                   <div className="i-ph:check-circle w-4 h-4 text-green-500" />
-                  Connected to Vercel
+                  {t('vercel.toast.connected')}
                 </span>
               </div>
             </div>
@@ -258,10 +262,10 @@ export default function VercelConnection() {
               />
               <div>
                 <h4 className="text-sm font-medium text-bolt-elements-textPrimary">
-                  {connection.user?.username || connection.user?.user?.username || 'Vercel User'}
+                  {connection.user?.username || connection.user?.user?.username || t('vercel.defaultUser')}
                 </h4>
                 <p className="text-sm text-bolt-elements-textSecondary">
-                  {connection.user?.email || connection.user?.user?.email || 'No email available'}
+                  {connection.user?.email || connection.user?.user?.email || t('vercel.noEmail')}
                 </p>
               </div>
             </div>
