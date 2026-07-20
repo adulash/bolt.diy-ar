@@ -32,7 +32,8 @@
     "freeFilterHint": "Try disabling the \"Free models only\" filter to see all available models",
     "freeModelsOnly": "Free models only",
     "freeModelCount_one": "{{count}} free model",
-    "freeModelCount_other": "{{count}} free models"
+    "freeModelCount_other": "{{count}} free models",
+    "selectModel": "Select model"
   },
   "apiKey": {
     "label": "{{name}} API Key:",
@@ -43,7 +44,8 @@
     "get": "Get API Key",
     "setViaUI": "Set via UI",
     "setViaEnv": "Set via environment variable",
-    "notSet": "Not Set (Please set via UI or ENV_VAR)"
+    "notSet": "Not Set (Please set via UI or ENV_VAR)",
+    "getApiKey": "Get API Key"
   },
   "alerts": {
     "previewErrorTitle": "Preview Error",
@@ -79,5 +81,30 @@
     "defaultAction": "Create table and setup auth",
     "applying": "Applying...",
     "applyChanges": "Apply Changes"
+  },
+  "intro": {
+    "heading": "Where ideas begin",
+    "subtitle": "Bring ideas to life in seconds or get help on existing projects."
+  },
+  "import": {
+    "importChat": "Import Chat",
+    "importFolder": "Import Folder",
+    "importing": "Importing...",
+    "invalidChatFile": "Invalid chat file format",
+    "parseFailed": "Failed to parse chat file: {{error}}",
+    "parseFailedGeneric": "Failed to parse chat file",
+    "readFailed": "Failed to read chat file",
+    "somethingWrong": "Something went wrong"
+  },
+  "gitClone": {
+    "cloneRepo": "Clone a repo",
+    "importGithub": "Import GitHub Repository",
+    "importGitlab": "Import GitLab Repository",
+    "githubDesc": "Clone a repository from GitHub to your workspace",
+    "gitlabDesc": "Clone a repository from GitLab to your workspace",
+    "cloning": "Please wait while we clone the repository..."
+  },
+  "starter": {
+    "blankApp": "or start a blank app with your favorite stack"
   }
 }

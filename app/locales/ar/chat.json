@@ -36,7 +36,8 @@
     "freeModelCount_two": "نموذجان مجانيان",
     "freeModelCount_few": "{{count}} نماذج مجانية",
     "freeModelCount_many": "{{count}} نموذجاً مجانياً",
-    "freeModelCount_other": "{{count}} نموذج مجاني"
+    "freeModelCount_other": "{{count}} نموذج مجاني",
+    "selectModel": "اختر النموذج"
   },
   "apiKey": {
     "label": "مفتاح API لـ {{name}}:",
@@ -47,7 +48,8 @@
     "get": "الحصول على مفتاح API",
     "setViaUI": "مضبوط عبر الواجهة",
     "setViaEnv": "مضبوط عبر متغير البيئة",
-    "notSet": "غير مضبوط (اضبطه عبر الواجهة أو متغير البيئة)"
+    "notSet": "غير مضبوط (اضبطه عبر الواجهة أو متغير البيئة)",
+    "getApiKey": "الحصول على مفتاح API"
   },
   "alerts": {
     "previewErrorTitle": "خطأ في المعاينة",
@@ -83,5 +85,30 @@
     "defaultAction": "إنشاء جدول وتهيئة المصادقة",
     "applying": "جارٍ التطبيق...",
     "applyChanges": "تطبيق التغييرات"
+  },
+  "intro": {
+    "heading": "من هنا تبدأ الأفكار",
+    "subtitle": "حوّل أفكارك إلى واقع في ثوانٍ أو احصل على مساعدة في مشاريعك القائمة."
+  },
+  "import": {
+    "importChat": "استيراد محادثة",
+    "importFolder": "استيراد مجلد",
+    "importing": "جارٍ الاستيراد...",
+    "invalidChatFile": "صيغة ملف المحادثة غير صالحة",
+    "parseFailed": "تعذّر تحليل ملف المحادثة: {{error}}",
+    "parseFailedGeneric": "تعذّر تحليل ملف المحادثة",
+    "readFailed": "تعذّرت قراءة ملف المحادثة",
+    "somethingWrong": "حدث خطأ ما"
+  },
+  "gitClone": {
+    "cloneRepo": "استنساخ مستودع",
+    "importGithub": "استيراد مستودع GitHub",
+    "importGitlab": "استيراد مستودع GitLab",
+    "githubDesc": "استنسخ مستودعاً من GitHub إلى مساحة عملك",
+    "gitlabDesc": "استنسخ مستودعاً من GitLab إلى مساحة عملك",
+    "cloning": "يُرجى الانتظار بينما نستنسخ المستودع..."
+  },
+  "starter": {
+    "blankApp": "أو ابدأ بتطبيق فارغ بالمكدّس الذي تفضّله"
   }
 }

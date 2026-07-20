@@ -1,4 +1,5 @@
 import ignore from 'ignore';
+import { useTranslation } from 'react-i18next';
 import { useGit } from '~/lib/hooks/useGit';
 import type { Message } from 'ai';
 import { detectProjectCommands, createCommandsMessage, escapeBoltTags } from '~/utils/projectCommands';
@@ -48,6 +49,7 @@ interface GitCloneButtonProps {
 }
 
 export default function GitCloneButton({ importChat, className }: GitCloneButtonProps) {
+  const { t } = useTranslation('chat');
   const { ready, gitClone } = useGit();
   const [loading, setLoading] = useState(false);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -167,7 +169,7 @@ ${escapeBoltTags(file.content)}
           setSelectedProvider(null);
           setIsDialogOpen(true);
         }}
-        title="Clone a repo"
+        title={t('gitClone.cloneRepo')}
         variant="default"
         size="lg"
         className={classNames(
@@ -181,7 +183,7 @@ ${escapeBoltTags(file.content)}
         )}
         disabled={!ready || loading}
       >
-        Clone a repo
+        {t('gitClone.cloneRepo')}
         <div className="flex items-center gap-1 ms-2">
           <Github className="w-4 h-4" />
           <GitBranch className="w-4 h-4" />
@@ -260,10 +262,10 @@ ${escapeBoltTags(file.content)}
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary">
-                    Import GitHub Repository
+                    {t('gitClone.importGithub')}
                   </h3>
                   <p className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary">
-                    Clone a repository from GitHub to your workspace
+                    {t('gitClone.githubDesc')}
                   </p>
                 </div>
               </div>
@@ -296,10 +298,10 @@ ${escapeBoltTags(file.content)}
                 </div>
                 <div>
                   <h3 className="text-lg font-semibold text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary">
-                    Import GitLab Repository
+                    {t('gitClone.importGitlab')}
                   </h3>
                   <p className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary">
-                    Clone a repository from GitLab to your workspace
+                    {t('gitClone.gitlabDesc')}
                   </p>
                 </div>
               </div>
@@ -321,7 +323,7 @@ ${escapeBoltTags(file.content)}
         </div>
       )}
 
-      {loading && <LoadingOverlay message="Please wait while we clone the repository..." />}
+      {loading && <LoadingOverlay message={t('gitClone.cloning')} />}
     </>
   );
 }

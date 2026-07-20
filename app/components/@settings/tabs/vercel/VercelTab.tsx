@@ -168,8 +168,8 @@ export default function VercelTab() {
         variant: 'destructive',
       },
     ],
-    [connection.token],
-  ); // Only re-create when token changes
+    [connection.token, t],
+  ); // Re-create when token changes or the UI language switches
 
   // Initialize connection on component mount - check server-side token first
   useEffect(() => {

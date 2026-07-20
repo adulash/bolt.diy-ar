@@ -66,7 +66,7 @@ export default function McpTab() {
       setError(t('mcp.errors.invalidJson', { error: e instanceof Error ? e.message : String(e) }));
       return null;
     }
-  }, [mcpConfigText]);
+  }, [mcpConfigText, t]);
 
   const handleMaxLLMCallChange = (value: string) => {
     setMaxLLMSteps(parseInt(value, 10));
