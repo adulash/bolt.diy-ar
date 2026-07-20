@@ -660,7 +660,9 @@ export const ModelSelector = ({
           tabIndex={0}
         >
           <div className="flex items-center justify-between">
-            <div className="truncate">{modelList.find((m) => m.name === model)?.label || 'Select model'}</div>
+            <div className="truncate">
+              {modelList.find((m) => m.name === model)?.label || t('modelSelector.selectModel')}
+            </div>
             <div
               className={classNames(
                 'i-ph:caret-down w-4 h-4 text-bolt-elements-textSecondary opacity-75',

@@ -1,4 +1,5 @@
 import type { Message } from 'ai';
+import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { ImportFolderButton } from '~/components/chat/ImportFolderButton';
 import { Button } from '~/components/ui/Button';
@@ -10,6 +11,7 @@ type ChatData = {
 };
 
 export function ImportButtons(importChat: ((description: string, messages: Message[]) => Promise<void>) | undefined) {
+  const { t } = useTranslation('chat');
   return (
     <div className="flex flex-col items-center justify-center w-auto">
       <input
@@ -37,23 +39,23 @@ export function ImportButtons(importChat: ((description: string, messages: Messa
                     return;
                   }
 
-                  toast.error('Invalid chat file format');
+                  toast.error(t('import.invalidChatFile'));
                 } catch (error: unknown) {
                   if (error instanceof Error) {
-                    toast.error('Failed to parse chat file: ' + error.message);
+                    toast.error(t('import.parseFailed', { error: error.message }));
                   } else {
-                    toast.error('Failed to parse chat file');
+                    toast.error(t('import.parseFailedGeneric'));
                   }
                 }
               };
-              reader.onerror = () => toast.error('Failed to read chat file');
+              reader.onerror = () => toast.error(t('import.readFailed'));
               reader.readAsText(file);
             } catch (error) {
               toast.error(error instanceof Error ? error.message : 'Failed to import chat');
             }
             e.target.value = ''; // Reset file input
           } else {
-            toast.error('Something went wrong');
+            toast.error(t('import.somethingWrong'));
           }
         }}
       />
@@ -76,7 +78,7 @@ export function ImportButtons(importChat: ((description: string, messages: Messa
             )}
           >
             <span className="i-ph:upload-simple w-4 h-4" />
-            Import Chat
+            {t('import.importChat')}
           </Button>
           <ImportFolderButton
             importChat={importChat}

@@ -2,6 +2,7 @@
  * @ts-nocheck
  * Preventing TS checks with files presented in the video for a better presentation.
  */
+import { useTranslation } from 'react-i18next';
 import type { JSONValue, Message } from 'ai';
 import React, { type RefCallback, useEffect, useState } from 'react';
 import { ClientOnly } from 'remix-utils/client-only';
@@ -135,6 +136,7 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
     },
     ref,
   ) => {
+    const { t } = useTranslation('chat');
     const TEXTAREA_MAX_HEIGHT = chatStarted ? 400 : 200;
     const [apiKeys, setApiKeys] = useState<Record<string, string>>(getApiKeysFromCookies());
     const [modelList, setModelList] = useState<ModelInfo[]>([]);
@@ -353,10 +355,10 @@ export const BaseChat = React.forwardRef<HTMLDivElement, BaseChatProps>(
             {!chatStarted && (
               <div id="intro" className="mt-[16vh] max-w-2xl mx-auto text-center px-4 lg:px-0">
                 <h1 className="text-3xl lg:text-6xl font-bold text-bolt-elements-textPrimary mb-4 animate-fade-in">
-                  Where ideas begin
+                  {t('intro.heading')}
                 </h1>
                 <p className="text-md lg:text-xl mb-8 text-bolt-elements-textSecondary animate-fade-in animation-delay-200">
-                  Bring ideas to life in seconds or get help on existing projects.
+                  {t('intro.subtitle')}
                 </p>
               </div>
             )}
