@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { useStore } from '@nanostores/react';
@@ -36,6 +37,7 @@ const VercelLogo = () => (
 );
 
 export default function VercelTab() {
+  const { t } = useTranslation('settings');
   const connection = useStore(vercelConnection);
   const connecting = useStore(isConnecting);
   const fetchingStats = useStore(isFetchingStats);
@@ -51,14 +53,14 @@ export default function VercelTab() {
     testEndpoint: '/api/vercel-user',
     serviceName: 'Vercel',
     getUserIdentifier: (data: VercelUserResponse) =>
-      data.username || data.user?.username || data.email || data.user?.email || 'Vercel User',
+      data.username || data.user?.username || data.email || data.user?.email || t('vercel.defaultUser'),
   });
 
   // Memoize project actions to prevent unnecessary re-renders
   const projectActions: ProjectAction[] = useMemo(
     () => [
       {
-        name: 'Redeploy',
+        name: t('vercel.actions.redeploy'),
         icon: 'i-ph:arrows-clockwise',
         action: async (projectId: string) => {
           try {
@@ -75,40 +77,40 @@ export default function VercelTab() {
             });
 
             if (!response.ok) {
-              throw new Error('Failed to redeploy project');
+              throw new Error(t('vercel.toast.redeployFailed'));
             }
 
-            toast.success('Project redeployment initiated');
+            toast.success(t('vercel.toast.redeployInitiated'));
             await fetchVercelStats(connection.token);
           } catch (err: unknown) {
             const error = err instanceof Error ? err.message : 'Unknown error';
-            toast.error(`Failed to redeploy project: ${error}`);
+            toast.error(`${t('vercel.toast.redeployFailed')}: ${error}`);
           }
         },
       },
       {
-        name: 'View Dashboard',
+        name: t('vercel.actions.viewDashboard'),
         icon: 'i-ph:layout',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}`, '_blank');
         },
       },
       {
-        name: 'View Deployments',
+        name: t('vercel.actions.viewDeployments'),
         icon: 'i-ph:rocket',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}/deployments`, '_blank');
         },
       },
       {
-        name: 'View Functions',
+        name: t('vercel.actions.viewFunctions'),
         icon: 'i-ph:code',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}/functions`, '_blank');
         },
       },
       {
-        name: 'View Analytics',
+        name: t('vercel.actions.viewAnalytics'),
         icon: 'i-ph:chart-bar',
         action: async (projectId: string) => {
           const project = connection.stats?.projects.find((p) => p.id === projectId);
@@ -119,28 +121,28 @@ export default function VercelTab() {
         },
       },
       {
-        name: 'View Domains',
+        name: t('vercel.actions.viewDomains'),
         icon: 'i-ph:globe',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}/domains`, '_blank');
         },
       },
       {
-        name: 'View Settings',
+        name: t('vercel.actions.viewSettings'),
         icon: 'i-ph:gear',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}/settings`, '_blank');
         },
       },
       {
-        name: 'View Logs',
+        name: t('vercel.actions.viewLogs'),
         icon: 'i-ph:scroll',
         action: async (projectId: string) => {
           window.open(`https://vercel.com/dashboard/${projectId}/logs`, '_blank');
         },
       },
       {
-        name: 'Delete Project',
+        name: t('vercel.actions.deleteProject'),
         icon: 'i-ph:trash',
         action: async (projectId: string) => {
           try {
@@ -152,14 +154,14 @@ export default function VercelTab() {
             });
 
             if (!response.ok) {
-              throw new Error('Failed to delete project');
+              throw new Error(t('vercel.toast.projectDeleteFailed'));
             }
 
-            toast.success('Project deleted successfully');
+            toast.success(t('vercel.toast.projectDeleted'));
             await fetchVercelStats(connection.token);
           } catch (err: unknown) {
             const error = err instanceof Error ? err.message : 'Unknown error';
-            toast.error(`Failed to delete project: ${error}`);
+            toast.error(`${t('vercel.toast.projectDeleteFailed')}: ${error}`);
           }
         },
         requiresConfirmation: true,
@@ -214,7 +216,7 @@ export default function VercelTab() {
       const token = connection.token;
 
       if (!token.trim()) {
-        throw new Error('Token is required');
+        throw new Error(t('vercel.toast.tokenRequired'));
       }
 
       // First test the token directly with Vercel API
@@ -227,7 +229,7 @@ export default function VercelTab() {
 
       if (!testResponse.ok) {
         if (testResponse.status === 401) {
-          throw new Error('Invalid Vercel token');
+          throw new Error(t('vercel.toast.invalidToken'));
         }
 
         throw new Error(`Vercel API error: ${testResponse.status}`);
@@ -253,12 +255,12 @@ export default function VercelTab() {
       });
 
       await fetchVercelStats(token);
-      toast.success('Successfully connected to Vercel');
+      toast.success(t('vercel.toast.connected'));
     } catch (error) {
       console.error('Auth error:', error);
-      logStore.logError('Failed to authenticate with Vercel', { error });
+      logStore.logError(t('vercel.toast.authFailed'), { error });
 
-      const errorMessage = error instanceof Error ? error.message : 'Failed to connect to Vercel';
+      const errorMessage = error instanceof Error ? error.message : t('vercel.toast.connectFailed');
       toast.error(errorMessage);
       updateVercelConnection({ user: null, token: '' });
     } finally {
@@ -271,12 +273,12 @@ export default function VercelTab() {
     Cookies.remove('VITE_VERCEL_ACCESS_TOKEN');
 
     updateVercelConnection({ user: null, token: '' });
-    toast.success('Disconnected from Vercel');
+    toast.success(t('vercel.toast.disconnected'));
   };
 
   const handleProjectAction = useCallback(async (projectId: string, action: ProjectAction) => {
     if (action.requiresConfirmation) {
-      if (!confirm(`Are you sure you want to ${action.name.toLowerCase()}?`)) {
+      if (!confirm(t('vercel.confirmAction', { action: action.name }))) {
         return;
       }
     }
@@ -319,13 +321,15 @@ export default function VercelTab() {
             {/* Vercel Overview Dashboard */}
             {connection.stats?.projects?.length ? (
               <div className="mb-6 p-4 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
-                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-3">Vercel Overview</h4>
+                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-3">
+                  {t('vercel.stats.overview')}
+                </h4>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {connection.stats.totalProjects}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Total Projects</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('vercel.stats.totalProjects')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
@@ -335,19 +339,21 @@ export default function VercelTab() {
                         ).length
                       }
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Deployed Projects</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('vercel.stats.deployedProjects')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {new Set(connection.stats.projects.map((p) => p.framework).filter(Boolean)).size}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Frameworks Used</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('vercel.stats.frameworksUsed')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {connection.stats.projects.filter((p) => p.latestDeployments?.[0]?.state === 'READY').length}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Active Deployments</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">
+                      {t('vercel.stats.activeDeployments')}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -356,7 +362,9 @@ export default function VercelTab() {
             {/* Performance Analytics */}
             {connection.stats?.projects?.length ? (
               <div className="mb-6 space-y-4">
-                <h4 className="text-sm font-medium text-bolt-elements-textPrimary">Performance Analytics</h4>
+                <h4 className="text-sm font-medium text-bolt-elements-textPrimary">
+                  {t('vercel.stats.performanceAnalytics')}
+                </h4>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                   <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg border border-bolt-elements-borderColor">
                     <h6 className="text-xs font-medium text-bolt-elements-textPrimary flex items-center gap-2 mb-2">
@@ -381,9 +389,9 @@ export default function VercelTab() {
                             : 0;
 
                         return [
-                          { label: 'Success Rate', value: `${successRate}%` },
-                          { label: 'Active', value: readyDeployments },
-                          { label: 'Failed', value: errorDeployments },
+                          { label: t('vercel.stats.successRate'), value: `${successRate}%` },
+                          { label: t('vercel.stats.active'), value: readyDeployments },
+                          { label: t('vercel.stats.failed'), value: errorDeployments },
                         ];
                       })().map((item, idx) => (
                         <div key={idx} className="flex justify-between text-xs">
@@ -447,8 +455,8 @@ export default function VercelTab() {
                             : 0;
 
                         return [
-                          { label: 'Recent deploys', value: recentDeployments },
-                          { label: 'Total domains', value: totalDomains },
+                          { label: t('vercel.stats.recentDeploys'), value: recentDeployments },
+                          { label: t('vercel.stats.totalDomains'), value: totalDomains },
                           { label: 'Avg domains/project', value: avgDomainsPerProject },
                         ];
                       })().map((item, idx) => (
@@ -466,7 +474,9 @@ export default function VercelTab() {
             {/* Project Health Overview */}
             {connection.stats?.projects?.length ? (
               <div className="mb-6">
-                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">Project Health Overview</h4>
+                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">
+                  {t('vercel.stats.projectHealthOverview')}
+                </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   {(() => {
                     const healthyProjects = connection.stats.projects.filter(
@@ -486,7 +496,7 @@ export default function VercelTab() {
 
                     return [
                       {
-                        label: 'Healthy',
+                        label: t('vercel.health.healthy'),
                         value: healthyProjects,
                         icon: 'i-ph:check-circle',
                         color: 'text-green-500',
@@ -494,7 +504,7 @@ export default function VercelTab() {
                         textColor: 'text-green-800 dark:text-green-400',
                       },
                       {
-                        label: 'Custom Domain',
+                        label: t('vercel.health.customDomain'),
                         value: withCustomDomain,
                         icon: 'i-ph:globe',
                         color: 'text-blue-500',
@@ -510,7 +520,7 @@ export default function VercelTab() {
                         textColor: 'text-yellow-800 dark:text-yellow-400',
                       },
                       {
-                        label: 'Issues',
+                        label: t('vercel.health.issues'),
                         value: needsAttention,
                         icon: 'i-ph:warning',
                         color: 'text-red-500',
@@ -717,7 +727,7 @@ export default function VercelTab() {
     <div className="space-y-6">
       <ServiceHeader
         icon={VercelLogo}
-        title="Vercel Integration"
+        title={t('vercel.title')}
         description="Connect and manage your Vercel projects with advanced deployment controls and analytics"
         onTestConnection={connection.user ? () => testConnection() : undefined}
         isTestingConnection={isTestingConnection}
@@ -747,13 +757,15 @@ export default function VercelTab() {
               </div>
 
               <div>
-                <label className="block text-sm text-bolt-elements-textSecondary mb-2">Personal Access Token</label>
+                <label className="block text-sm text-bolt-elements-textSecondary mb-2">
+                  {t('vercel.personalAccessToken')}
+                </label>
                 <input
                   type="password"
                   value={connection.token}
                   onChange={(e) => updateVercelConnection({ ...connection, token: e.target.value })}
                   disabled={connecting}
-                  placeholder="Enter your Vercel personal access token"
+                  placeholder={t('vercel.tokenPlaceholder')}
                   className={classNames(
                     'w-full px-3 py-2 rounded-lg text-sm',
                     'bg-[#F8F8F8] dark:bg-[#1A1A1A]',
@@ -833,10 +845,10 @@ export default function VercelTab() {
                   />
                   <div className="flex-1">
                     <h4 className="text-sm font-medium text-bolt-elements-textPrimary">
-                      {connection.user?.username || 'Vercel User'}
+                      {connection.user?.username || t('vercel.defaultUser')}
                     </h4>
                     <p className="text-sm text-bolt-elements-textSecondary">
-                      {connection.user?.email || 'No email available'}
+                      {connection.user?.email || t('vercel.noEmail')}
                     </p>
                     <div className="flex items-center gap-4 mt-2 text-xs text-bolt-elements-textSecondary">
                       <span className="flex items-center gap-1">
@@ -863,7 +875,9 @@ export default function VercelTab() {
                   <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="i-ph:buildings w-4 h-4 text-bolt-elements-item-contentAccent" />
-                      <span className="text-xs font-medium text-bolt-elements-textPrimary">Projects</span>
+                      <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                        {t('vercel.sections.projects')}
+                      </span>
                     </div>
                     <div className="text-sm text-bolt-elements-textSecondary">
                       <div>
@@ -877,7 +891,9 @@ export default function VercelTab() {
                   <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="i-ph:globe w-4 h-4 text-bolt-elements-item-contentAccent" />
-                      <span className="text-xs font-medium text-bolt-elements-textPrimary">Domains</span>
+                      <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                        {t('vercel.sections.domains')}
+                      </span>
                     </div>
                     <div className="text-sm text-bolt-elements-textSecondary">
                       {/* Domain usage would be fetched from API */}
@@ -888,7 +904,9 @@ export default function VercelTab() {
                   <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="i-ph:activity w-4 h-4 text-bolt-elements-item-contentAccent" />
-                      <span className="text-xs font-medium text-bolt-elements-textPrimary">Usage</span>
+                      <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                        {t('vercel.sections.usage')}
+                      </span>
                     </div>
                     <div className="text-sm text-bolt-elements-textSecondary">
                       {/* Usage metrics would be fetched from API */}

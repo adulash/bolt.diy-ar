@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import type { GitHubUserResponse } from '~/types/GitHub';
 
 interface GitHubUserProfileProps {
@@ -7,6 +8,8 @@ interface GitHubUserProfileProps {
 }
 
 export function GitHubUserProfile({ user, className = '' }: GitHubUserProfileProps) {
+  const { t } = useTranslation('settings');
+
   return (
     <div
       className={`flex items-center gap-4 p-4 bg-bolt-elements-background-depth-1 dark:bg-bolt-elements-background-depth-1 rounded-lg ${className}`}
@@ -29,15 +32,15 @@ export function GitHubUserProfile({ user, className = '' }: GitHubUserProfilePro
         <div className="flex items-center gap-4 mt-2 text-xs text-bolt-elements-textSecondary">
           <span className="flex items-center gap-1">
             <div className="i-ph:users w-3 h-3" />
-            {user.followers} followers
+            {t('github.followersCount', { count: user.followers })}
           </span>
           <span className="flex items-center gap-1">
             <div className="i-ph:folder w-3 h-3" />
-            {user.public_repos} public repos
+            {t('github.publicReposCount', { count: user.public_repos })}
           </span>
           <span className="flex items-center gap-1">
             <div className="i-ph:file-text w-3 h-3" />
-            {user.public_gists} gists
+            {t('github.gistsCount', { count: user.public_gists })}
           </span>
         </div>
       </div>

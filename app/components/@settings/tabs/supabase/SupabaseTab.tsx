@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { toast } from 'react-toastify';
 import { useStore } from '@nanostores/react';
@@ -24,6 +25,7 @@ interface ConnectionTestResult {
 }
 
 interface ProjectAction {
+  id: string;
   name: string;
   icon: string;
   action: (projectId: string) => Promise<void>;
@@ -51,6 +53,7 @@ const SupabaseLogo = () => (
 );
 
 export default function SupabaseTab() {
+  const { t } = useTranslation('settings');
   const connection = useStore(supabaseConnection);
   const connecting = useStore(isConnecting);
   const fetchingStats = useStore(isFetchingStats);
@@ -66,7 +69,7 @@ export default function SupabaseTab() {
   const testConnection = async () => {
     setConnectionTest({
       status: 'testing',
-      message: 'Testing connection...',
+      message: t('connections.testingConnection'),
     });
 
     try {
@@ -104,12 +107,13 @@ export default function SupabaseTab() {
   // Project actions
   const projectActions: ProjectAction[] = [
     {
-      name: 'Get API Keys',
+      id: 'getApiKeys',
+      name: t('supabase.getApiKeys'),
       icon: 'i-ph:key',
       action: async (projectId: string) => {
         try {
           await fetchProjectApiKeys(projectId, connection.token);
-          toast.success('API keys fetched successfully');
+          toast.success(t('supabase.toast.apiKeysFetched'));
         } catch (err: unknown) {
           const error = err instanceof Error ? err.message : 'Unknown error';
           toast.error(`Failed to fetch API keys: ${error}`);
@@ -117,70 +121,80 @@ export default function SupabaseTab() {
       },
     },
     {
-      name: 'View Dashboard',
+      id: 'viewDashboard',
+      name: t('supabase.actions.viewDashboard'),
       icon: 'i-ph:layout',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}`, '_blank');
       },
     },
     {
-      name: 'View Database',
+      id: 'viewDatabase',
+      name: t('supabase.actions.viewDatabase'),
       icon: 'i-ph:database',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/editor`, '_blank');
       },
     },
     {
-      name: 'View Auth',
+      id: 'viewAuth',
+      name: t('supabase.actions.viewAuth'),
       icon: 'i-ph:user-circle',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/auth/users`, '_blank');
       },
     },
     {
-      name: 'View Storage',
+      id: 'viewStorage',
+      name: t('supabase.actions.viewStorage'),
       icon: 'i-ph:folder',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/storage/buckets`, '_blank');
       },
     },
     {
-      name: 'View Functions',
+      id: 'viewFunctions',
+      name: t('supabase.actions.viewFunctions'),
       icon: 'i-ph:code',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/functions`, '_blank');
       },
     },
     {
-      name: 'View Logs',
+      id: 'viewLogs',
+      name: t('supabase.actions.viewLogs'),
       icon: 'i-ph:scroll',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/logs`, '_blank');
       },
     },
     {
-      name: 'View Settings',
+      id: 'viewSettings',
+      name: t('supabase.actions.viewSettings'),
       icon: 'i-ph:gear',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/settings`, '_blank');
       },
     },
     {
-      name: 'View API Docs',
+      id: 'viewApiDocs',
+      name: t('supabase.actions.viewApiDocs'),
       icon: 'i-ph:book',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/api`, '_blank');
       },
     },
     {
-      name: 'View Realtime',
+      id: 'viewRealtime',
+      name: t('supabase.actions.viewRealtime'),
       icon: 'i-ph:radio',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/realtime`, '_blank');
       },
     },
     {
-      name: 'View Edge Functions',
+      id: 'viewEdgeFunctions',
+      name: t('supabase.actions.viewEdgeFunctions'),
       icon: 'i-ph:terminal',
       action: async (projectId: string) => {
         window.open(`https://supabase.com/dashboard/project/${projectId}/functions`, '_blank');
@@ -219,7 +233,7 @@ export default function SupabaseTab() {
 
   const handleConnect = async () => {
     if (!tokenInput) {
-      toast.error('Please enter a Supabase access token');
+      toast.error(t('supabase.toast.enterToken'));
       return;
     }
 
@@ -231,11 +245,11 @@ export default function SupabaseTab() {
         token: tokenInput,
         isConnected: true,
       });
-      toast.success('Successfully connected to Supabase');
+      toast.success(t('supabase.toast.connected'));
       setTokenInput('');
     } catch (error) {
       console.error('Auth error:', error);
-      toast.error('Failed to connect to Supabase');
+      toast.error(t('supabase.toast.connectFailed'));
       updateSupabaseConnection({ user: null, token: '' });
     } finally {
       isConnecting.set(false);
@@ -254,7 +268,7 @@ export default function SupabaseTab() {
     });
     setConnectionTest(null);
     setSelectedProjectId('');
-    toast.success('Disconnected from Supabase');
+    toast.success(t('supabase.toast.disconnected'));
   };
 
   const handleProjectAction = async (projectId: string, action: ProjectAction) => {
@@ -315,31 +329,35 @@ export default function SupabaseTab() {
             {/* Supabase Overview Dashboard */}
             {connection.stats?.projects?.length ? (
               <div className="mb-6 p-4 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
-                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-3">Supabase Overview</h4>
+                <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-3">
+                  {t('supabase.stats.overview')}
+                </h4>
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {connection.stats.totalProjects}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Total Projects</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('supabase.stats.totalProjects')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {connection.stats.projects.filter((p: SupabaseProject) => p.status === 'ACTIVE_HEALTHY').length}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Active Projects</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('supabase.stats.activeProjects')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {new Set(connection.stats.projects.map((p: SupabaseProject) => p.region)).size}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Regions Used</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">{t('supabase.stats.regionsUsed')}</div>
                   </div>
                   <div className="text-center">
                     <div className="text-2xl font-bold text-bolt-elements-textPrimary">
                       {connection.stats.projects.filter((p: SupabaseProject) => p.status !== 'ACTIVE_HEALTHY').length}
                     </div>
-                    <div className="text-xs text-bolt-elements-textSecondary">Inactive Projects</div>
+                    <div className="text-xs text-bolt-elements-textSecondary">
+                      {t('supabase.stats.inactiveProjects')}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -457,11 +475,11 @@ export default function SupabaseTab() {
                                 e.stopPropagation();
                                 handleProjectAction(project.id, action);
                               }}
-                              disabled={isProjectActionLoading || (action.name === 'Get API Keys' && fetchingApiKeys)}
+                              disabled={isProjectActionLoading || (action.id === 'getApiKeys' && fetchingApiKeys)}
                               className="flex items-center gap-1 text-xs px-2 py-1 text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary"
                             >
                               <div className={`${action.icon} w-2.5 h-2.5`} />
-                              {action.name === 'Get API Keys' && fetchingApiKeys ? 'Fetching...' : action.name}
+                              {action.id === 'getApiKeys' && fetchingApiKeys ? t('supabase.fetching') : action.name}
                             </Button>
                           ))}
                         </div>
@@ -551,7 +569,7 @@ export default function SupabaseTab() {
 
                                       if (connection.credentials?.supabaseUrl) {
                                         navigator.clipboard.writeText(connection.credentials.supabaseUrl);
-                                        toast.success('URL copied to clipboard');
+                                        toast.success(t('supabase.toast.urlCopied'));
                                       }
                                     }}
                                     className="w-8 h-8"
@@ -577,7 +595,7 @@ export default function SupabaseTab() {
 
                                       if (connection.credentials?.anonKey) {
                                         navigator.clipboard.writeText(connection.credentials.anonKey);
-                                        toast.success('Key copied to clipboard');
+                                        toast.success(t('supabase.toast.keyCopied'));
                                       }
                                     }}
                                     className="w-8 h-8"
@@ -620,7 +638,7 @@ export default function SupabaseTab() {
             <SupabaseLogo />
           </div>
           <h2 className="text-lg font-medium text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary">
-            Supabase Integration
+            {t('supabase.title')}
           </h2>
         </div>
         <div className="flex items-center gap-2">
@@ -635,12 +653,12 @@ export default function SupabaseTab() {
               {connectionTest?.status === 'testing' ? (
                 <>
                   <div className="i-ph:spinner-gap w-4 h-4 animate-spin" />
-                  Testing...
+                  {t('connections.testing')}
                 </>
               ) : (
                 <>
                   <div className="i-ph:plug-charging w-4 h-4" />
-                  Test Connection
+                  {t('connections.testConnection')}
                 </>
               )}
             </Button>
@@ -712,13 +730,15 @@ export default function SupabaseTab() {
               </div>
 
               <div>
-                <label className="block text-sm text-bolt-elements-textSecondary mb-2">Access Token</label>
+                <label className="block text-sm text-bolt-elements-textSecondary mb-2">
+                  {t('supabase.accessToken')}
+                </label>
                 <input
                   type="password"
                   value={tokenInput}
                   onChange={(e) => setTokenInput(e.target.value)}
                   disabled={connecting}
-                  placeholder="Enter your Supabase access token"
+                  placeholder={t('supabase.tokenPlaceholder')}
                   className={classNames(
                     'w-full px-3 py-2 rounded-lg text-sm',
                     'bg-[#F8F8F8] dark:bg-[#1A1A1A]',
@@ -735,7 +755,7 @@ export default function SupabaseTab() {
                     rel="noopener noreferrer"
                     className="text-bolt-elements-borderColorActive hover:underline inline-flex items-center gap-1"
                   >
-                    Get your token
+                    {t('supabase.getYourToken')}
                     <div className="i-ph:arrow-square-out w-4 h-4" />
                   </a>
                 </div>
@@ -755,12 +775,12 @@ export default function SupabaseTab() {
                 {connecting ? (
                   <>
                     <div className="i-ph:spinner-gap animate-spin" />
-                    Connecting...
+                    {t('connections.connecting')}
                   </>
                 ) : (
                   <>
                     <div className="i-ph:plug-charging w-4 h-4" />
-                    Connect
+                    {t('connections.connect')}
                   </>
                 )}
               </button>
@@ -778,11 +798,11 @@ export default function SupabaseTab() {
                     )}
                   >
                     <div className="i-ph:plug w-4 h-4" />
-                    Disconnect
+                    {t('connections.disconnect')}
                   </button>
                   <span className="text-sm text-bolt-elements-textSecondary flex items-center gap-1">
                     <div className="i-ph:check-circle w-4 h-4 text-green-500" />
-                    Connected to Supabase
+                    {t('supabase.connectedTo')}
                   </span>
                 </div>
               </div>
@@ -821,7 +841,9 @@ export default function SupabaseTab() {
 
                   {/* Advanced Analytics */}
                   <div className="mb-6 space-y-4">
-                    <h4 className="text-sm font-medium text-bolt-elements-textPrimary">Performance Analytics</h4>
+                    <h4 className="text-sm font-medium text-bolt-elements-textPrimary">
+                      {t('supabase.stats.performanceAnalytics')}
+                    </h4>
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <div className="bg-bolt-elements-background-depth-2 p-3 rounded-lg border border-bolt-elements-borderColor">
                         <h6 className="text-xs font-medium text-bolt-elements-textPrimary flex items-center gap-2 mb-2">
@@ -847,8 +869,8 @@ export default function SupabaseTab() {
                                 : 0;
 
                             return [
-                              { label: 'Health Rate', value: `${healthRate}%` },
-                              { label: 'Active Projects', value: activeProjects },
+                              { label: t('supabase.stats.healthRate'), value: `${healthRate}%` },
+                              { label: t('supabase.stats.activeProjects'), value: activeProjects },
                               { label: 'Avg Tables/Project', value: avgTablesPerProject },
                             ];
                           })().map((item, idx) => (
@@ -876,8 +898,8 @@ export default function SupabaseTab() {
                               connection.stats?.projects?.reduce((sum, p) => sum + (p.stats?.auth?.users || 0), 0) || 0;
 
                             return [
-                              { label: 'Auth Enabled', value: `${authEnabledRate}%` },
-                              { label: 'Total Users', value: totalUsers },
+                              { label: t('supabase.stats.authEnabled'), value: `${authEnabledRate}%` },
+                              { label: t('supabase.stats.totalUsers'), value: totalUsers },
                               {
                                 label: 'Avg Users/Project',
                                 value: totalProjects > 0 ? Math.round(totalUsers / totalProjects) : 0,
@@ -925,7 +947,9 @@ export default function SupabaseTab() {
 
                   {/* Resource Utilization */}
                   <div className="mb-6">
-                    <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">Resource Overview</h4>
+                    <h4 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">
+                      {t('supabase.stats.resourceOverview')}
+                    </h4>
                     <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
                       {(() => {
                         const totalDatabase =
@@ -948,7 +972,7 @@ export default function SupabaseTab() {
 
                         return [
                           {
-                            label: 'Database',
+                            label: t('supabase.resources.database'),
                             value: totalDatabase > 0 ? `${totalDatabase} MB` : '--',
                             icon: 'i-ph:database',
                             color: 'text-blue-500',
@@ -956,7 +980,7 @@ export default function SupabaseTab() {
                             textColor: 'text-blue-800 dark:text-blue-400',
                           },
                           {
-                            label: 'Storage',
+                            label: t('supabase.resources.storage'),
                             value: totalStorage > 0 ? `${totalStorage} GB` : '--',
                             icon: 'i-ph:folder',
                             color: 'text-green-500',
@@ -964,7 +988,7 @@ export default function SupabaseTab() {
                             textColor: 'text-green-800 dark:text-green-400',
                           },
                           {
-                            label: 'Functions',
+                            label: t('supabase.resources.functions'),
                             value: totalFunctions,
                             icon: 'i-ph:code',
                             color: 'text-purple-500',
@@ -972,7 +996,7 @@ export default function SupabaseTab() {
                             textColor: 'text-purple-800 dark:text-purple-400',
                           },
                           {
-                            label: 'Tables',
+                            label: t('supabase.resources.tables'),
                             value: totalTables,
                             icon: 'i-ph:table',
                             color: 'text-orange-500',
@@ -980,7 +1004,7 @@ export default function SupabaseTab() {
                             textColor: 'text-orange-800 dark:text-orange-400',
                           },
                           {
-                            label: 'Buckets',
+                            label: t('supabase.resources.buckets'),
                             value: totalBuckets,
                             icon: 'i-ph:archive',
                             color: 'text-teal-500',
@@ -1008,7 +1032,9 @@ export default function SupabaseTab() {
                     <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="i-ph:database w-4 h-4 text-bolt-elements-item-contentAccent" />
-                        <span className="text-xs font-medium text-bolt-elements-textPrimary">Database</span>
+                        <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                          {t('supabase.resources.database')}
+                        </span>
                       </div>
                       <div className="text-sm text-bolt-elements-textSecondary">
                         <div>
@@ -1032,7 +1058,9 @@ export default function SupabaseTab() {
                     <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="i-ph:folder w-4 h-4 text-bolt-elements-item-contentAccent" />
-                        <span className="text-xs font-medium text-bolt-elements-textPrimary">Storage</span>
+                        <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                          {t('supabase.resources.storage')}
+                        </span>
                       </div>
                       <div className="text-sm text-bolt-elements-textSecondary">
                         <div>
@@ -1056,7 +1084,9 @@ export default function SupabaseTab() {
                     <div className="p-3 bg-bolt-elements-background-depth-1 rounded-lg border border-bolt-elements-borderColor">
                       <div className="flex items-center gap-2 mb-2">
                         <div className="i-ph:code w-4 h-4 text-bolt-elements-item-contentAccent" />
-                        <span className="text-xs font-medium text-bolt-elements-textPrimary">Functions</span>
+                        <span className="text-xs font-medium text-bolt-elements-textPrimary">
+                          {t('supabase.resources.functions')}
+                        </span>
                       </div>
                       <div className="text-sm text-bolt-elements-textSecondary">
                         <div>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Switch } from '~/components/ui/Switch';
 import { useSettings } from '~/lib/hooks/useSettings';
 import { URL_CONFIGURABLE_PROVIDERS } from '~/lib/stores/settings';
@@ -52,14 +53,15 @@ const PROVIDER_ICONS: Record<ProviderName, IconType> = {
   XAI: BsRobot,
 };
 
-// Update PROVIDER_DESCRIPTIONS to use the same type
-const PROVIDER_DESCRIPTIONS: Partial<Record<ProviderName, string>> = {
-  Anthropic: 'Access Claude and other Anthropic models',
-  Github: 'Use OpenAI models hosted through GitHub infrastructure',
-  OpenAI: 'Use GPT-4, GPT-3.5, and other OpenAI models',
+// Update PROVIDER_DESCRIPTION_KEYS to use the same type
+const PROVIDER_DESCRIPTION_KEYS: Partial<Record<ProviderName, string>> = {
+  Anthropic: 'providers.cloud.descriptions.Anthropic',
+  Github: 'providers.cloud.descriptions.Github',
+  OpenAI: 'providers.cloud.descriptions.OpenAI',
 };
 
 const CloudProvidersTab = () => {
+  const { t } = useTranslation('settings');
   const settings = useSettings();
   const [editingProvider, setEditingProvider] = useState<string | null>(null);
   const [filteredProviders, setFilteredProviders] = useState<IProviderConfig[]>([]);
@@ -95,9 +97,9 @@ const CloudProvidersTab = () => {
       });
 
       setCategoryEnabled(enabled);
-      toast.success(enabled ? 'All cloud providers enabled' : 'All cloud providers disabled');
+      toast.success(enabled ? t('providers.cloud.allEnabled') : t('providers.cloud.allDisabled'));
     },
-    [filteredProviders, settings],
+    [filteredProviders, settings, t],
   );
 
   const handleToggleProvider = useCallback(
@@ -107,13 +109,13 @@ const CloudProvidersTab = () => {
 
       if (enabled) {
         logStore.logProvider(`Provider ${provider.name} enabled`, { provider: provider.name });
-        toast.success(`${provider.name} enabled`);
+        toast.success(t('providers.cloud.providerEnabled', { provider: provider.name }));
       } else {
         logStore.logProvider(`Provider ${provider.name} disabled`, { provider: provider.name });
-        toast.success(`${provider.name} disabled`);
+        toast.success(t('providers.cloud.providerDisabled', { provider: provider.name }));
       }
     },
-    [settings],
+    [settings, t],
   );
 
   const handleUpdateBaseUrl = useCallback(
@@ -127,10 +129,10 @@ const CloudProvidersTab = () => {
         provider: provider.name,
         baseUrl: newBaseUrl,
       });
-      toast.success(`${provider.name} base URL updated`);
+      toast.success(t('providers.cloud.baseUrlUpdated', { provider: provider.name }));
       setEditingProvider(null);
     },
-    [settings],
+    [settings, t],
   );
 
   return (
@@ -153,13 +155,13 @@ const CloudProvidersTab = () => {
               <TbCloudComputing className="w-5 h-5" />
             </div>
             <div>
-              <h4 className="text-md font-medium text-bolt-elements-textPrimary">Cloud Providers</h4>
-              <p className="text-sm text-bolt-elements-textSecondary">Connect to cloud-based AI models and services</p>
+              <h4 className="text-md font-medium text-bolt-elements-textPrimary">{t('providers.cloud.title')}</h4>
+              <p className="text-sm text-bolt-elements-textSecondary">{t('providers.cloud.description')}</p>
             </div>
           </div>
 
           <div className="flex items-center gap-2">
-            <span className="text-sm text-bolt-elements-textSecondary">Enable All Cloud</span>
+            <span className="text-sm text-bolt-elements-textSecondary">{t('providers.cloud.enableAll')}</span>
             <Switch checked={categoryEnabled} onCheckedChange={handleToggleCategory} />
           </div>
         </div>
@@ -188,7 +190,7 @@ const CloudProvidersTab = () => {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    Configurable
+                    {t('providers.cloud.configurable')}
                   </motion.span>
                 )}
               </div>
@@ -207,7 +209,7 @@ const CloudProvidersTab = () => {
                   <div className={classNames('w-6 h-6', 'transition-transform duration-200', 'group-hover:rotate-12')}>
                     {React.createElement(PROVIDER_ICONS[provider.name as ProviderName] || BsRobot, {
                       className: 'w-full h-full',
-                      'aria-label': `${provider.name} logo`,
+                      'aria-label': t('providers.cloud.logoAlt', { provider: provider.name }),
                     })}
                   </div>
                 </motion.div>
@@ -219,10 +221,17 @@ const CloudProvidersTab = () => {
                         {provider.name}
                       </h4>
                       <p className="text-xs text-bolt-elements-textSecondary mt-0.5">
-                        {PROVIDER_DESCRIPTIONS[provider.name as keyof typeof PROVIDER_DESCRIPTIONS] ||
-                          (URL_CONFIGURABLE_PROVIDERS.includes(provider.name)
-                            ? 'Configure custom endpoint for this provider'
-                            : 'Standard AI provider integration')}
+                        {(() => {
+                          const descriptionKey = PROVIDER_DESCRIPTION_KEYS[provider.name as ProviderName];
+
+                          if (descriptionKey) {
+                            return t(descriptionKey);
+                          }
+
+                          return URL_CONFIGURABLE_PROVIDERS.includes(provider.name)
+                            ? t('providers.cloud.descriptions.configurableDefault')
+                            : t('providers.cloud.descriptions.default');
+                        })()}
                       </p>
                     </div>
                     <Switch
@@ -243,7 +252,7 @@ const CloudProvidersTab = () => {
                           <input
                             type="text"
                             defaultValue={provider.settings.baseUrl}
-                            placeholder={`Enter ${provider.name} base URL`}
+                            placeholder={t('providers.cloud.enterBaseUrl', { provider: provider.name })}
                             className={classNames(
                               'flex-1 px-3 py-1.5 rounded-lg text-sm',
                               'bg-bolt-elements-background-depth-3 border border-bolt-elements-borderColor',
@@ -269,7 +278,7 @@ const CloudProvidersTab = () => {
                             <div className="flex items-center gap-2 text-bolt-elements-textSecondary">
                               <div className="i-ph:link text-sm" />
                               <span className="group-hover/url:text-purple-500 transition-colors">
-                                {provider.settings.baseUrl || 'Click to set base URL'}
+                                {provider.settings.baseUrl || t('providers.cloud.clickToSetBaseUrl')}
                               </span>
                             </div>
                           </div>
@@ -280,7 +289,7 @@ const CloudProvidersTab = () => {
                         <div className="mt-2 text-xs text-green-500">
                           <div className="flex items-center gap-1">
                             <div className="i-ph:info" />
-                            <span>Environment URL set in .env file</span>
+                            <span>{t('providers.cloud.envUrlSet')}</span>
                           </div>
                         </div>
                       )}

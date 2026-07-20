@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import type { SupabaseAlert } from '~/types/actions';
 import { classNames } from '~/utils/classNames';
 import { supabaseConnection } from '~/lib/stores/supabase';
@@ -12,6 +13,7 @@ interface Props {
 }
 
 export function SupabaseChatAlert({ alert, clearAlert, postMessage }: Props) {
+  const { t } = useTranslation('chat');
   const { content } = alert;
   const connection = useStore(supabaseConnection);
   const [isExecuting, setIsExecuting] = useState(false);
@@ -21,11 +23,9 @@ export function SupabaseChatAlert({ alert, clearAlert, postMessage }: Props) {
   const isConnected = !!(connection.token && connection.selectedProjectId);
 
   // Set title and description based on connection state
-  const title = isConnected ? 'Supabase Query' : 'Supabase Connection Required';
-  const description = isConnected ? 'Execute database query' : 'Supabase connection required';
-  const message = isConnected
-    ? 'Please review the proposed changes and apply them to your database.'
-    : 'Please connect to Supabase to continue with this operation.';
+  const title = isConnected ? t('supabase.queryTitle') : t('supabase.connectionRequiredTitle');
+  const description = isConnected ? t('supabase.executeQuery') : t('supabase.connectionRequired');
+  const message = isConnected ? t('supabase.reviewChanges') : t('supabase.pleaseConnect');
 
   const handleConnectClick = () => {
     // Dispatch an event to open the Supabase connection dialog
@@ -125,7 +125,7 @@ export function SupabaseChatAlert({ alert, clearAlert, postMessage }: Props) {
               >
                 <div className="i-ph:database text-bolt-elements-textPrimary me-2"></div>
                 <span className="text-sm text-bolt-elements-textPrimary flex-grow">
-                  {description || 'Create table and setup auth'}
+                  {description || t('supabase.defaultAction')}
                 </span>
                 <div
                   className={`i-ph:caret-up text-bolt-elements-textPrimary transition-transform ${isCollapsed ? 'rotate-180' : ''}`}
@@ -174,7 +174,7 @@ export function SupabaseChatAlert({ alert, clearAlert, postMessage }: Props) {
                   isExecuting ? 'opacity-70 cursor-not-allowed' : '',
                 )}
               >
-                {isExecuting ? 'Applying...' : 'Apply Changes'}
+                {isExecuting ? t('supabase.applying') : t('supabase.applyChanges')}
               </button>
             )}
             <button
@@ -189,7 +189,7 @@ export function SupabaseChatAlert({ alert, clearAlert, postMessage }: Props) {
                 isExecuting ? 'opacity-70 cursor-not-allowed' : '',
               )}
             >
-              Dismiss
+              {t('alerts.dismiss')}
             </button>
           </div>
         </div>

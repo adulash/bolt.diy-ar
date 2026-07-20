@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { logStore } from '~/lib/stores/logs';
 import { useStore } from '@nanostores/react';
 import { formatDistanceToNow } from 'date-fns';
@@ -18,6 +19,7 @@ interface NotificationDetails {
 type FilterType = 'all' | 'system' | 'error' | 'warning' | 'update' | 'info' | 'provider' | 'network';
 
 const NotificationsTab = () => {
+  const { t } = useTranslation('settings');
   const [filter, setFilter] = useState<FilterType>('all');
   const logs = useStore(logStore.logs);
 
@@ -131,9 +133,9 @@ const NotificationsTab = () => {
         <div className="flex flex-col gap-2">
           <p className="text-sm text-gray-600 dark:text-gray-400">{details.message}</p>
           <div className="flex flex-col gap-1 text-xs text-gray-500 dark:text-gray-500">
-            <p>Current Version: {details.currentVersion}</p>
-            <p>Latest Version: {details.latestVersion}</p>
-            <p>Branch: {details.branch}</p>
+            <p>{t('notifications.update.currentVersion', { version: details.currentVersion })}</p>
+            <p>{t('notifications.update.latestVersion', { version: details.latestVersion })}</p>
+            <p>{t('notifications.update.branch', { branch: details.branch })}</p>
           </div>
           <button
             onClick={() => details.updateUrl && handleUpdateAction(details.updateUrl)}
@@ -149,7 +151,7 @@ const NotificationsTab = () => {
             )}
           >
             <span className="i-ph:git-branch text-lg" />
-            View Changes
+            {t('notifications.update.viewChanges')}
           </button>
         </div>
       );
@@ -159,14 +161,14 @@ const NotificationsTab = () => {
   };
 
   const filterOptions: { id: FilterType; label: string; icon: string; color: string }[] = [
-    { id: 'all', label: 'All Notifications', icon: 'i-ph:bell', color: '#9333ea' },
-    { id: 'system', label: 'System', icon: 'i-ph:gear', color: '#6b7280' },
-    { id: 'update', label: 'Updates', icon: 'i-ph:arrow-circle-up', color: '#9333ea' },
-    { id: 'error', label: 'Errors', icon: 'i-ph:warning-circle', color: '#ef4444' },
-    { id: 'warning', label: 'Warnings', icon: 'i-ph:warning', color: '#f59e0b' },
-    { id: 'info', label: 'Information', icon: 'i-ph:info', color: '#3b82f6' },
-    { id: 'provider', label: 'Providers', icon: 'i-ph:robot', color: '#10b981' },
-    { id: 'network', label: 'Network', icon: 'i-ph:wifi-high', color: '#6366f1' },
+    { id: 'all', label: t('notifications.filters.all'), icon: 'i-ph:bell', color: '#9333ea' },
+    { id: 'system', label: t('notifications.filters.system'), icon: 'i-ph:gear', color: '#6b7280' },
+    { id: 'update', label: t('notifications.filters.updates'), icon: 'i-ph:arrow-circle-up', color: '#9333ea' },
+    { id: 'error', label: t('notifications.filters.errors'), icon: 'i-ph:warning-circle', color: '#ef4444' },
+    { id: 'warning', label: t('notifications.filters.warnings'), icon: 'i-ph:warning', color: '#f59e0b' },
+    { id: 'info', label: t('notifications.filters.info'), icon: 'i-ph:info', color: '#3b82f6' },
+    { id: 'provider', label: t('notifications.filters.providers'), icon: 'i-ph:robot', color: '#10b981' },
+    { id: 'network', label: t('notifications.filters.network'), icon: 'i-ph:wifi-high', color: '#6366f1' },
   ];
 
   return (
@@ -189,7 +191,7 @@ const NotificationsTab = () => {
                 className={classNames('text-lg', filterOptions.find((opt) => opt.id === filter)?.icon || 'i-ph:funnel')}
                 style={{ color: filterOptions.find((opt) => opt.id === filter)?.color }}
               />
-              {filterOptions.find((opt) => opt.id === filter)?.label || 'Filter Notifications'}
+              {filterOptions.find((opt) => opt.id === filter)?.label || t('notifications.filters.fallback')}
               <span className="i-ph:caret-down text-lg text-gray-500 dark:text-gray-400" />
             </button>
           </DropdownMenu.Trigger>
@@ -233,7 +235,7 @@ const NotificationsTab = () => {
           )}
         >
           <span className="i-ph:trash text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
-          Clear All
+          {t('notifications.clearAll')}
         </button>
       </div>
 
@@ -251,8 +253,8 @@ const NotificationsTab = () => {
           >
             <span className="i-ph:bell-slash text-4xl text-gray-400 dark:text-gray-600" />
             <div className="flex flex-col gap-1">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white">No Notifications</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">You're all caught up!</p>
+              <h3 className="text-sm font-medium text-gray-900 dark:text-white">{t('notifications.empty.title')}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t('notifications.empty.description')}</p>
             </div>
           </motion.div>
         ) : (
@@ -279,7 +281,7 @@ const NotificationsTab = () => {
                       <h3 className="text-sm font-medium text-gray-900 dark:text-white">{log.message}</h3>
                       {log.details && renderNotificationDetails(log.details as NotificationDetails)}
                       <p className="text-xs text-gray-500 dark:text-gray-400">
-                        Category: {log.category}
+                        {t('notifications.category', { category: log.category })}
                         {log.subCategory ? ` > ${log.subCategory}` : ''}
                       </p>
                     </div>

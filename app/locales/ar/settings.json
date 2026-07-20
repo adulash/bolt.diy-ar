@@ -1,1 +1,1130 @@
-{}
+{
+  "connections": {
+    "accessToken": "رمز الوصول",
+    "activitySummary": "ملخص النشاط",
+    "archived": "مؤرشف",
+    "archivedRepository": "مستودع مؤرشف",
+    "cancel": "إلغاء",
+    "clone": "استنساخ",
+    "cloneRepository": "استنساخ المستودع",
+    "connect": "اتصال",
+    "connectFirstToBrowse": "اتصل بحسابك أولاً لتصفح المستودعات",
+    "connectedSuccessfullyAs": "تم الاتصال بنجاح باسم {{user}}",
+    "connectedTo": "متصل بـ {{service}}",
+    "connecting": "جارٍ الاتصال...",
+    "connectionError": "خطأ في الاتصال",
+    "connectionFailed": "فشل الاتصال: {{error}}",
+    "connectionTestFailed": "فشل اختبار الاتصال",
+    "continue": "متابعة",
+    "contributors": "المساهمون",
+    "dashboard": "لوحة التحكم",
+    "daysAgo_few": "قبل {{count}} أيام",
+    "daysAgo_many": "قبل {{count}} يوماً",
+    "daysAgo_one": "قبل يوم واحد",
+    "daysAgo_other": "قبل {{count}} يوم",
+    "daysAgo_two": "قبل يومين",
+    "daysAgo_zero": "اليوم",
+    "defaultBranch": "الفرع الافتراضي",
+    "disconnect": "قطع الاتصال",
+    "disconnectedFrom": "تم قطع الاتصال بـ {{service}}",
+    "envTipAfter": "في متغيرات البيئة للاتصال تلقائياً.",
+    "envTipBefore": "تلميح: يمكنك أيضاً ضبط الرمز عبر",
+    "error": "خطأ",
+    "failedToFetchRepositories": "تعذّر جلب المستودعات",
+    "failedToLoad": "تعذّر التحميل",
+    "failedToLoadRepositories": "تعذّر تحميل المستودعات",
+    "failedToRefreshRepositories": "تعذّر تحديث المستودعات",
+    "filterAllRepositories": "كل المستودعات",
+    "followers": "المتابعون",
+    "fork": "تفريعة",
+    "forkedRepository": "مستودع مُتفرَّع",
+    "forks": "التفريعات",
+    "getYourToken": "احصل على رمزك",
+    "gotIt": "فهمت",
+    "health": {
+      "archived": "مؤرشف",
+      "healthy": "سليم",
+      "needsAttention": "يحتاج انتباهاً",
+      "veryActive": "نشط جداً"
+    },
+    "healthScore": "مؤشر السلامة: {{percentage}}% ({{score}}/{{max}})",
+    "lastUpdated": "آخر تحديث",
+    "lastUpdatedAt": "آخر تحديث: {{date}}",
+    "loading": "جارٍ التحميل...",
+    "loadingConnection": "جارٍ تحميل الاتصال...",
+    "loadingRepositories": "جارٍ تحميل المستودعات...",
+    "moreTopics": "+{{count}} أخرى",
+    "never": "أبداً",
+    "next": "التالي",
+    "noConnectionEstablished": "لا يوجد اتصال قائم",
+    "noRepositoriesAvailable": "لا توجد مستودعات متاحة",
+    "noRepositoriesFound": "لم يُعثر على مستودعات",
+    "noRepositoriesMatchCriteria": "لا توجد مستودعات مطابقة لمعايير البحث.",
+    "noRepositoriesMatchingSearch": "لا توجد مستودعات مطابقة لبحثك",
+    "openIssues": "القضايا المفتوحة",
+    "pageOf": "{{current}} من {{total}}",
+    "personalAccessToken": "رمز الوصول الشخصي",
+    "previous": "السابق",
+    "primaryLanguage": "اللغة الأساسية",
+    "privateRepository": "مستودع خاص",
+    "pullRequests": "طلبات الدمج",
+    "refresh": "تحديث",
+    "refreshConnection": "تحديث الاتصال",
+    "refreshing": "جارٍ التحديث...",
+    "reloadPage": "إعادة تحميل الصفحة",
+    "repositoriesCount_few": "المستودعات ({{count}})",
+    "repositoriesCount_many": "المستودعات ({{count}})",
+    "repositoriesCount_one": "المستودعات ({{count}})",
+    "repositoriesCount_other": "المستودعات ({{count}})",
+    "repositoriesCount_two": "المستودعات ({{count}})",
+    "repositoriesCount_zero": "المستودعات (0)",
+    "repositoriesFilteredCount": "{{filtered}} من {{total}} مستودعاً",
+    "repositoryHealth": "سلامة المستودع: {{status}}",
+    "requiredScopes": "الصلاحيات المطلوبة: {{scopes}}",
+    "retry": "إعادة المحاولة",
+    "searchRepositoriesPlaceholder": "ابحث في المستودعات...",
+    "selectRepositoryToClone": "اختر مستودعاً لاستنساخه",
+    "showDetails": "عرض التفاصيل",
+    "showingRange_few": "عرض {{start}} إلى {{end}} من {{count}} مستودعات",
+    "showingRange_many": "عرض {{start}} إلى {{end}} من {{count}} مستودعاً",
+    "showingRange_one": "عرض {{start}} إلى {{end}} من مستودع واحد",
+    "showingRange_other": "عرض {{start}} إلى {{end}} من {{count}} مستودع",
+    "showingRange_two": "عرض {{start}} إلى {{end}} من مستودعين",
+    "showingRange_zero": "لا مستودعات للعرض",
+    "sizeLabel": "الحجم",
+    "sizeMb": "{{size}} م.ب",
+    "sort": {
+      "mostStarred": "الأكثر نجوماً",
+      "name": "الاسم (أ-ي)",
+      "recentlyCreated": "الأحدث إنشاءً",
+      "recentlyUpdated": "الأحدث تحديثاً"
+    },
+    "stars": "النجوم",
+    "success": "نجاح",
+    "testConnection": "اختبار الاتصال",
+    "testing": "جارٍ الاختبار...",
+    "testingConnection": "جارٍ اختبار الاتصال...",
+    "timeToday": "اليوم",
+    "tip": "تلميح",
+    "topicTitle": "الموضوع: {{topic}}",
+    "topics": "المواضيع",
+    "totalBranches": "إجمالي الفروع",
+    "tryAgain": "حاول مجدداً",
+    "unknownError": "خطأ غير معروف",
+    "unknownErrorOccurred": "حدث خطأ غير معروف",
+    "view": "عرض",
+    "warningCached": "تحذير: {{error}}. تُعرض بيانات مخزنة مؤقتاً.",
+    "weeksAgo_few": "قبل {{count}} أسابيع",
+    "weeksAgo_many": "قبل {{count}} أسبوعاً",
+    "weeksAgo_one": "قبل أسبوع واحد",
+    "weeksAgo_other": "قبل {{count}} أسبوع",
+    "weeksAgo_two": "قبل أسبوعين",
+    "weeksAgo_zero": "هذا الأسبوع"
+  },
+  "core": {
+    "beta": "تجريبي",
+    "controlPanel": "لوحة التحكم",
+    "status": {
+      "connectionIssues": "تم رصد مشاكل في الاتصال",
+      "connectionLost": "انقطع الاتصال",
+      "highLatency": "تم رصد بطء في الاستجابة",
+      "newFeatures_few": "{{count}} ميزات جديدة",
+      "newFeatures_many": "{{count}} ميزة جديدة",
+      "newFeatures_one": "ميزة جديدة واحدة",
+      "newFeatures_other": "{{count}} ميزة جديدة",
+      "newFeatures_two": "ميزتان جديدتان",
+      "newFeatures_zero": "لا ميزات جديدة",
+      "unreadNotifications_few": "{{count}} إشعارات غير مقروءة",
+      "unreadNotifications_many": "{{count}} إشعاراً غير مقروء",
+      "unreadNotifications_one": "إشعار واحد غير مقروء",
+      "unreadNotifications_other": "{{count}} إشعار غير مقروء",
+      "unreadNotifications_two": "إشعاران غير مقروءين",
+      "unreadNotifications_zero": "لا إشعارات غير مقروءة"
+    },
+    "tabManagement": "إدارة التبويبات",
+    "tabs": {
+      "cloud-providers": {
+        "description": "إعداد مزوّدي الذكاء الاصطناعي السحابيين والنماذج",
+        "label": "المزوّدون السحابيون"
+      },
+      "data": {
+        "description": "إدارة بياناتك وتخزينك",
+        "label": "إدارة البيانات"
+      },
+      "event-logs": {
+        "description": "عرض أحداث النظام والسجلات",
+        "label": "سجلات الأحداث"
+      },
+      "features": {
+        "description": "استكشف الميزات الجديدة والقادمة",
+        "label": "الميزات"
+      },
+      "github": {
+        "description": "الاتصال بـ GitHub وإدارة التكامل",
+        "label": "GitHub"
+      },
+      "gitlab": {
+        "description": "الاتصال بـ GitLab وإدارة التكامل",
+        "label": "GitLab"
+      },
+      "local-providers": {
+        "description": "إعداد مزوّدي الذكاء الاصطناعي المحليين والنماذج",
+        "label": "المزوّدون المحليون"
+      },
+      "mcp": {
+        "description": "إعداد خوادم MCP (بروتوكول سياق النموذج)",
+        "label": "خوادم MCP"
+      },
+      "netlify": {
+        "description": "إعداد النشر على Netlify",
+        "label": "Netlify"
+      },
+      "notifications": {
+        "description": "عرض إشعاراتك وإدارتها",
+        "label": "الإشعارات"
+      },
+      "profile": {
+        "description": "إدارة ملفك الشخصي وإعدادات حسابك",
+        "label": "الملف الشخصي"
+      },
+      "settings": {
+        "description": "ضبط تفضيلات التطبيق",
+        "label": "الإعدادات"
+      },
+      "supabase": {
+        "description": "إعداد اتصال قاعدة بيانات Supabase",
+        "label": "Supabase"
+      },
+      "vercel": {
+        "description": "إدارة مشاريع Vercel وعمليات النشر",
+        "label": "Vercel"
+      }
+    }
+  },
+  "data": {
+    "buttons": {
+      "deleteAll": "حذف الكل",
+      "deleting": "جارٍ الحذف...",
+      "download": "تنزيل",
+      "downloading": "جارٍ التنزيل...",
+      "exportAll": "تصدير الكل",
+      "exporting": "جارٍ التصدير...",
+      "importChats": "استيراد المحادثات",
+      "importKeys": "استيراد المفاتيح",
+      "importSettings": "استيراد الإعدادات",
+      "importing": "جارٍ الاستيراد...",
+      "noChatsToExport": "لا محادثات للتصدير",
+      "resetAll": "إعادة تعيين الكل",
+      "resetting": "جارٍ إعادة التعيين...",
+      "selectChats": "اختيار محادثات",
+      "selectSettings": "اختيار إعدادات"
+    },
+    "cards": {
+      "deleteAllChats": {
+        "description": "حذف كل سجل محادثاتك.",
+        "title": "حذف كل المحادثات"
+      },
+      "downloadTemplate": {
+        "description": "تنزيل ملف قالب لمفاتيح API الخاصة بك.",
+        "title": "تنزيل القالب"
+      },
+      "exportAllChats": {
+        "description": "تصدير كل محادثاتك إلى ملف JSON.",
+        "title": "تصدير كل المحادثات"
+      },
+      "exportAllSettings": {
+        "description": "تصدير كل إعداداتك إلى ملف JSON.",
+        "title": "تصدير كل الإعدادات"
+      },
+      "exportSelectedChats": {
+        "description": "اختر محادثات محددة لتصديرها.",
+        "title": "تصدير محادثات محددة"
+      },
+      "exportSelectedSettings": {
+        "description": "اختر إعدادات محددة لتصديرها.",
+        "title": "تصدير إعدادات محددة"
+      },
+      "importApiKeys": {
+        "description": "استيراد مفاتيح API من ملف JSON.",
+        "title": "استيراد مفاتيح API"
+      },
+      "importChats": {
+        "description": "استيراد محادثات من ملف JSON.",
+        "title": "استيراد المحادثات"
+      },
+      "importSettings": {
+        "description": "استيراد إعدادات من ملف JSON.",
+        "title": "استيراد الإعدادات"
+      },
+      "resetAllSettings": {
+        "description": "إعادة كل الإعدادات إلى قيمها الافتراضية.",
+        "title": "إعادة تعيين كل الإعدادات"
+      }
+    },
+    "categories": {
+      "connections": {
+        "description": "اتصالات الخدمات الخارجية",
+        "label": "الاتصالات"
+      },
+      "core": {
+        "description": "الملف الشخصي والإعدادات الرئيسية",
+        "label": "الإعدادات الأساسية"
+      },
+      "debug": {
+        "description": "إعدادات التصحيح والسجلات",
+        "label": "التصحيح"
+      },
+      "features": {
+        "description": "مفاتيح الميزات وإعداداتها",
+        "label": "الميزات"
+      },
+      "providers": {
+        "description": "إعدادات مزوّدي الذكاء الاصطناعي",
+        "label": "المزوّدون"
+      },
+      "ui": {
+        "description": "إعدادات الواجهة وتفضيلاتها",
+        "label": "الواجهة"
+      },
+      "updates": {
+        "description": "إعدادات التحديث والإشعارات",
+        "label": "التحديثات"
+      }
+    },
+    "chatDescription_few": "{{count}} رسائل · {{date}}",
+    "chatDescription_many": "{{count}} رسالة · {{date}}",
+    "chatDescription_one": "رسالة واحدة · {{date}}",
+    "chatDescription_other": "{{count}} رسالة · {{date}}",
+    "chatDescription_two": "رسالتان · {{date}}",
+    "chatDescription_zero": "لا رسائل · {{date}}",
+    "chatFallbackLabel": "محادثة {{id}}",
+    "dialogs": {
+      "cancel": "إلغاء",
+      "deleteChatsConfirm": "حذف الكل",
+      "deleteChatsDescription": "سيحذف هذا كل سجل محادثاتك نهائياً. لا يمكن التراجع عن هذا الإجراء.",
+      "deleteChatsTitle": "حذف كل المحادثات؟",
+      "exportSelected": "تصدير المحدد",
+      "resetSettingsConfirm": "إعادة تعيين الإعدادات",
+      "resetSettingsDescription": "سيعيد هذا كل إعداداتك إلى قيمها الافتراضية. لا يمكن التراجع عن هذا الإجراء.",
+      "resetSettingsTitle": "إعادة تعيين كل الإعدادات؟",
+      "selectChatsTitle": "اختر المحادثات للتصدير",
+      "selectSettingsTitle": "اختر الإعدادات للتصدير"
+    },
+    "loadingChatsDb": "جارٍ تحميل قاعدة بيانات المحادثات...",
+    "sections": {
+      "apiKeys": "مفاتيح API",
+      "chats": "المحادثات",
+      "dataUsage": "استخدام البيانات",
+      "settings": "الإعدادات"
+    },
+    "toasts": {
+      "dbUnavailable": "قاعدة البيانات غير متاحة",
+      "exportChatsFailed": "تعذّر تصدير المحادثات: {{error}}",
+      "loadChatsFailed": "تعذّر تحميل المحادثات: {{error}}",
+      "noChatsToExport": "لا توجد محادثات متاحة للتصدير",
+      "unknownError": "خطأ غير معروف"
+    }
+  },
+  "eventLogs": {
+    "details": {
+      "duration": "المدة: {{duration}} م.ث",
+      "error": "الخطأ:",
+      "model": "النموذج: {{model}}",
+      "prompt": "الطلب:",
+      "request": "الاستدعاء:",
+      "response": "الاستجابة:",
+      "status": "الحالة: {{status}}",
+      "tokens": "التوكنات: {{count}}",
+      "tokens_few": "التوكنات: {{count}}",
+      "tokens_many": "التوكنات: {{count}}",
+      "tokens_one": "التوكنات: {{count}}",
+      "tokens_other": "التوكنات: {{count}}",
+      "tokens_two": "التوكنات: {{count}}",
+      "tokens_zero": "التوكنات: 0"
+    },
+    "empty": {
+      "description": "جرّب تعديل البحث أو المرشحات",
+      "title": "لم يُعثر على سجلات"
+    },
+    "export": {
+      "asCsv": "تصدير كـ CSV",
+      "asCsvDescription": "تصدير كجدول بيانات CSV",
+      "asJson": "تصدير كـ JSON",
+      "asJsonDescription": "تصدير كملف JSON منظّم",
+      "asPdf": "تصدير كـ PDF",
+      "asPdfDescription": "تصدير كمستند PDF منسّق",
+      "asText": "تصدير كنص",
+      "asTextDescription": "تصدير كملف نصي منسّق",
+      "button": "تصدير",
+      "csvHeaders": {
+        "category": "الفئة",
+        "details": "التفاصيل",
+        "level": "المستوى",
+        "message": "الرسالة",
+        "timestamp": "الوقت"
+      },
+      "dialogTitle": "تصدير سجلات الأحداث",
+      "textCategory": "الفئة: {{category}}",
+      "textDetails": "التفاصيل:"
+    },
+    "hideDetails": "إخفاء التفاصيل",
+    "levels": {
+      "all": "كل الأنواع",
+      "api": "API",
+      "debug": "تصحيح",
+      "error": "أخطاء",
+      "info": "معلومات",
+      "provider": "LLM",
+      "warning": "تحذيرات"
+    },
+    "preferences": {
+      "autoExpand": "توسيع تلقائي",
+      "showTimestamps": "عرض الأوقات",
+      "use24Hour": "توقيت 24 ساعة"
+    },
+    "refresh": "تحديث",
+    "searchPlaceholder": "ابحث في السجلات...",
+    "showDetails": "عرض التفاصيل",
+    "toasts": {
+      "exportCsvFailed": "تعذّر تصدير سجلات الأحداث كـ CSV",
+      "exportJsonFailed": "تعذّر تصدير سجلات الأحداث كـ JSON",
+      "exportPdfFailed": "تعذّر تصدير سجلات الأحداث كـ PDF",
+      "exportTextFailed": "تعذّر تصدير سجلات الأحداث كملف نصي",
+      "exportedCsv": "تم تصدير سجلات الأحداث بنجاح كـ CSV",
+      "exportedJson": "تم تصدير سجلات الأحداث بنجاح كـ JSON",
+      "exportedPdf": "تم تصدير سجلات الأحداث بنجاح كـ PDF",
+      "exportedText": "تم تصدير سجلات الأحداث بنجاح كملف نصي"
+    }
+  },
+  "features": {
+    "badges": {
+      "beta": "تجريبي",
+      "experimental": "اختباري"
+    },
+    "items": {
+      "autoSelectTemplate": {
+        "description": "اختيار قالب البداية تلقائياً",
+        "title": "اختيار القالب تلقائياً",
+        "tooltip": "مفعّل افتراضياً لاختيار أنسب قالب بداية تلقائياً"
+      },
+      "contextOptimization": {
+        "description": "تحسين السياق لاستجابات أفضل",
+        "title": "تحسين السياق",
+        "tooltip": "مفعّل افتراضياً لتحسين استجابات الذكاء الاصطناعي"
+      },
+      "eventLogs": {
+        "description": "تفعيل تسجيل مفصّل للأحداث والسجل",
+        "title": "تسجيل الأحداث",
+        "tooltip": "مفعّل افتراضياً لتسجيل تفاصيل أحداث النظام وإجراءات المستخدم"
+      },
+      "latestBranch": {
+        "description": "الحصول على آخر التحديثات من الفرع الرئيسي",
+        "title": "تحديثات الفرع الرئيسي",
+        "tooltip": "مفعّل افتراضياً لاستلام التحديثات من فرع التطوير الرئيسي"
+      }
+    },
+    "promptLibrary": {
+      "description": "اختر طلباً من المكتبة لاستخدامه كطلب النظام",
+      "title": "مكتبة الطلبات"
+    },
+    "sections": {
+      "beta": {
+        "description": "ميزات جديدة جاهزة للاختبار وقد تحتوي بعض الهنات",
+        "title": "الميزات التجريبية"
+      },
+      "core": {
+        "description": "ميزات أساسية مفعّلة افتراضياً لأفضل أداء",
+        "title": "الميزات الأساسية"
+      }
+    },
+    "toasts": {
+      "autoSelectTemplateDisabled": "تم تعطيل الاختيار التلقائي للقالب",
+      "autoSelectTemplateEnabled": "تم تفعيل الاختيار التلقائي للقالب",
+      "contextOptimizationDisabled": "تم تعطيل تحسين السياق",
+      "contextOptimizationEnabled": "تم تفعيل تحسين السياق",
+      "eventLogsDisabled": "تم تعطيل تسجيل الأحداث",
+      "eventLogsEnabled": "تم تفعيل تسجيل الأحداث",
+      "latestBranchDisabled": "تم تعطيل تحديثات الفرع الرئيسي",
+      "latestBranchEnabled": "تم تفعيل تحديثات الفرع الرئيسي",
+      "promptUpdated": "تم تحديث قالب الطلب"
+    }
+  },
+  "general": {
+    "keyboardShortcuts": "اختصارات لوحة المفاتيح",
+    "notifications": "الإشعارات",
+    "notificationsDisabled": "الإشعارات معطّلة",
+    "notificationsEnabled": "الإشعارات مفعّلة",
+    "preferences": "التفضيلات",
+    "timeSettings": "إعدادات الوقت",
+    "timezone": "المنطقة الزمنية",
+    "toasts": {
+      "notificationsDisabled": "تم تعطيل الإشعارات",
+      "notificationsEnabled": "تم تفعيل الإشعارات",
+      "settingsUpdateFailed": "تعذّر تحديث الإعدادات",
+      "settingsUpdated": "تم تحديث الإعدادات"
+    },
+    "toggleTheme": "تبديل المظهر",
+    "toggleThemeDescription": "التبديل بين الوضع الفاتح والداكن"
+  },
+  "github": {
+    "allRepositories_few": "كل المستودعات ({{count}})",
+    "allRepositories_many": "كل المستودعات ({{count}})",
+    "allRepositories_one": "كل المستودعات ({{count}})",
+    "allRepositories_other": "كل المستودعات ({{count}})",
+    "allRepositories_two": "كل المستودعات ({{count}})",
+    "allRepositories_zero": "كل المستودعات (0)",
+    "cache": {
+      "active": "الذاكرة المؤقتة نشطة",
+      "clearAll": "مسح الكل",
+      "clearExpired": "مسح المنتهي",
+      "clearedAt": "تم مسح الذاكرة المؤقتة بنجاح في {{time}}",
+      "compact": "ضغط",
+      "empty": "الذاكرة المؤقتة فارغة",
+      "entries": "المدخلات",
+      "entriesHeading_few": "مدخلات الذاكرة المؤقتة ({{count}})",
+      "entriesHeading_many": "مدخلات الذاكرة المؤقتة ({{count}})",
+      "entriesHeading_one": "مدخلات الذاكرة المؤقتة ({{count}})",
+      "entriesHeading_other": "مدخلات الذاكرة المؤقتة ({{count}})",
+      "entriesHeading_two": "مدخلات الذاكرة المؤقتة ({{count}})",
+      "entriesHeading_zero": "مدخلات الذاكرة المؤقتة (0)",
+      "notAvailable": "الذاكرة المؤقتة غير متاحة",
+      "oldest": "الأقدم",
+      "status": "الحالة",
+      "title": "إدارة ذاكرة GitHub المؤقتة",
+      "totalSize": "الحجم الإجمالي: {{size}}"
+    },
+    "checkingConnection": "جارٍ فحص اتصال GitHub...",
+    "connectGitHub": "ربط GitHub",
+    "connectPrompt": "اربط حساب GitHub لإدارة المستودعات ونشر المشاريع",
+    "connectToGitHub": "الاتصال بـ GitHub",
+    "connectionRequired": "مطلوب اتصال بـ GitHub",
+    "connectionRequiredMessage": "يلزم اتصال بـ GitHub لاستخدام هذه الميزة. اربط حسابك أولاً.",
+    "deployTokenTip": "للنشر، تأكد أن رمزك يملك صلاحية repo كي يستطيع Bolt إنشاء المستودعات والدفع إليها.",
+    "errorBoundary": {
+      "message": "حدث خطأ أثناء تحميل بيانات GitHub. قد يكون السبب مشاكل شبكة أو حدود API أو خللاً مؤقتاً.",
+      "showDetails": "عرض التفاصيل",
+      "title": "حدث خطأ في تبويب GitHub"
+    },
+    "failedToLoadStats": "تعذّر تحميل الإحصاءات",
+    "filter": {
+      "archived": "المستودعات المؤرشفة",
+      "forks": "المستودعات المتفرعة",
+      "own": "مستودعاتي"
+    },
+    "fineGrainedEnvTip": "للرموز الدقيقة (fine-grained)، اضبط أيضاً",
+    "followersCount_few": "{{count}} متابعين",
+    "followersCount_many": "{{count}} متابعاً",
+    "followersCount_one": "متابع واحد",
+    "followersCount_other": "{{count}} متابع",
+    "followersCount_two": "متابعان",
+    "followersCount_zero": "لا متابعين",
+    "gistsCount_few": "{{count}} مقتطفات",
+    "gistsCount_many": "{{count}} مقتطفاً",
+    "gistsCount_one": "مقتطف واحد",
+    "gistsCount_other": "{{count}} مقتطف",
+    "gistsCount_two": "مقتطفان",
+    "gistsCount_zero": "لا مقتطفات",
+    "loadingStats": "جارٍ تحميل إحصاءات GitHub...",
+    "manageDescription": "أدر تكامل GitHub بميزات متقدمة للمستودعات وإحصاءات شاملة",
+    "publicReposCount_few": "{{count}} مستودعات عامة",
+    "publicReposCount_many": "{{count}} مستودعاً عاماً",
+    "publicReposCount_one": "مستودع عام واحد",
+    "publicReposCount_other": "{{count}} مستودع عام",
+    "publicReposCount_two": "مستودعان عامان",
+    "publicReposCount_zero": "لا مستودعات عامة",
+    "requiredScopesFineGrained": "الصلاحيات المطلوبة: الوصول للمستودعات، الوصول للمنظمات",
+    "showMoreRepositories_few": "عرض {{count}} مستودعات إضافية",
+    "showMoreRepositories_many": "عرض {{count}} مستودعاً إضافياً",
+    "showMoreRepositories_one": "عرض مستودع إضافي واحد",
+    "showMoreRepositories_other": "عرض {{count}} مستودع إضافي",
+    "showMoreRepositories_two": "عرض مستودعين إضافيين",
+    "showMoreRepositories_zero": "لا مستودعات إضافية",
+    "stats": {
+      "basedOnCodebase": "استناداً إلى قاعدة الكود لديك",
+      "issues": "القضايا",
+      "languageTooltip_few": "{{language}}: {{count}} مستودعات، {{size}} م.ب",
+      "languageTooltip_many": "{{language}}: {{count}} مستودعاً، {{size}} م.ب",
+      "languageTooltip_one": "{{language}}: مستودع واحد، {{size}} م.ب",
+      "languageTooltip_other": "{{language}}: {{count}} مستودع، {{size}} م.ب",
+      "languageTooltip_two": "{{language}}: مستودعان، {{size}} م.ب",
+      "languageTooltip_zero": "{{language}}: لا مستودعات، {{size}} م.ب",
+      "languagesUsed": "اللغات المستخدمة",
+      "loading": "جارٍ تحميل إحصاءات GitHub...",
+      "none": "لا إحصاءات متاحة",
+      "organizations": "المنظمات",
+      "overview": "نظرة عامة على GitHub",
+      "stale": "(قديمة)",
+      "title": "إحصاءات GitHub",
+      "topLanguages": "أكثر اللغات",
+      "totalBranches": "إجمالي الفروع",
+      "totalRepositories": "إجمالي المستودعات"
+    },
+    "steps": {
+      "calculatingStats": "جارٍ حساب الإحصاءات...",
+      "fetchingUser": "جارٍ جلب بيانات المستخدم...",
+      "loadingRepos": "جارٍ تحميل المستودعات...",
+      "updatingCache": "جارٍ تحديث الذاكرة المؤقتة..."
+    },
+    "title": "تكامل GitHub",
+    "tokenClassicOption": "رمز وصول شخصي (كلاسيكي)",
+    "tokenFineGrained": "رمز دقيق (Fine-grained)",
+    "tokenPlaceholderClassic": "ghp_xxxxxxxxxxxxxxxxxxxx",
+    "tokenPlaceholderFineGrained": "github_pat_xxxxxxxxxxxxxxxxxxxx",
+    "tokenTypeLabel": "نوع الرمز"
+  },
+  "gitlab": {
+    "authDescription": "اربط حساب GitLab لنشر مشاريعك",
+    "connectPrompt": "اربط حساب GitLab لإدارة المستودعات ونشر المشاريع",
+    "connectToGitLab": "الاتصال بـ GitLab",
+    "connectedToast": "تم الاتصال بـ GitLab بنجاح!",
+    "connectionHeading": "اتصال GitLab",
+    "contributionStats": "إحصاءات المساهمة",
+    "enterTokenError": "أدخل رمز وصول GitLab الخاص بك",
+    "filter": {
+      "member": "مستودعات العضوية",
+      "owned": "المستودعات المملوكة"
+    },
+    "manageDescription": "أدر تكامل GitLab بميزات متقدمة للمستودعات وإحصاءات شاملة",
+    "privateRepos": "مستودعات خاصة",
+    "publicRepos": "مستودعات عامة",
+    "repositoryStats": "إحصاءات المستودعات",
+    "selfHostedEnvTip": "لخوادم GitLab المستضافة ذاتياً، اضبط أيضاً",
+    "statistics": "الإحصاءات",
+    "testValues": "قيم الاختبار",
+    "title": "تكامل GitLab",
+    "tokenPlaceholder": "أدخل رمز وصول GitLab",
+    "urlLabel": "عنوان GitLab"
+  },
+  "mcp": {
+    "availableTools": "الأدوات المتاحة",
+    "checkAvailability": "فحص التوفر",
+    "configuration": "الإعداد",
+    "configurationJson": "إعداد JSON",
+    "errorLabel": "الخطأ:",
+    "errors": {
+      "checkFailed": "تعذّر فحص توفر الخادم: {{error}}",
+      "initFailed": "تعذّرت تهيئة إعدادات MCP: {{error}}",
+      "invalidJson": "صيغة JSON غير صالحة: {{error}}",
+      "saveFailed": "تعذّر حفظ الإعداد"
+    },
+    "formatNote": "صيغة إعداد MCP مطابقة للمستخدمة في Claude Desktop.",
+    "loadExample": "تحميل مثال",
+    "maxLlmStepsLabel": "الحد الأقصى لاستدعاءات LLM المتتابعة (خطوات)",
+    "maxLlmStepsPlaceholder": "الحد الأقصى لاستدعاءات LLM المتتابعة",
+    "noDescription": "لا يوجد وصف",
+    "noServersConfigured": "لا خوادم MCP مضبوطة",
+    "noToolsAvailable": "لا أدوات متاحة",
+    "parameters": "المعاملات:",
+    "saveConfiguration": "حفظ الإعداد",
+    "saving": "جارٍ الحفظ...",
+    "serversConfigured": "خوادم MCP المضبوطة",
+    "status": {
+      "available": "متاح",
+      "availableAria": "الخادم متاح",
+      "checking": "جارٍ الفحص...",
+      "checkingAria": "جارٍ فحص حالة الخادم",
+      "unavailable": "غير متاح",
+      "unavailableAria": "الخادم غير متاح"
+    },
+    "toasts": {
+      "loadFailed": "تعذّر تحميل إعداد MCP",
+      "saveFailed": "تعذّر حفظ إعداد MCP",
+      "saved": "تم حفظ إعداد MCP"
+    },
+    "viewExampleServers": "عرض أمثلة الخوادم"
+  },
+  "netlify": {
+    "actions": {
+      "clearCache": "مسح الذاكرة المؤقتة",
+      "deleteSite": "حذف الموقع",
+      "manageEnvironment": "إدارة البيئة",
+      "siteAnalytics": "تحليلات الموقع",
+      "triggerBuild": "بدء بناء",
+      "viewFunctions": "عرض الدوال"
+    },
+    "allDeploymentsCount_few": "كل عمليات النشر ({{count}})",
+    "allDeploymentsCount_many": "كل عمليات النشر ({{count}})",
+    "allDeploymentsCount_one": "كل عمليات النشر ({{count}})",
+    "allDeploymentsCount_other": "كل عمليات النشر ({{count}})",
+    "allDeploymentsCount_two": "كل عمليات النشر ({{count}})",
+    "allDeploymentsCount_zero": "كل عمليات النشر (0)",
+    "branchLabel": "الفرع: {{branch}}",
+    "buildStatus": {
+      "completed": "اكتمل"
+    },
+    "buildsCount_few": "{{count}} عمليات بناء",
+    "buildsCount_many": "{{count}} عملية بناء",
+    "buildsCount_one": "عملية بناء واحدة",
+    "buildsCount_other": "{{count}} عملية بناء",
+    "buildsCount_two": "عمليتا بناء",
+    "buildsCount_zero": "لا عمليات بناء",
+    "confirmAction": "هل أنت متأكد من: {{action}}؟",
+    "deployActions": {
+      "lock": "قفل",
+      "publish": "نشر",
+      "unlock": "إلغاء القفل"
+    },
+    "deploymentsCount_few": "{{count}} عمليات نشر",
+    "deploymentsCount_many": "{{count}} عملية نشر",
+    "deploymentsCount_one": "عملية نشر واحدة",
+    "deploymentsCount_other": "{{count}} عملية نشر",
+    "deploymentsCount_two": "عمليتا نشر",
+    "deploymentsCount_zero": "لا عمليات نشر",
+    "health": {
+      "building": "جارٍ البناء",
+      "customDomain": "نطاق مخصص",
+      "sslEnabled": "SSL مفعّل"
+    },
+    "noTokenProvided": "لم يُقدَّم رمز",
+    "publishedAgo": "نُشر منذ {{time}}",
+    "recentBuildsCount_few": "عمليات البناء الأخيرة ({{count}})",
+    "recentBuildsCount_many": "عمليات البناء الأخيرة ({{count}})",
+    "recentBuildsCount_one": "عمليات البناء الأخيرة ({{count}})",
+    "recentBuildsCount_other": "عمليات البناء الأخيرة ({{count}})",
+    "recentBuildsCount_two": "عمليات البناء الأخيرة ({{count}})",
+    "recentBuildsCount_zero": "عمليات البناء الأخيرة (0)",
+    "showAll": "عرض الكل ({{count}})",
+    "showLess": "عرض أقل",
+    "sitesCount_few": "{{count}} مواقع",
+    "sitesCount_many": "{{count}} موقعاً",
+    "sitesCount_one": "موقع واحد",
+    "sitesCount_other": "{{count}} موقع",
+    "sitesCount_two": "موقعان",
+    "sitesCount_zero": "لا مواقع",
+    "stats": {
+      "activeSites": "المواقع النشطة",
+      "deploymentAnalytics": "تحليلات النشر",
+      "failed": "فشل",
+      "last24Hours": "آخر 24 ساعة",
+      "last7Days": "آخر 7 أيام",
+      "liveSites": "المواقع الحية",
+      "overview": "نظرة عامة",
+      "recentActivity": "النشاط الأخير",
+      "siteHealthOverview": "نظرة عامة على سلامة الموقع",
+      "successRate": "معدل النجاح",
+      "successful": "ناجح",
+      "title": "إحصاءات Netlify",
+      "totalBuilds": "إجمالي عمليات البناء",
+      "totalDeployments": "إجمالي عمليات النشر",
+      "totalSites": "إجمالي المواقع"
+    },
+    "timeAgo": "منذ {{time}}",
+    "toast": {
+      "analyticsFreeAccount": "التحليلات غير متاحة في الحسابات المجانية. تُعرض معلومات الموقع الأساسية بدلاً منها.",
+      "analyticsFreeAccountInfo": "التحليلات غير متاحة في الحسابات المجانية.",
+      "analyticsLoadFailed": "تعذّر تحميل التحليلات: {{error}}",
+      "analyticsLoaded": "تم تحميل تحليلات الموقع بنجاح",
+      "buildTriggerFailed": "تعذّر بدء البناء: {{error}}",
+      "buildTriggerFailedFree": "تعذّر بدء البناء. قد لا تتوفر هذه الميزة في الحسابات المجانية.",
+      "buildTriggered": "تم بدء البناء بنجاح! المعرّف: {{id}}",
+      "buildTriggeredCacheClear": "تم بدء البناء مع مسح الذاكرة المؤقتة",
+      "cacheCleared": "تم مسح الذاكرة المؤقتة للموقع بنجاح",
+      "cachePurgeFreeAccount": "مسح الذاكرة المؤقتة غير متاح في الحسابات المجانية. جرّب بدء بناء بدلاً منه.",
+      "cachePurgeNotFound": "نقطة نهاية مسح الذاكرة المؤقتة غير موجودة. قد لا تتوفر هذه الميزة.",
+      "clearCacheFailed": "تعذّر مسح الذاكرة المؤقتة للموقع: {{error}}",
+      "connectFailed": "فشل الاتصال: {{error}}",
+      "enterToken": "أدخل رمز Netlify API",
+      "envVarsLimitedFree": "إدارة متغيرات البيئة محدودة في الحسابات المجانية",
+      "envVarsLoadFailed": "تعذّر تحميل متغيرات البيئة: {{error}}",
+      "envVarsLoaded": "تم تحميل متغيرات البيئة: {{length}} متغيراً",
+      "functionsCount": "يحتوي الموقع على {{length}} دالة بلا خادم",
+      "functionsLimitedFree": "قد تكون الدوال محدودة أو غير متاحة في الحسابات المجانية",
+      "functionsLoadFailed": "تعذّر تحميل الدوال: {{error}}",
+      "noEnvVars": "لا توجد متغيرات بيئة مضبوطة للموقع",
+      "noFunctions": "لا توجد دوال بلا خادم للموقع",
+      "siteDeleteFailed": "تعذّر حذف الموقع: {{error}}",
+      "siteDeleted": "تم حذف الموقع بنجاح",
+      "siteNotFound": "الموقع غير موجود. قد يكون ذلك قيداً على الحساب المجاني.",
+      "siteStatus": "{{name}}: {{status}}",
+      "statsFetchFailed": "تعذّر جلب الإحصاءات: {{error}}",
+      "statsUpdated": "تم تحديث إحصاءات Netlify"
+    },
+    "unknown": "غير معروف",
+    "updatedAgo": "حُدّث منذ {{time}}",
+    "yourSitesCount_few": "مواقعك ({{count}})",
+    "yourSitesCount_many": "مواقعك ({{count}})",
+    "yourSitesCount_one": "مواقعك ({{count}})",
+    "yourSitesCount_other": "مواقعك ({{count}})",
+    "yourSitesCount_two": "مواقعك ({{count}})",
+    "yourSitesCount_zero": "مواقعك (0)"
+  },
+  "notifications": {
+    "category": "الفئة: {{category}}",
+    "clearAll": "مسح الكل",
+    "empty": {
+      "description": "لا جديد لديك!",
+      "title": "لا إشعارات"
+    },
+    "filters": {
+      "all": "كل الإشعارات",
+      "errors": "أخطاء",
+      "fallback": "تصفية الإشعارات",
+      "info": "معلومات",
+      "network": "الشبكة",
+      "providers": "المزوّدون",
+      "system": "النظام",
+      "updates": "التحديثات",
+      "warnings": "تحذيرات"
+    },
+    "update": {
+      "branch": "الفرع: {{branch}}",
+      "currentVersion": "الإصدار الحالي: {{version}}",
+      "latestVersion": "أحدث إصدار: {{version}}",
+      "viewChanges": "عرض التغييرات"
+    }
+  },
+  "profile": {
+    "avatarAlt": "الملف الشخصي",
+    "bio": "نبذة",
+    "bioPlaceholder": "أخبرنا عن نفسك",
+    "profilePicture": "الصورة الشخصية",
+    "profilePictureDescription": "ارفع صورة شخصية أو صورة رمزية",
+    "toasts": {
+      "avatarUpdateFailed": "تعذّر تحديث الصورة الشخصية",
+      "avatarUpdated": "تم تحديث الصورة الشخصية",
+      "bioUpdated": "تم تحديث النبذة",
+      "usernameUpdated": "تم تحديث اسم المستخدم"
+    },
+    "username": "اسم المستخدم",
+    "usernamePlaceholder": "أدخل اسم المستخدم"
+  },
+  "providers": {
+    "cloud": {
+      "allDisabled": "تم تعطيل كل المزوّدين السحابيين",
+      "allEnabled": "تم تفعيل كل المزوّدين السحابيين",
+      "baseUrlUpdated": "تم تحديث عنوان {{provider}} الأساسي",
+      "clickToSetBaseUrl": "انقر لضبط العنوان الأساسي",
+      "configurable": "قابل للإعداد",
+      "description": "الاتصال بنماذج وخدمات الذكاء الاصطناعي السحابية",
+      "descriptions": {
+        "configurableDefault": "مزوّد سحابي قابل للإعداد",
+        "default": "مزوّد ذكاء اصطناعي سحابي"
+      },
+      "enableAll": "تفعيل كل السحابيين",
+      "enterBaseUrl": "أدخل العنوان الأساسي لـ {{provider}}",
+      "envUrlSet": "عنوان البيئة مضبوط في ملف .env",
+      "logoAlt": "شعار {{provider}}",
+      "providerDisabled": "تم تعطيل {{provider}}",
+      "providerEnabled": "تم تفعيل {{provider}}",
+      "title": "المزوّدون السحابيون"
+    },
+    "local": {
+      "allDisabled": "تم تعطيل كل المزوّدين المحليين",
+      "allEnabled": "تم تفعيل كل المزوّدين المحليين",
+      "availableBadge": "متاح",
+      "availableModels_few": "{{count}} نماذج متاحة",
+      "availableModels_many": "{{count}} نموذجاً متاحاً",
+      "availableModels_one": "نموذج واحد متاح",
+      "availableModels_other": "{{count}} نموذج متاح",
+      "availableModels_two": "نموذجان متاحان",
+      "availableModels_zero": "لا نماذج متاحة",
+      "baseUrlUpdated": "تم تحديث عنوان {{provider}} الأساسي",
+      "browseModels": "تصفح النماذج",
+      "card": {
+        "apiEndpoint": "نقطة نهاية API",
+        "clickToSetBaseUrl": "انقر لضبط العنوان الأساسي",
+        "enterBaseUrl": "أدخل العنوان الأساسي لـ {{provider}}",
+        "localBadge": "محلي",
+        "toggleAria": "تبديل مزوّد {{provider}}"
+      },
+      "createdOn": "أُنشئ في {{date}}",
+      "deleteModelConfirm": "هل أنت متأكد من حذف {{model}}؟",
+      "description": "إعداد نماذج الذكاء الاصطناعي المحلية وإدارتها",
+      "enableAll": "تفعيل الكل",
+      "errorBoundary": {
+        "description": "حدث خطأ أثناء تحميل المزوّدين المحليين. جرّب إعادة تحميل الصفحة.",
+        "errorDetails": "تفاصيل الخطأ",
+        "title": "حدث خطأ أثناء تحميل قسم المزوّدين المحليين.",
+        "tryAgain": "حاول مجدداً"
+      },
+      "getLmStudio": "الحصول على LM Studio",
+      "health": {
+        "checking": "جارٍ الفحص",
+        "healthy": "سليم",
+        "unhealthy": "غير سليم",
+        "unknown": "غير معروف"
+      },
+      "installedModels_few": "{{count}} نماذج مثبتة",
+      "installedModels_many": "{{count}} نموذجاً مثبتاً",
+      "installedModels_one": "نموذج واحد مثبت",
+      "installedModels_other": "{{count}} نموذج مثبت",
+      "installedModels_two": "نموذجان مثبتان",
+      "installedModels_zero": "لا نماذج مثبتة",
+      "lmStudioNotRunning": "تأكد أن LM Studio يعمل مع تشغيل الخادم المحلي وتفعيل CORS.",
+      "model": {
+        "delete": "حذف",
+        "error": "خطأ",
+        "update": "تحديث",
+        "updated": "محدَّث",
+        "updating": "جارٍ التحديث"
+      },
+      "modelDeleteFailed": "تعذّر حذف {{model}}",
+      "modelDeleted": "تم حذف {{model}}",
+      "modelUpdateFailed": "تعذّر تحديث {{model}}",
+      "modelUpdated": "تم تحديث {{model}} بنجاح",
+      "noModelsAvailable": "لا نماذج متاحة",
+      "noModelsInstalled": "لا نماذج مثبتة",
+      "noProviders": "لا مزوّدين محليين مفعّلين",
+      "noProvidersDescription": "فعّل مزوّداً محلياً لتشغيل النماذج على جهازك",
+      "ownedBy": "المالك: {{owner}}",
+      "providerDisabled": "تم تعطيل {{name}}",
+      "providerEnabled": "تم تفعيل {{name}}",
+      "refresh": "تحديث",
+      "setupGuideButton": "دليل الإعداد",
+      "status": {
+        "backAria": "العودة إلى لوحة التحكم",
+        "description": "راقب سلامة مزوّدي الذكاء الاصطناعي المحليين",
+        "lastCheck": "آخر فحص",
+        "models": "النماذج",
+        "never": "أبداً",
+        "noEndpoints": "لا نقاط نهاية مضبوطة",
+        "noEndpointsDescription": "اضبط وفعّل مزوّدين محليين لعرض حالة نقاط النهاية هنا.",
+        "title": "حالة المزوّدين",
+        "unknown": "غير معروف",
+        "version": "الإصدار"
+      },
+      "statusButton": "الحالة",
+      "title": "مزوّدو الذكاء الاصطناعي المحليون",
+      "toggleAllAria": "تبديل كل المزوّدين المحليين",
+      "visitPrefix": "زُر",
+      "visitSuffix": "لتصفح النماذج المتاحة"
+    },
+    "setupGuide": {
+      "alternatives": {
+        "cloud": "مزوّدون سحابيون (OpenAI، Anthropic، Google) — دون إعداد محلي",
+        "groq": "Groq — استدلال سحابي سريع بشريحة مجانية",
+        "jan": "واجهة حديثة مع متجر نماذج مدمج",
+        "kobold": "KoboldCpp — استدلال محلي بواجهة ويب",
+        "oobabooga": "واجهة ويب متقدمة لتوليد النصوص مع إضافات",
+        "openrouter": "OpenRouter — واجهة API واحدة لنماذج كثيرة",
+        "otherLocal": "خيارات محلية أخرى",
+        "subtitle": "حلول ذكاء اصطناعي محلية أخرى وبدائل سحابية",
+        "title": "البدائل",
+        "together": "Together AI — نماذج مفتوحة مستضافة"
+      },
+      "backAria": "العودة إلى لوحة التحكم",
+      "lmstudio": {
+        "adv1": "منزّل نماذج مدمج مع بحث",
+        "adv2": "تبديل النماذج وإدارتها بسهولة",
+        "adv3": "واجهة دردشة مدمجة للاختبار",
+        "adv4": "دعم صيغة GGUF (الأكثر توافقاً)",
+        "adv5": "تحديثات منتظمة بميزات جديدة",
+        "advantages": "مزايا LM Studio",
+        "cors1": "في إعدادات الخادم، فعّل \"Enable CORS\"",
+        "cors2": "اضبط واجهة الشبكة على \"0.0.0.0\" للوصول الخارجي",
+        "cors3": "أو استخدم سطر الأوامر:",
+        "corsDescription": "للعمل مع Bolt DIY، يجب تفعيل CORS في LM Studio:",
+        "corsTitle": "مهم: تفعيل CORS",
+        "download": "تنزيل LM Studio",
+        "downloadDescription": "نزّل LM Studio لويندوز أو macOS أو لينكس من الموقع الرسمي.",
+        "server1": "نزّل نموذجاً من تبويب \"My Models\"",
+        "server2": "انتقل إلى تبويب \"Local Server\"",
+        "server3": "اختر النموذج الذي نزّلته",
+        "server4": "اضبط المنفذ على 1234 (الافتراضي)",
+        "server5": "انقر \"Start Server\"",
+        "startServer": "شغّل الخادم المحلي من تبويب Developer",
+        "step1": "1. التنزيل والتثبيت",
+        "step2": "2. إعداد الخادم المحلي",
+        "subtitle": "تطبيق سطح مكتب لتشغيل النماذج المحلية",
+        "title": "LM Studio"
+      },
+      "localai": {
+        "adv1": "توافق كامل مع OpenAI API",
+        "adv2": "يدعم صيغ نماذج متعددة",
+        "adv3": "خيار النشر عبر Docker",
+        "adv4": "معرض نماذج مدمج",
+        "adv5": "واجهة REST لإدارة النماذج",
+        "advantages": "مزايا LocalAI",
+        "configDescription": "يدعم LocalAI صيغ نماذج كثيرة ويوفر واجهة متوافقة كلياً مع OpenAI.",
+        "configuration": "الإعداد",
+        "docker": "التشغيل عبر Docker",
+        "installOptions": "خيارات التثبيت",
+        "quickInstall": "تثبيت سريع",
+        "subtitle": "واجهة API متوافقة مع OpenAI مستضافة ذاتياً",
+        "title": "LocalAI"
+      },
+      "ollama": {
+        "cli": "سطر الأوامر (متقدم)",
+        "codeDev": "البرمجة والتطوير",
+        "commonIssues": "مشاكل شائعة",
+        "desktopApp": "🆕 تطبيق سطح المكتب (موصى به)",
+        "desktopAppDescription": "تطبيق سطح مكتب سهل مع إدارة نماذج مدمجة وواجهة ويب.",
+        "downloadDesktopApp": "نزّل تطبيق سطح المكتب",
+        "generalChat": "الاستخدام العام والدردشة",
+        "issue1": "التطبيق لا يبدأ: أعد تشغيل النظام",
+        "issue2": "لم يُكتشف GPU: حدّث التعريفات",
+        "issue3": "المنفذ 11434 محجوب: غيّر المنفذ في الإعدادات",
+        "issue4": "النماذج لا تُحمّل: تحقق من مساحة القرص",
+        "issue5": "أداء بطيء: استخدم نماذج أصغر أو فعّل GPU",
+        "managementTools": "🔧 أدوات الإدارة",
+        "mgmt1": "تحديثات تلقائية",
+        "mgmt2": "تحسين حجم النماذج",
+        "mgmt3": "اكتشاف تسريع GPU",
+        "mgmt4": "توافق متعدد المنصات",
+        "perf1": "Llama 3.2: 3B - الأسرع، 8GB RAM",
+        "perf2": "Phi-3.5: 3.8B - توازن ممتاز",
+        "perf3": "Qwen2.5: 7B - جودة ممتازة",
+        "perf4": "Mistral: 7B - خيار شائع",
+        "performanceOptimized": "محسّن للأداء",
+        "proTips": "نصائح احترافية",
+        "step1": "1. اختر طريقة التثبيت",
+        "step2": "2. نزّل أحدث النماذج",
+        "step3": "3. ميزات تطبيق سطح المكتب",
+        "step4": "4. استكشاف الأخطاء والأوامر",
+        "subtitle": "أسهل طريقة لتشغيل النماذج المحلية",
+        "tip1": "ابدأ بنماذج 3B-7B لأفضل أداء",
+        "tip2": "استخدم النسخ المكمّاة لتحميل أسرع",
+        "tip3": "التطبيق يدير تخزين النماذج تلقائياً",
+        "tip4": "واجهة الويب متاحة على localhost:11434",
+        "title": "Ollama",
+        "ui1": "متصفح مكتبة النماذج",
+        "ui2": "تنزيل النماذج بنقرة واحدة",
+        "ui3": "واجهة دردشة مدمجة",
+        "ui4": "مراقبة موارد النظام",
+        "uiFeatures": "🖥️ واجهة المستخدم",
+        "usefulCommands": "أوامر مفيدة",
+        "webInterface": "واجهة ويب متاحة",
+        "webInterfaceAt": "يتضمن التطبيق واجهة ويب على"
+      },
+      "perfOpt": {
+        "hardware": "العتاد",
+        "hw1": "استخدم NVIDIA GPU مع CUDA لتسريع 5-10 أضعاف",
+        "hw2": "زد الذاكرة RAM لنوافذ سياق أكبر",
+        "hw3": "استخدم تخزين SSD لتحميل أسرع للنماذج",
+        "hw4": "أغلق التطبيقات الأخرى لتحرير الذاكرة",
+        "software": "البرمجيات",
+        "subtitle": "احصل على أفضل أداء من النماذج المحلية",
+        "sw1": "استخدم نماذج أصغر لاستجابات أسرع",
+        "sw2": "فعّل التكميم (نماذج 4-bit و8-bit)",
+        "sw3": "قلّل طول السياق لتطبيقات الدردشة",
+        "sw4": "استخدم الاستجابات المتدفقة لتجربة أفضل",
+        "title": "تحسين الأداء"
+      },
+      "recommended": "موصى به",
+      "subtitle": "جهّز مزوّد ذكاء اصطناعي محلياً لتشغيل النماذج على جهازك",
+      "sysReq": {
+        "cpu": "المعالج",
+        "cpuSpec": "8 أنوية فأكثر، معمارية حديثة",
+        "gpu": "معالج الرسوميات",
+        "gpuSpec": "NVIDIA RTX 30xx فأحدث أو AMD RX 6000 فأحدث",
+        "ram": "الذاكرة",
+        "ramSpec": "16GB حداً أدنى، ويُنصح بـ 32GB فأكثر",
+        "subtitle": "الحد الأدنى لتشغيل النماذج المحلية",
+        "title": "متطلبات النظام"
+      },
+      "title": "دليل إعداد المزوّدين المحليين"
+    }
+  },
+  "supabase": {
+    "accessToken": "رمز الوصول",
+    "actions": {
+      "viewApiDocs": "عرض توثيق API",
+      "viewAuth": "عرض المصادقة",
+      "viewDashboard": "عرض لوحة التحكم",
+      "viewDatabase": "عرض قاعدة البيانات",
+      "viewEdgeFunctions": "عرض Edge Functions",
+      "viewFunctions": "عرض الدوال",
+      "viewLogs": "عرض السجلات",
+      "viewRealtime": "عرض Realtime",
+      "viewSettings": "عرض الإعدادات",
+      "viewStorage": "عرض التخزين"
+    },
+    "connectedTo": "متصل بـ Supabase",
+    "fetching": "جارٍ الجلب...",
+    "getApiKeys": "الحصول على مفاتيح API",
+    "getYourToken": "احصل على رمزك",
+    "resources": {
+      "buckets": "الحاويات",
+      "database": "قاعدة البيانات",
+      "functions": "الدوال",
+      "storage": "التخزين",
+      "tables": "الجداول"
+    },
+    "stats": {
+      "activeProjects": "المشاريع النشطة",
+      "authEnabled": "المصادقة مفعّلة",
+      "healthRate": "معدل السلامة",
+      "inactiveProjects": "المشاريع غير النشطة",
+      "overview": "نظرة عامة على Supabase",
+      "performanceAnalytics": "تحليلات الأداء",
+      "regionsUsed": "المناطق المستخدمة",
+      "resourceOverview": "نظرة عامة على الموارد",
+      "totalProjects": "إجمالي المشاريع",
+      "totalUsers": "إجمالي المستخدمين"
+    },
+    "title": "تكامل Supabase",
+    "toast": {
+      "apiKeysFetched": "تم جلب مفاتيح API بنجاح",
+      "connectFailed": "تعذّر الاتصال بـ Supabase",
+      "connected": "تم الاتصال بـ Supabase بنجاح",
+      "disconnected": "تم قطع الاتصال بـ Supabase",
+      "enterToken": "أدخل رمز وصول Supabase",
+      "keyCopied": "تم نسخ المفتاح إلى الحافظة",
+      "urlCopied": "تم نسخ الرابط إلى الحافظة"
+    },
+    "tokenPlaceholder": "أدخل رمز وصول Supabase"
+  },
+  "vercel": {
+    "actions": {
+      "deleteProject": "حذف المشروع",
+      "redeploy": "إعادة النشر",
+      "viewAnalytics": "عرض التحليلات",
+      "viewDashboard": "عرض لوحة التحكم",
+      "viewDeployments": "عرض عمليات النشر",
+      "viewDomains": "عرض النطاقات",
+      "viewFunctions": "عرض الدوال",
+      "viewLogs": "عرض السجلات",
+      "viewSettings": "عرض الإعدادات"
+    },
+    "confirmAction": "هل أنت متأكد من: {{action}}؟",
+    "connectionHeading": "اتصال Vercel",
+    "defaultUser": "مستخدم Vercel",
+    "envTipAfter": "في ملف .env.local للاتصال التلقائي.",
+    "envTipBefore": "يمكنك أيضاً ضبط",
+    "getYourToken": "احصل على رمزك",
+    "health": {
+      "building": "جارٍ البناء",
+      "customDomain": "نطاق مخصص",
+      "healthy": "سليم",
+      "issues": "مشاكل"
+    },
+    "noEmail": "لا يوجد بريد إلكتروني",
+    "personalAccessToken": "رمز الوصول الشخصي",
+    "sections": {
+      "domains": "النطاقات",
+      "projects": "المشاريع",
+      "usage": "الاستخدام"
+    },
+    "stats": {
+      "active": "نشط",
+      "activeDeployments": "عمليات النشر النشطة",
+      "deployedProjects": "المشاريع المنشورة",
+      "failed": "فشل",
+      "frameworksUsed": "أطر العمل المستخدمة",
+      "overview": "نظرة عامة على Vercel",
+      "performanceAnalytics": "تحليلات الأداء",
+      "projectHealthOverview": "نظرة عامة على سلامة المشروع",
+      "recentDeploys": "عمليات النشر الأخيرة",
+      "successRate": "معدل النجاح",
+      "totalDomains": "إجمالي النطاقات",
+      "totalProjects": "إجمالي المشاريع"
+    },
+    "title": "تكامل Vercel",
+    "toast": {
+      "authFailed": "تعذّرت المصادقة مع Vercel",
+      "autoConnectSuccess": "نجح الاتصال التلقائي اليدوي",
+      "connectFailed": "تعذّر الاتصال بـ Vercel",
+      "connected": "تم الاتصال بـ Vercel بنجاح",
+      "connectedAuto": "تم الاتصال بـ Vercel تلقائياً",
+      "disconnected": "تم قطع الاتصال بـ Vercel",
+      "invalidOrUnauthorized": "رمز غير صالح أو غير مصرّح",
+      "invalidToken": "رمز Vercel غير صالح",
+      "projectDeleteFailed": "تعذّر حذف المشروع",
+      "projectDeleted": "تم حذف المشروع بنجاح",
+      "redeployFailed": "تعذّرت إعادة نشر المشروع",
+      "redeployInitiated": "تم بدء إعادة نشر المشروع",
+      "tokenRequired": "الرمز مطلوب"
+    },
+    "tokenPlaceholder": "أدخل رمز وصول Vercel الشخصي"
+  }
+}

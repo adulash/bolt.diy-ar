@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 import { useStore } from '@nanostores/react';
 import { netlifyConnection } from '~/lib/stores/netlify';
 import { workbenchStore } from '~/lib/stores/workbench';
@@ -10,18 +11,19 @@ import { chatId } from '~/lib/persistence/useChatHistory';
 import { formatBuildFailureOutput } from './deployUtils';
 
 export function useNetlifyDeploy() {
+  const { t } = useTranslation('deploy');
   const [isDeploying, setIsDeploying] = useState(false);
   const netlifyConn = useStore(netlifyConnection);
   const currentChatId = useStore(chatId);
 
   const handleNetlifyDeploy = async () => {
     if (!netlifyConn.user || !netlifyConn.token) {
-      toast.error('Please connect to Netlify first in the settings tab!');
+      toast.error(t('netlify.connectFirst'));
       return false;
     }
 
     if (!currentChatId) {
-      toast.error('No active chat found');
+      toast.error(t('common.noActiveChat'));
       return false;
     }
 
@@ -31,7 +33,7 @@ export function useNetlifyDeploy() {
       const artifact = workbenchStore.firstArtifact;
 
       if (!artifact) {
-        throw new Error('No active project found');
+        throw new Error(t('common.noActiveProject'));
       }
 
       // Create a deployment artifact for visual feedback
@@ -39,7 +41,7 @@ export function useNetlifyDeploy() {
       workbenchStore.addArtifact({
         id: deploymentId,
         messageId: deploymentId,
-        title: 'Netlify Deployment',
+        title: t('netlify.deploymentTitle'),
         type: 'standalone',
       });
 
@@ -74,7 +76,7 @@ export function useNetlifyDeploy() {
           error: formatBuildFailureOutput(buildOutput?.output),
           source: 'netlify',
         });
-        throw new Error('Build failed');
+        throw new Error(t('common.buildFailed'));
       }
 
       // Notify that build succeeded and deployment is starting
@@ -112,7 +114,7 @@ export function useNetlifyDeploy() {
       }
 
       if (!buildPathExists) {
-        throw new Error('Could not find build output directory. Please check your build configuration.');
+        throw new Error(t('common.buildDirNotFound'));
       }
 
       async function getAllFiles(dirPath: string): Promise<Record<string, string>> {
@@ -162,10 +164,10 @@ export function useNetlifyDeploy() {
 
         // Notify that deployment failed
         deployArtifact.runner.handleDeployAction('deploying', 'failed', {
-          error: data.error || 'Invalid deployment response',
+          error: data.error || t('common.invalidDeployResponse'),
           source: 'netlify',
         });
-        throw new Error(data.error || 'Invalid deployment response');
+        throw new Error(data.error || t('common.invalidDeployResponse'));
       }
 
       const maxAttempts = 20; // 2 minutes timeout
@@ -190,12 +192,16 @@ export function useNetlifyDeploy() {
           }
 
           if (deploymentStatus.state === 'error') {
+            const deployErrorMessage = t('netlify.deployFailedReason', {
+              message: deploymentStatus.error_message || t('common.unknownError'),
+            });
+
             // Notify that deployment failed
             deployArtifact.runner.handleDeployAction('deploying', 'failed', {
-              error: 'Deployment failed: ' + (deploymentStatus.error_message || 'Unknown error'),
+              error: deployErrorMessage,
               source: 'netlify',
             });
-            throw new Error('Deployment failed: ' + (deploymentStatus.error_message || 'Unknown error'));
+            throw new Error(deployErrorMessage);
           }
 
           attempts++;
@@ -210,10 +216,10 @@ export function useNetlifyDeploy() {
       if (attempts >= maxAttempts) {
         // Notify that deployment timed out
         deployArtifact.runner.handleDeployAction('deploying', 'failed', {
-          error: 'Deployment timed out',
+          error: t('netlify.timedOut'),
           source: 'netlify',
         });
-        throw new Error('Deployment timed out');
+        throw new Error(t('netlify.timedOut'));
       }
 
       // Store the site ID if it's a new site
@@ -228,12 +234,12 @@ export function useNetlifyDeploy() {
       });
 
       // Show success toast notification
-      toast.success(`🚀 Netlify deployment completed successfully!`);
+      toast.success(t('netlify.success'));
 
       return true;
     } catch (error) {
       console.error('Deploy error:', error);
-      toast.error(error instanceof Error ? error.message : 'Deployment failed');
+      toast.error(error instanceof Error ? error.message : t('netlify.deployFailed'));
 
       return false;
     } finally {

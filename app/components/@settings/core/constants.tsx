@@ -1,5 +1,6 @@
 import type { TabType } from './types';
 import { User, Settings, Bell, Star, Database, Cloud, Laptop, Github, Wrench, List } from 'lucide-react';
+import i18n from '~/lib/i18n';
 
 // GitLab icon component
 const GitLabIcon = () => (
@@ -55,39 +56,43 @@ export const TAB_ICONS: Record<TabType, React.ComponentType<{ className?: string
   mcp: Wrench,
 };
 
-export const TAB_LABELS: Record<TabType, string> = {
-  profile: 'Profile',
-  settings: 'Settings',
-  notifications: 'Notifications',
-  features: 'Features',
-  data: 'Data Management',
-  'cloud-providers': 'Cloud Providers',
-  'local-providers': 'Local Providers',
-  github: 'GitHub',
-  gitlab: 'GitLab',
-  netlify: 'Netlify',
-  vercel: 'Vercel',
-  supabase: 'Supabase',
-  'event-logs': 'Event Logs',
-  mcp: 'MCP Servers',
+const TAB_IDS: TabType[] = [
+  'profile',
+  'settings',
+  'notifications',
+  'features',
+  'data',
+  'cloud-providers',
+  'local-providers',
+  'github',
+  'gitlab',
+  'netlify',
+  'vercel',
+  'supabase',
+  'event-logs',
+  'mcp',
+];
+
+/*
+ * Live records: each property resolves through i18n at access time so tab
+ * labels/descriptions always reflect the current language.
+ */
+const createLiveTabRecord = (field: 'label' | 'description'): Record<TabType, string> => {
+  const record = {} as Record<TabType, string>;
+
+  for (const id of TAB_IDS) {
+    Object.defineProperty(record, id, {
+      enumerable: true,
+      get: () => i18n.t(`settings:core.tabs.${id}.${field}`),
+    });
+  }
+
+  return record;
 };
 
-export const TAB_DESCRIPTIONS: Record<TabType, string> = {
-  profile: 'Manage your profile and account settings',
-  settings: 'Configure application preferences',
-  notifications: 'View and manage your notifications',
-  features: 'Explore new and upcoming features',
-  data: 'Manage your data and storage',
-  'cloud-providers': 'Configure cloud AI providers and models',
-  'local-providers': 'Configure local AI providers and models',
-  github: 'Connect and manage GitHub integration',
-  gitlab: 'Connect and manage GitLab integration',
-  netlify: 'Configure Netlify deployment settings',
-  vercel: 'Manage Vercel projects and deployments',
-  supabase: 'Setup Supabase database connection',
-  'event-logs': 'View system events and logs',
-  mcp: 'Configure MCP (Model Context Protocol) servers',
-};
+export const TAB_LABELS: Record<TabType, string> = createLiveTabRecord('label');
+
+export const TAB_DESCRIPTIONS: Record<TabType, string> = createLiveTabRecord('description');
 
 export const DEFAULT_TAB_CONFIG = [
   // User Window Tabs (Always visible by default)

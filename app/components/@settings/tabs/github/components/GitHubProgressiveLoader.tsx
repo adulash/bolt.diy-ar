@@ -1,4 +1,5 @@
 import React, { useState, useCallback, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '~/components/ui/Button';
 import { classNames } from '~/utils/classNames';
@@ -32,11 +33,12 @@ export function GitHubProgressiveLoader({
   onRefresh,
   children,
   className = '',
-  loadingMessage = 'Loading...',
-  refreshingMessage = 'Refreshing...',
+  loadingMessage,
+  refreshingMessage,
   showProgress = false,
   progressSteps = [],
 }: ProgressiveLoaderProps) {
+  const { t } = useTranslation('settings');
   const [isExpanded, setIsExpanded] = useState(false);
 
   // Calculate progress percentage
@@ -68,7 +70,9 @@ export function GitHubProgressiveLoader({
         </div>
 
         <div className="text-center space-y-2">
-          <p className="text-sm font-medium text-bolt-elements-textPrimary">{loadingMessage}</p>
+          <p className="text-sm font-medium text-bolt-elements-textPrimary">
+            {loadingMessage ?? t('connections.loading')}
+          </p>
 
           {showProgress && progressSteps.length > 0 && (
             <div className="w-full max-w-sm">
@@ -87,7 +91,7 @@ export function GitHubProgressiveLoader({
                 onClick={handleToggleExpanded}
                 className="flex items-center justify-center gap-2 text-xs text-bolt-elements-textSecondary hover:text-bolt-elements-textPrimary transition-colors"
               >
-                <span>Show details</span>
+                <span>{t('connections.showDetails')}</span>
                 <ChevronDown
                   className={classNames(
                     'w-3 h-3 transform transition-transform duration-200',
@@ -151,7 +155,7 @@ export function GitHubProgressiveLoader({
         </div>
 
         <div>
-          <h3 className="text-sm font-medium text-bolt-elements-textPrimary mb-1">Failed to Load</h3>
+          <h3 className="text-sm font-medium text-bolt-elements-textPrimary mb-1">{t('connections.failedToLoad')}</h3>
           <p className="text-xs text-bolt-elements-textSecondary mb-4 max-w-sm">{error}</p>
         </div>
 
@@ -159,13 +163,13 @@ export function GitHubProgressiveLoader({
           {onRetry && (
             <Button variant="outline" size="sm" onClick={onRetry} className="text-xs">
               <RefreshCw className="w-3 h-3 me-1" />
-              Try Again
+              {t('connections.tryAgain')}
             </Button>
           )}
           {onRefresh && (
             <Button variant="outline" size="sm" onClick={onRefresh} className="text-xs">
               <RefreshCw className="w-3 h-3 me-1" />
-              Refresh
+              {t('connections.refresh')}
             </Button>
           )}
         </div>
@@ -180,7 +184,9 @@ export function GitHubProgressiveLoader({
         <div className="absolute top-0 end-0 z-10">
           <div className="flex items-center gap-2 px-2 py-1 bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor rounded-lg shadow-sm">
             <Loader2 className="w-3 h-3 animate-spin text-bolt-elements-item-contentAccent" />
-            <span className="text-xs text-bolt-elements-textSecondary">{refreshingMessage}</span>
+            <span className="text-xs text-bolt-elements-textSecondary">
+              {refreshingMessage ?? t('connections.refreshing')}
+            </span>
           </div>
         </div>
       )}

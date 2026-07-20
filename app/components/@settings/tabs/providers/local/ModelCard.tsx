@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Card, CardContent } from '~/components/ui/Card';
 import { Progress } from '~/components/ui/Progress';
 import { RotateCw, Trash2, Code, Database, Package, Loader2 } from 'lucide-react';
@@ -13,6 +14,8 @@ interface ModelCardProps {
 }
 
 function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
+  const { t } = useTranslation('settings');
+
   return (
     <Card className="bg-bolt-elements-background-depth-3 hover:bg-bolt-elements-background-depth-4 transition-all duration-200 shadow-sm hover:shadow-md border border-bolt-elements-borderColor hover:border-purple-500/20">
       <CardContent className="p-5">
@@ -28,9 +31,9 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
                     'bg-red-500/10 text-red-500': model.status === 'error',
                   })}
                 >
-                  {model.status === 'updating' && 'Updating'}
-                  {model.status === 'updated' && 'Updated'}
-                  {model.status === 'error' && 'Error'}
+                  {model.status === 'updating' && t('providers.local.model.updating')}
+                  {model.status === 'updated' && t('providers.local.model.updated')}
+                  {model.status === 'error' && t('providers.local.model.error')}
                 </span>
               )}
             </div>
@@ -66,12 +69,12 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
               {model.status === 'updating' ? (
                 <>
                   <Loader2 className="w-3 h-3 animate-spin" />
-                  Updating
+                  {t('providers.local.model.updating')}
                 </>
               ) : (
                 <>
                   <RotateCw className="w-3 h-3" />
-                  Update
+                  {t('providers.local.model.update')}
                 </>
               )}
             </button>
@@ -85,7 +88,7 @@ function ModelCard({ model, onUpdate, onDelete }: ModelCardProps) {
               )}
             >
               <Trash2 className="w-3 h-3" />
-              Delete
+              {t('providers.local.model.delete')}
             </button>
           </div>
         </div>

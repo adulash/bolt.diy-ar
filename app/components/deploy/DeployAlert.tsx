@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '~/utils/classNames';
 import type { DeployAlert } from '~/types/actions';
 
@@ -9,6 +10,7 @@ interface DeployAlertProps {
 }
 
 export default function DeployChatAlert({ alert, clearAlert, postMessage }: DeployAlertProps) {
+  const { t } = useTranslation('deploy');
   const { type, title, description, content, url, stage, buildStatus, deployStatus } = alert;
 
   // Determine if we should show the deployment progress
@@ -88,7 +90,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                           <span className="text-white text-xs">1</span>
                         )}
                       </div>
-                      <span className="ms-2">Build</span>
+                      <span className="ms-2">{t('alert.build')}</span>
                     </div>
 
                     {/* Connector Line */}
@@ -123,7 +125,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                           <span className="text-white text-xs">2</span>
                         )}
                       </div>
-                      <span className="ms-2">Deploy</span>
+                      <span className="ms-2">{t('alert.deploy')}</span>
                     </div>
                   </div>
                 </div>
@@ -142,7 +144,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                     rel="noopener noreferrer"
                     className="text-bolt-elements-item-contentAccent hover:underline flex items-center"
                   >
-                    <span className="me-1">View deployed site</span>
+                    <span className="me-1">{t('alert.viewSite')}</span>
                     <div className="i-ph:arrow-square-out"></div>
                   </a>
                 </div>
@@ -160,7 +162,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                 {type === 'error' && (
                   <button
                     onClick={() =>
-                      postMessage(`*Fix this deployment error*\n\`\`\`\n${content || description}\n\`\`\`\n`)
+                      postMessage(`*${t('alert.fixDeploymentError')}*\n\`\`\`\n${content || description}\n\`\`\`\n`)
                     }
                     className={classNames(
                       `px-2 py-1.5 rounded-md text-sm font-medium`,
@@ -172,7 +174,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                     )}
                   >
                     <div className="i-ph:chat-circle-duotone"></div>
-                    Ask Bolt
+                    {t('alert.askBolt')}
                   </button>
                 )}
                 <button
@@ -185,7 +187,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                     'text-bolt-elements-button-secondary-text',
                   )}
                 >
-                  Dismiss
+                  {t('alert.dismiss')}
                 </button>
               </div>
             </motion.div>

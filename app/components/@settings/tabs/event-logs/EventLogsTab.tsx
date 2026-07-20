@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { useTranslation } from 'react-i18next';
 import { Switch } from '~/components/ui/Switch';
 import { logStore, type LogEntry } from '~/lib/stores/logs';
 import { useStore } from '@nanostores/react';
@@ -8,6 +9,7 @@ import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { Dialog, DialogRoot, DialogTitle } from '~/components/ui/Dialog';
 import { jsPDF } from 'jspdf';
 import { toast } from 'react-toastify';
+import i18n from '~/lib/i18n';
 
 interface SelectOption {
   value: string;
@@ -16,46 +18,46 @@ interface SelectOption {
   color?: string;
 }
 
-const logLevelOptions: SelectOption[] = [
+const getLogLevelOptions = (): SelectOption[] => [
   {
     value: 'all',
-    label: 'All Types',
+    label: i18n.t('settings:eventLogs.levels.all'),
     icon: 'i-ph:funnel',
     color: '#9333ea',
   },
   {
     value: 'provider',
-    label: 'LLM',
+    label: i18n.t('settings:eventLogs.levels.provider'),
     icon: 'i-ph:robot',
     color: '#10b981',
   },
   {
     value: 'api',
-    label: 'API',
+    label: i18n.t('settings:eventLogs.levels.api'),
     icon: 'i-ph:cloud',
     color: '#3b82f6',
   },
   {
     value: 'error',
-    label: 'Errors',
+    label: i18n.t('settings:eventLogs.levels.error'),
     icon: 'i-ph:warning-circle',
     color: '#ef4444',
   },
   {
     value: 'warning',
-    label: 'Warnings',
+    label: i18n.t('settings:eventLogs.levels.warning'),
     icon: 'i-ph:warning',
     color: '#f59e0b',
   },
   {
     value: 'info',
-    label: 'Info',
+    label: i18n.t('settings:eventLogs.levels.info'),
     icon: 'i-ph:info',
     color: '#3b82f6',
   },
   {
     value: 'debug',
-    label: 'Debug',
+    label: i18n.t('settings:eventLogs.levels.debug'),
     icon: 'i-ph:bug',
     color: '#6b7280',
   },
@@ -69,6 +71,7 @@ interface LogEntryItemProps {
 }
 
 const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp }: LogEntryItemProps) => {
+  const { t } = useTranslation('settings');
   const [localExpanded, setLocalExpanded] = useState(forceExpanded);
 
   useEffect(() => {
@@ -136,15 +139,17 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
       return (
         <div className="flex flex-col gap-2">
           <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
-            <span>Model: {details.model}</span>
+            <span>{t('eventLogs.details.model', { model: details.model })}</span>
             <span>•</span>
-            <span>Tokens: {details.totalTokens}</span>
+            <span>{t('eventLogs.details.tokens', { count: details.totalTokens })}</span>
             <span>•</span>
-            <span>Duration: {details.duration}ms</span>
+            <span>{t('eventLogs.details.duration', { duration: details.duration })}</span>
           </div>
           {details.prompt && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Prompt:</div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                {t('eventLogs.details.prompt')}
+              </div>
               <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
                 {details.prompt}
               </pre>
@@ -152,7 +157,9 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
           )}
           {details.response && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Response:</div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                {t('eventLogs.details.response')}
+              </div>
               <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
                 {details.response}
               </pre>
@@ -168,14 +175,16 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
           <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
             <span className={details.method === 'GET' ? 'text-green-500' : 'text-blue-500'}>{details.method}</span>
             <span>•</span>
-            <span>Status: {details.statusCode}</span>
+            <span>{t('eventLogs.details.status', { status: details.statusCode })}</span>
             <span>•</span>
-            <span>Duration: {details.duration}ms</span>
+            <span>{t('eventLogs.details.duration', { duration: details.duration })}</span>
           </div>
           <div className="text-xs text-gray-600 dark:text-gray-400 break-all">{details.url}</div>
           {details.request && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Request:</div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                {t('eventLogs.details.request')}
+              </div>
               <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.request, null, 2)}
               </pre>
@@ -183,7 +192,9 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
           )}
           {details.response && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">Response:</div>
+              <div className="text-xs font-medium text-gray-700 dark:text-gray-300">
+                {t('eventLogs.details.response')}
+              </div>
               <pre className="text-xs text-gray-600 dark:text-gray-400 bg-gray-50 dark:bg-gray-800/50 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.response, null, 2)}
               </pre>
@@ -191,7 +202,7 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
           )}
           {details.error && (
             <div className="flex flex-col gap-1">
-              <div className="text-xs font-medium text-red-500">Error:</div>
+              <div className="text-xs font-medium text-red-500">{t('eventLogs.details.error')}</div>
               <pre className="text-xs text-red-400 bg-red-50 dark:bg-red-500/10 rounded p-2 whitespace-pre-wrap">
                 {JSON.stringify(details.error, null, 2)}
               </pre>
@@ -232,7 +243,7 @@ const LogEntryItem = ({ log, isExpanded: forceExpanded, use24Hour, showTimestamp
                   onClick={() => setLocalExpanded(!localExpanded)}
                   className="text-xs text-gray-500 dark:text-gray-400 hover:text-purple-500 dark:hover:text-purple-400 transition-colors"
                 >
-                  {localExpanded ? 'Hide' : 'Show'} Details
+                  {localExpanded ? t('eventLogs.hideDetails') : t('eventLogs.showDetails')}
                 </button>
                 {localExpanded && renderDetails(log.details)}
               </>
@@ -263,7 +274,9 @@ interface ExportFormat {
 }
 
 export function EventLogsTab() {
+  const { t } = useTranslation('settings');
   const logs = useStore(logStore.logs);
+  const logLevelOptions = getLogLevelOptions();
   const [selectedLevel, setSelectedLevel] = useState<'all' | string>('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [use24Hour, setUse24Hour] = useState(false);
@@ -433,17 +446,23 @@ export function EventLogsTab() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      toast.success('Event logs exported successfully as JSON');
+      toast.success(t('eventLogs.toasts.exportedJson'));
     } catch (error) {
       console.error('Failed to export JSON:', error);
-      toast.error('Failed to export event logs as JSON');
+      toast.error(t('eventLogs.toasts.exportJsonFailed'));
     }
   };
 
   const exportAsCSV = () => {
     try {
       // Convert logs to CSV format
-      const headers = ['Timestamp', 'Level', 'Category', 'Message', 'Details'];
+      const headers = [
+        t('eventLogs.export.csvHeaders.timestamp'),
+        t('eventLogs.export.csvHeaders.level'),
+        t('eventLogs.export.csvHeaders.category'),
+        t('eventLogs.export.csvHeaders.message'),
+        t('eventLogs.export.csvHeaders.details'),
+      ];
       const csvData = [
         headers,
         ...filteredLogs.map((log) => [
@@ -467,10 +486,10 @@ export function EventLogsTab() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      toast.success('Event logs exported successfully as CSV');
+      toast.success(t('eventLogs.toasts.exportedCsv'));
     } catch (error) {
       console.error('Failed to export CSV:', error);
-      toast.error('Failed to export event logs as CSV');
+      toast.error(t('eventLogs.toasts.exportCsvFailed'));
     }
   };
 
@@ -717,10 +736,10 @@ export function EventLogsTab() {
 
       // Save the PDF
       doc.save(`bolt-event-logs-${new Date().toISOString()}.pdf`);
-      toast.success('Event logs exported successfully as PDF');
+      toast.success(t('eventLogs.toasts.exportedPdf'));
     } catch (error) {
       console.error('Failed to export PDF:', error);
-      toast.error('Failed to export event logs as PDF');
+      toast.error(t('eventLogs.toasts.exportPdfFailed'));
     }
   };
 
@@ -732,11 +751,11 @@ export function EventLogsTab() {
           let content = `[${timestamp}] ${log.level.toUpperCase()}: ${log.message}\n`;
 
           if (log.category) {
-            content += `Category: ${log.category}\n`;
+            content += `${t('eventLogs.export.textCategory', { category: log.category })}\n`;
           }
 
           if (log.details) {
-            content += `Details:\n${JSON.stringify(log.details, null, 2)}\n`;
+            content += `${t('eventLogs.export.textDetails')}\n${JSON.stringify(log.details, null, 2)}\n`;
           }
 
           return content + '-'.repeat(80) + '\n';
@@ -752,35 +771,35 @@ export function EventLogsTab() {
       a.click();
       window.URL.revokeObjectURL(url);
       document.body.removeChild(a);
-      toast.success('Event logs exported successfully as text file');
+      toast.success(t('eventLogs.toasts.exportedText'));
     } catch (error) {
       console.error('Failed to export text file:', error);
-      toast.error('Failed to export event logs as text file');
+      toast.error(t('eventLogs.toasts.exportTextFailed'));
     }
   };
 
   const exportFormats: ExportFormat[] = [
     {
       id: 'json',
-      label: 'Export as JSON',
+      label: t('eventLogs.export.asJson'),
       icon: 'i-ph:file-js',
       handler: exportAsJSON,
     },
     {
       id: 'csv',
-      label: 'Export as CSV',
+      label: t('eventLogs.export.asCsv'),
       icon: 'i-ph:file-csv',
       handler: exportAsCSV,
     },
     {
       id: 'pdf',
-      label: 'Export as PDF',
+      label: t('eventLogs.export.asPdf'),
       icon: 'i-ph:file-pdf',
       handler: exportAsPDF,
     },
     {
       id: 'txt',
-      label: 'Export as Text',
+      label: t('eventLogs.export.asText'),
       icon: 'i-ph:file-text',
       handler: exportAsText,
     },
@@ -813,14 +832,14 @@ export function EventLogsTab() {
           )}
         >
           <span className="i-ph:download text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
-          Export
+          {t('eventLogs.export.button')}
         </button>
 
         <Dialog showCloseButton>
           <div className="p-6">
             <DialogTitle className="flex items-center gap-2">
               <div className="i-ph:download w-5 h-5" />
-              Export Event Logs
+              {t('eventLogs.export.dialogTitle')}
             </DialogTitle>
 
             <div className="mt-4 flex flex-col gap-2">
@@ -841,10 +860,10 @@ export function EventLogsTab() {
                   <div>
                     <div className="font-medium">{format.label}</div>
                     <div className="text-xs text-bolt-elements-textSecondary mt-0.5">
-                      {format.id === 'json' && 'Export as a structured JSON file'}
-                      {format.id === 'csv' && 'Export as a CSV spreadsheet'}
-                      {format.id === 'pdf' && 'Export as a formatted PDF document'}
-                      {format.id === 'txt' && 'Export as a formatted text file'}
+                      {format.id === 'json' && t('eventLogs.export.asJsonDescription')}
+                      {format.id === 'csv' && t('eventLogs.export.asCsvDescription')}
+                      {format.id === 'pdf' && t('eventLogs.export.asPdfDescription')}
+                      {format.id === 'txt' && t('eventLogs.export.asTextDescription')}
                     </div>
                   </div>
                 </button>
@@ -876,7 +895,7 @@ export function EventLogsTab() {
                 className={classNames('text-lg', selectedLevelOption?.icon || 'i-ph:funnel')}
                 style={{ color: selectedLevelOption?.color }}
               />
-              {selectedLevelOption?.label || 'All Types'}
+              {selectedLevelOption?.label || t('eventLogs.levels.all')}
               <span className="i-ph:caret-down text-lg text-gray-500 dark:text-gray-400" />
             </button>
           </DropdownMenu.Trigger>
@@ -914,7 +933,9 @@ export function EventLogsTab() {
               onCheckedChange={(value) => handlePreferenceChange('timestamps', value)}
               className="data-[state=checked]:bg-purple-500"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">Show Timestamps</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">
+              {t('eventLogs.preferences.showTimestamps')}
+            </span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -923,7 +944,7 @@ export function EventLogsTab() {
               onCheckedChange={(value) => handlePreferenceChange('24hour', value)}
               className="data-[state=checked]:bg-purple-500"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">24h Time</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{t('eventLogs.preferences.use24Hour')}</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -932,7 +953,7 @@ export function EventLogsTab() {
               onCheckedChange={(value) => handlePreferenceChange('autoExpand', value)}
               className="data-[state=checked]:bg-purple-500"
             />
-            <span className="text-sm text-gray-500 dark:text-gray-400">Auto Expand</span>
+            <span className="text-sm text-gray-500 dark:text-gray-400">{t('eventLogs.preferences.autoExpand')}</span>
           </div>
 
           <div className="w-px h-4 bg-gray-200 dark:bg-gray-700" />
@@ -951,7 +972,7 @@ export function EventLogsTab() {
             )}
           >
             <span className="i-ph:arrows-clockwise text-lg text-gray-500 dark:text-gray-400 group-hover:text-purple-500 transition-colors" />
-            Refresh
+            {t('eventLogs.refresh')}
           </button>
 
           <ExportButton />
@@ -962,7 +983,7 @@ export function EventLogsTab() {
         <div className="relative">
           <input
             type="text"
-            placeholder="Search logs..."
+            placeholder={t('eventLogs.searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className={classNames(
@@ -992,8 +1013,8 @@ export function EventLogsTab() {
           >
             <span className="i-ph:clipboard-text text-4xl text-gray-400 dark:text-gray-600" />
             <div className="flex flex-col gap-1">
-              <h3 className="text-sm font-medium text-gray-900 dark:text-white">No Logs Found</h3>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Try adjusting your search or filters</p>
+              <h3 className="text-sm font-medium text-gray-900 dark:text-white">{t('eventLogs.empty.title')}</h3>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t('eventLogs.empty.description')}</p>
             </div>
           </motion.div>
         ) : (

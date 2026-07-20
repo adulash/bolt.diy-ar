@@ -1,7 +1,8 @@
 import * as Tooltip from '@radix-ui/react-tooltip';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '~/utils/classNames';
 import type { TabVisibilityConfig } from '~/components/@settings/core/types';
-import { TAB_LABELS, TAB_ICONS } from '~/components/@settings/core/constants';
+import { TAB_ICONS } from '~/components/@settings/core/constants';
 import { GlowingEffect } from '~/components/ui/GlowingEffect';
 
 interface TabTileProps {
@@ -27,6 +28,8 @@ export const TabTile: React.FC<TabTileProps> = ({
   className,
   children,
 }: TabTileProps) => {
+  const { t } = useTranslation('settings');
+
   return (
     <Tooltip.Provider delayDuration={0}>
       <Tooltip.Root>
@@ -97,7 +100,7 @@ export const TabTile: React.FC<TabTileProps> = ({
                       isActive ? 'text-purple-500 dark:text-purple-400/90' : '',
                     )}
                   >
-                    {TAB_LABELS[tab.id]}
+                    {t(`core.tabs.${tab.id}.label`)}
                   </h3>
                   {description && (
                     <p

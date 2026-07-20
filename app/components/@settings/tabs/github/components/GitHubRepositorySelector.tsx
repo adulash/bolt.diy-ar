@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Button } from '~/components/ui/Button';
 import { BranchSelector } from '~/components/ui/BranchSelector';
@@ -17,6 +18,7 @@ type SortOption = 'updated' | 'stars' | 'name' | 'created';
 type FilterOption = 'all' | 'own' | 'forks' | 'archived';
 
 export function GitHubRepositorySelector({ onClone, className }: GitHubRepositorySelectorProps) {
+  const { t } = useTranslation('settings');
   const { connection, isConnected } = useGitHubConnection();
   const {
     stats,
@@ -106,7 +108,7 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
       await refreshStats();
     } catch (err) {
       console.error('Failed to refresh GitHub repositories:', err);
-      setError(err instanceof Error ? err.message : 'Failed to refresh repositories');
+      setError(err instanceof Error ? err.message : t('connections.failedToRefreshRepositories'));
     } finally {
       setIsRefreshing(false);
     }
@@ -139,9 +141,11 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
   if (!isConnected || !connection) {
     return (
       <div className="text-center p-8">
-        <p className="text-bolt-elements-textSecondary mb-4">Please connect to GitHub first to browse repositories</p>
+        <p className="text-bolt-elements-textSecondary mb-4">
+          {t('connections.connectFirstToBrowse', { service: 'GitHub' })}
+        </p>
         <Button variant="outline" onClick={() => window.location.reload()}>
-          Refresh Connection
+          {t('connections.refreshConnection')}
         </Button>
       </div>
     );
@@ -151,7 +155,7 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
     return (
       <div className="flex flex-col items-center justify-center p-8 space-y-4">
         <div className="animate-spin w-8 h-8 border-2 border-bolt-elements-borderColorActive border-t-transparent rounded-full" />
-        <p className="text-sm text-bolt-elements-textSecondary">Loading repositories...</p>
+        <p className="text-sm text-bolt-elements-textSecondary">{t('connections.loadingRepositories')}</p>
       </div>
     );
   }
@@ -160,10 +164,10 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
     return (
       <div className="text-center p-8">
         <GitBranch className="w-12 h-12 text-bolt-elements-textTertiary mx-auto mb-4" />
-        <p className="text-bolt-elements-textSecondary mb-4">No repositories found</p>
+        <p className="text-bolt-elements-textSecondary mb-4">{t('connections.noRepositoriesFound')}</p>
         <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
           <RefreshCw className={classNames('w-4 h-4 me-2', { 'animate-spin': isRefreshing })} />
-          Refresh
+          {t('connections.refresh')}
         </Button>
       </div>
     );
@@ -179,9 +183,14 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
       {/* Header with stats */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-bolt-elements-textPrimary">Select Repository to Clone</h3>
+          <h3 className="text-lg font-semibold text-bolt-elements-textPrimary">
+            {t('connections.selectRepositoryToClone')}
+          </h3>
           <p className="text-sm text-bolt-elements-textSecondary">
-            {filteredRepositories.length} of {repositories.length} repositories
+            {t('connections.repositoriesFilteredCount', {
+              filtered: filteredRepositories.length,
+              total: repositories.length,
+            })}
           </p>
         </div>
         <Button
@@ -192,13 +201,13 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
           className="flex items-center gap-2"
         >
           <RefreshCw className={classNames('w-4 h-4', { 'animate-spin': isRefreshing })} />
-          Refresh
+          {t('connections.refresh')}
         </Button>
       </div>
 
       {error && repositories.length > 0 && (
         <div className="p-3 rounded-lg bg-yellow-50 border border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-700">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200">Warning: {error}. Showing cached data.</p>
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">{t('connections.warningCached', { error })}</p>
         </div>
       )}
 
@@ -209,7 +218,7 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
           <Search className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bolt-elements-textTertiary" />
           <input
             type="text"
-            placeholder="Search repositories..."
+            placeholder={t('connections.searchRepositoriesPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full ps-10 pe-4 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
@@ -224,10 +233,10 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
             onChange={(e) => setSortBy(e.target.value as SortOption)}
             className="px-3 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary text-sm focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
           >
-            <option value="updated">Recently updated</option>
-            <option value="stars">Most starred</option>
-            <option value="name">Name (A-Z)</option>
-            <option value="created">Recently created</option>
+            <option value="updated">{t('connections.sort.recentlyUpdated')}</option>
+            <option value="stars">{t('connections.sort.mostStarred')}</option>
+            <option value="name">{t('connections.sort.name')}</option>
+            <option value="created">{t('connections.sort.recentlyCreated')}</option>
           </select>
         </div>
 
@@ -239,10 +248,10 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
             onChange={(e) => setFilterBy(e.target.value as FilterOption)}
             className="px-3 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary text-sm focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
           >
-            <option value="all">All repositories</option>
-            <option value="own">Own repositories</option>
-            <option value="forks">Forked repositories</option>
-            <option value="archived">Archived repositories</option>
+            <option value="all">{t('connections.filterAllRepositories')}</option>
+            <option value="own">{t('github.filter.own')}</option>
+            <option value="forks">{t('github.filter.forks')}</option>
+            <option value="archived">{t('github.filter.archived')}</option>
           </select>
         </div>
       </div>
@@ -260,9 +269,11 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-4 border-t border-bolt-elements-borderColor">
               <div className="text-sm text-bolt-elements-textSecondary">
-                Showing {Math.min(startIndex + 1, filteredRepositories.length)} to{' '}
-                {Math.min(startIndex + REPOS_PER_PAGE, filteredRepositories.length)} of {filteredRepositories.length}{' '}
-                repositories
+                {t('connections.showingRange', {
+                  start: Math.min(startIndex + 1, filteredRepositories.length),
+                  end: Math.min(startIndex + REPOS_PER_PAGE, filteredRepositories.length),
+                  count: filteredRepositories.length,
+                })}
               </div>
               <div className="flex items-center gap-2">
                 <Button
@@ -271,10 +282,10 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
                   variant="outline"
                   size="sm"
                 >
-                  Previous
+                  {t('connections.previous')}
                 </Button>
                 <span className="text-sm text-bolt-elements-textSecondary px-3">
-                  {currentPage} of {totalPages}
+                  {t('connections.pageOf', { current: currentPage, total: totalPages })}
                 </span>
                 <Button
                   onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
@@ -282,7 +293,7 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
                   variant="outline"
                   size="sm"
                 >
-                  Next
+                  {t('connections.next')}
                 </Button>
               </div>
             </div>
@@ -290,7 +301,7 @@ export function GitHubRepositorySelector({ onClone, className }: GitHubRepositor
         </>
       ) : (
         <div className="text-center py-8">
-          <p className="text-bolt-elements-textSecondary">No repositories found matching your search criteria.</p>
+          <p className="text-bolt-elements-textSecondary">{t('connections.noRepositoriesMatchCriteria')}</p>
         </div>
       )}
 

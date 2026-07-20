@@ -1,4 +1,5 @@
 import type { MCPServer } from '~/lib/services/mcpService';
+import { useTranslation } from 'react-i18next';
 import McpStatusBadge from '~/components/@settings/tabs/mcp/McpStatusBadge';
 import McpServerListItem from '~/components/@settings/tabs/mcp/McpServerListItem';
 
@@ -17,8 +18,10 @@ export default function McpServerList({
   onlyShowAvailableServers = false,
   toggleServerExpanded,
 }: McpServerListProps) {
+  const { t } = useTranslation('settings');
+
   if (serverEntries.length === 0) {
-    return <p className="text-sm text-bolt-elements-textSecondary">No MCP servers configured</p>;
+    return <p className="text-sm text-bolt-elements-textSecondary">{t('mcp.noServersConfigured')}</p>;
   }
 
   const filteredEntries = onlyShowAvailableServers
@@ -69,15 +72,19 @@ export default function McpServerList({
 
             {/* Error message */}
             {!isAvailable && mcpServer.error && (
-              <div className="mt-1.5 ms-6 text-xs text-red-600 dark:text-red-400">Error: {mcpServer.error}</div>
+              <div className="mt-1.5 ms-6 text-xs text-red-600 dark:text-red-400">
+                {t('mcp.errorLabel', { error: mcpServer.error })}
+              </div>
             )}
 
             {/* Tool list */}
             {isExpanded && isAvailable && (
               <div className="mt-2">
-                <div className="text-bolt-elements-textSecondary text-xs font-medium ms-1 mb-1.5">Available Tools:</div>
+                <div className="text-bolt-elements-textSecondary text-xs font-medium ms-1 mb-1.5">
+                  {t('mcp.availableTools')}
+                </div>
                 {serverTools.length === 0 ? (
-                  <div className="ms-4 text-xs text-bolt-elements-textSecondary">No tools available</div>
+                  <div className="ms-4 text-xs text-bolt-elements-textSecondary">{t('mcp.noToolsAvailable')}</div>
                 ) : (
                   <div className="mt-1 space-y-2">
                     {serverTools.map(([toolName, toolSchema]) => (

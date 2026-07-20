@@ -61,5 +61,23 @@
     "e4": "Create a cookie consent form using Material UI",
     "e5": "Make a space invaders game",
     "e6": "Make a Tic Tac Toe game in html, css and js only"
+  },
+  "llmErrors": {
+    "authentication": "Authentication failed with {{provider}}. Please check your API key.",
+    "rateLimit": "Rate limit exceeded for {{provider}}. Please wait before retrying.",
+    "quota": "Quota exceeded for {{provider}}. Please check your account limits.",
+    "generic": "An error occurred while processing your request.",
+    "detailsPrefix": "Error Details:"
+  },
+  "supabase": {
+    "queryTitle": "Supabase Query",
+    "connectionRequiredTitle": "Supabase Connection Required",
+    "executeQuery": "Execute database query",
+    "connectionRequired": "Supabase connection required",
+    "reviewChanges": "Please review the proposed changes and apply them to your database.",
+    "pleaseConnect": "Please connect to Supabase to continue with this operation.",
+    "defaultAction": "Create table and setup auth",
+    "applying": "Applying...",
+    "applyChanges": "Apply Changes"
   }
 }

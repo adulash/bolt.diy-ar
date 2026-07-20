@@ -1,11 +1,13 @@
 import { useState, useCallback } from 'react';
 import { useStore } from '@nanostores/react';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '~/utils/classNames';
 import { profileStore, updateProfile } from '~/lib/stores/profile';
 import { toast } from 'react-toastify';
 import { debounce } from '~/utils/debounce';
 
 export default function ProfileTab() {
+  const { t } = useTranslation('settings');
   const profile = useStore(profileStore);
   const [isUploading, setIsUploading] = useState(false);
 
@@ -13,7 +15,7 @@ export default function ProfileTab() {
   const debouncedUpdate = useCallback(
     debounce((field: 'username' | 'bio', value: string) => {
       updateProfile({ [field]: value });
-      toast.success(`${field.charAt(0).toUpperCase() + field.slice(1)} updated`);
+      toast.success(field === 'username' ? t('profile.toasts.usernameUpdated') : t('profile.toasts.bioUpdated'));
     }, 1000),
     [],
   );
@@ -35,19 +37,19 @@ export default function ProfileTab() {
         const base64String = reader.result as string;
         updateProfile({ avatar: base64String });
         setIsUploading(false);
-        toast.success('Profile picture updated');
+        toast.success(t('profile.toasts.avatarUpdated'));
       };
 
       reader.onerror = () => {
         console.error('Error reading file:', reader.error);
         setIsUploading(false);
-        toast.error('Failed to update profile picture');
+        toast.error(t('profile.toasts.avatarUpdateFailed'));
       };
       reader.readAsDataURL(file);
     } catch (error) {
       console.error('Error uploading avatar:', error);
       setIsUploading(false);
-      toast.error('Failed to update profile picture');
+      toast.error(t('profile.toasts.avatarUpdateFailed'));
     }
   };
 
@@ -81,7 +83,7 @@ export default function ProfileTab() {
               {profile.avatar ? (
                 <img
                   src={profile.avatar}
-                  alt="Profile"
+                  alt={t('profile.avatarAlt')}
                   className={classNames(
                     'w-full h-full object-cover',
                     'transition-all duration-300 ease-out',
@@ -118,15 +120,17 @@ export default function ProfileTab() {
 
             <div className="flex-1 pt-1">
               <label className="block text-base font-medium text-gray-900 dark:text-gray-100 mb-1">
-                Profile Picture
+                {t('profile.profilePicture')}
               </label>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Upload a profile picture or avatar</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">{t('profile.profilePictureDescription')}</p>
             </div>
           </div>
 
           {/* Username Input */}
           <div className="mb-6">
-            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">Username</label>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
+              {t('profile.username')}
+            </label>
             <div className="relative group">
               <div className="absolute start-3.5 top-1/2 -translate-y-1/2">
                 <div className="i-ph:user-circle-fill w-5 h-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-purple-500" />
@@ -144,14 +148,16 @@ export default function ProfileTab() {
                   'focus:outline-none focus:ring-2 focus:ring-purple-500/50 focus:border-purple-500/50',
                   'transition-all duration-300 ease-out',
                 )}
-                placeholder="Enter your username"
+                placeholder={t('profile.usernamePlaceholder')}
               />
             </div>
           </div>
 
           {/* Bio Input */}
           <div className="mb-8">
-            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">Bio</label>
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">
+              {t('profile.bio')}
+            </label>
             <div className="relative group">
               <div className="absolute start-3.5 top-3">
                 <div className="i-ph:text-aa w-5 h-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-purple-500" />
@@ -170,7 +176,7 @@ export default function ProfileTab() {
                   'resize-none',
                   'h-32',
                 )}
-                placeholder="Tell us about yourself"
+                placeholder={t('profile.bioPlaceholder')}
               />
             </div>
           </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { Button } from '~/components/ui/Button';
 import type { GitLabStats } from '~/types/GitLab';
 
@@ -9,19 +10,21 @@ interface StatsDisplayProps {
 }
 
 export function StatsDisplay({ stats, onRefresh, isRefreshing }: StatsDisplayProps) {
+  const { t } = useTranslation('settings');
+
   return (
     <div className="space-y-4">
       {/* Repository Stats */}
       <div>
-        <h5 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">Repository Stats</h5>
+        <h5 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">{t('gitlab.repositoryStats')}</h5>
         <div className="grid grid-cols-2 gap-4">
           {[
             {
-              label: 'Public Repos',
+              label: t('gitlab.publicRepos'),
               value: stats.publicProjects,
             },
             {
-              label: 'Private Repos',
+              label: t('gitlab.privateRepos'),
               value: stats.privateProjects,
             },
           ].map((stat, index) => (
@@ -38,23 +41,23 @@ export function StatsDisplay({ stats, onRefresh, isRefreshing }: StatsDisplayPro
 
       {/* Contribution Stats */}
       <div>
-        <h5 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">Contribution Stats</h5>
+        <h5 className="text-sm font-medium text-bolt-elements-textPrimary mb-2">{t('gitlab.contributionStats')}</h5>
         <div className="grid grid-cols-3 gap-4">
           {[
             {
-              label: 'Stars',
+              label: t('connections.stars'),
               value: stats.stars || 0,
               icon: 'i-ph:star',
               iconColor: 'text-bolt-elements-icon-warning',
             },
             {
-              label: 'Forks',
+              label: t('connections.forks'),
               value: stats.forks || 0,
               icon: 'i-ph:git-fork',
               iconColor: 'text-bolt-elements-icon-info',
             },
             {
-              label: 'Followers',
+              label: t('connections.followers'),
               value: stats.followers || 0,
               icon: 'i-ph:users',
               iconColor: 'text-bolt-elements-icon-success',
@@ -77,11 +80,11 @@ export function StatsDisplay({ stats, onRefresh, isRefreshing }: StatsDisplayPro
       <div className="pt-2 border-t border-bolt-elements-borderColor">
         <div className="flex items-center justify-between">
           <span className="text-xs text-bolt-elements-textSecondary">
-            Last updated: {new Date(stats.lastUpdated).toLocaleString()}
+            {t('connections.lastUpdatedAt', { date: new Date(stats.lastUpdated).toLocaleString() })}
           </span>
           {onRefresh && (
             <Button onClick={onRefresh} disabled={isRefreshing} variant="outline" size="sm" className="text-xs">
-              {isRefreshing ? 'Refreshing...' : 'Refresh'}
+              {isRefreshing ? t('connections.refreshing') : t('connections.refresh')}
             </Button>
           )}
         </div>
