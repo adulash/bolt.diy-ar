@@ -311,6 +311,7 @@ const processChanges = (beforeCode: string, afterCode: string) => {
   }
 };
 
+// rtl-ignore: diff line-number gutter lives inside the force-ltr code panel.
 const lineNumberStyles =
   'w-9 shrink-0 pl-2 py-1 text-left font-mono text-bolt-elements-textTertiary border-r border-bolt-elements-borderColor bg-bolt-elements-background-depth-1';
 const lineContentStyles =
@@ -458,6 +459,7 @@ const CodeLine = memo(
       <div className="flex group min-w-fit">
         <div className={lineNumberStyles}>{lineNumber + 1}</div>
         <div className={`${lineContentStyles} ${bgColor}`}>
+          {/* rtl-ignore: diff +/- marker column stays LTR with the code panel */}
           <span className="mr-2 text-bolt-elements-textTertiary">
             {type === 'added' && <span className="text-green-700 dark:text-green-500">+</span>}
             {type === 'removed' && <span className="text-red-700 dark:text-red-500">-</span>}
