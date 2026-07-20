@@ -3,6 +3,8 @@ import type { LinksFunction } from '@remix-run/cloudflare';
 import { Links, Meta, Outlet, Scripts, ScrollRestoration } from '@remix-run/react';
 import tailwindReset from '@unocss/reset/tailwind-compat.css?url';
 import { themeStore } from './lib/stores/theme';
+import { localeDirection, localeStore } from './lib/stores/locale';
+import './lib/i18n';
 import { stripIndents } from './utils/stripIndent';
 import { createHead } from 'remix-island';
 import { useEffect } from 'react';
@@ -10,6 +12,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { ClientOnly } from 'remix-utils/client-only';
 import { cssTransition, ToastContainer } from 'react-toastify';
+import { DirectionProvider } from '@radix-ui/react-direction';
 
 import reactToastifyStyles from 'react-toastify/dist/ReactToastify.css?url';
 import globalStyles from './styles/index.scss?url';
@@ -17,9 +20,14 @@ import xtermStyles from '@xterm/xterm/css/xterm.css?url';
 
 import 'virtual:uno.css';
 
-const toastAnimation = cssTransition({
+const toastAnimationLtr = cssTransition({
   enter: 'animated fadeInRight',
   exit: 'animated fadeOutRight',
+});
+
+const toastAnimationRtl = cssTransition({
+  enter: 'animated fadeInLeft',
+  exit: 'animated fadeOutLeft',
 });
 
 export const links: LinksFunction = () => [
@@ -49,6 +57,7 @@ export const links: LinksFunction = () => [
 
 const inlineThemeCode = stripIndents`
   setTutorialKitTheme();
+  setBoltLocale();
 
   function setTutorialKitTheme() {
     let theme = localStorage.getItem('bolt_theme');
@@ -58,6 +67,18 @@ const inlineThemeCode = stripIndents`
     }
 
     document.querySelector('html')?.setAttribute('data-theme', theme);
+  }
+
+  function setBoltLocale() {
+    let locale = localStorage.getItem('bolt_locale');
+
+    if (locale !== 'ar' && locale !== 'en') {
+      locale = 'ar';
+    }
+
+    const html = document.querySelector('html');
+    html?.setAttribute('lang', locale);
+    html?.setAttribute('dir', locale === 'ar' ? 'rtl' : 'ltr');
   }
 `;
 
@@ -73,14 +94,28 @@ export const Head = createHead(() => (
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const theme = useStore(themeStore);
+  const locale = useStore(localeStore);
+  const dir = localeDirection(locale);
 
   useEffect(() => {
     document.querySelector('html')?.setAttribute('data-theme', theme);
   }, [theme]);
 
+  useEffect(() => {
+    const html = document.querySelector('html');
+    html?.setAttribute('lang', locale);
+    html?.setAttribute('dir', dir);
+  }, [locale, dir]);
+
   return (
     <>
-      <ClientOnly>{() => <DndProvider backend={HTML5Backend}>{children}</DndProvider>}</ClientOnly>
+      <ClientOnly>
+        {() => (
+          <DirectionProvider dir={dir}>
+            <DndProvider backend={HTML5Backend}>{children}</DndProvider>
+          </DirectionProvider>
+        )}
+      </ClientOnly>
       <ToastContainer
         closeButton={({ closeToast }) => {
           return (
@@ -101,9 +136,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
           return undefined;
         }}
-        position="bottom-right"
+        position={dir === 'rtl' ? 'bottom-left' : 'bottom-right'}
+        rtl={dir === 'rtl'}
         pauseOnFocusLoss
-        transition={toastAnimation}
+        transition={dir === 'rtl' ? toastAnimationRtl : toastAnimationLtr}
         autoClose={3000}
       />
       <ScrollRestoration />

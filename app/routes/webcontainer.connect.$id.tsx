@@ -5,9 +5,13 @@ export const loader: LoaderFunction = async ({ request }) => {
   const editorOrigin = url.searchParams.get('editorOrigin') || 'https://stackblitz.com';
   console.log('editorOrigin', editorOrigin);
 
+  const cookieHeader = request.headers.get('Cookie') ?? '';
+  const locale = /(?:^|;\s*)bolt_locale=en(?:;|$)/.test(cookieHeader) ? 'en' : 'ar';
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
   const htmlContent = `
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="${locale}" dir="${dir}">
       <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
