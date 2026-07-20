@@ -113,6 +113,9 @@ export default defineConfig({
     ['b', {}],
   ],
   theme: {
+    fontFamily: {
+      sans: "'Inter', 'IBM Plex Sans Arabic', system-ui, -apple-system, sans-serif",
+    },
     colors: {
       ...COLOR_PRIMITIVES,
       bolt: {
