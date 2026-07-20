@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDateTime, formatNumber } from '~/lib/i18n/format';
 import { useTranslation } from 'react-i18next';
 import { Button } from '~/components/ui/Button';
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from '~/components/ui/Collapsible';
@@ -232,7 +233,7 @@ function GitHubStatsContent({
                     <span className="text-xs text-bolt-elements-textSecondary">{stat.label}</span>
                     <span className="text-lg font-medium text-bolt-elements-textPrimary flex items-center gap-1">
                       <div className={`${stat.icon} w-4 h-4 ${stat.iconColor}`} />
-                      {stat.value.toLocaleString()}
+                      {formatNumber(stat.value)}
                     </span>
                   </div>
                 ))}
@@ -292,7 +293,7 @@ function GitHubStatsContent({
             <div className="pt-2 border-t border-bolt-elements-borderColor">
               <span className="text-xs text-bolt-elements-textSecondary">
                 {t('connections.lastUpdatedAt', {
-                  date: stats.lastUpdated ? new Date(stats.lastUpdated).toLocaleString() : t('connections.never'),
+                  date: stats.lastUpdated ? formatDateTime(stats.lastUpdated) : t('connections.never'),
                 })}
               </span>
             </div>

@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDateTime } from '~/lib/i18n/format';
 import { useTranslation } from 'react-i18next';
 import { Button } from '~/components/ui/Button';
 import type { GitLabStats } from '~/types/GitLab';
@@ -80,7 +81,7 @@ export function StatsDisplay({ stats, onRefresh, isRefreshing }: StatsDisplayPro
       <div className="pt-2 border-t border-bolt-elements-borderColor">
         <div className="flex items-center justify-between">
           <span className="text-xs text-bolt-elements-textSecondary">
-            {t('connections.lastUpdatedAt', { date: new Date(stats.lastUpdated).toLocaleString() })}
+            {t('connections.lastUpdatedAt', { date: formatDateTime(stats.lastUpdated) })}
           </span>
           {onRefresh && (
             <Button onClick={onRefresh} disabled={isRefreshing} variant="outline" size="sm" className="text-xs">

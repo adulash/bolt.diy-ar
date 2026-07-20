@@ -69,6 +69,24 @@ jobs:
           path: complexity-report/
           retention-days: 7
 
+  i18n-rtl-checks:
+    name: i18n & RTL Guards
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup and Build
+        uses: ./.github/actions/setup-and-build
+
+      - name: Check locale key parity (ar vs en)
+        run: pnpm run test -- app/lib/i18n/parity.spec.ts
+
+      - name: Guard against physical directional utilities
+        run: pnpm run check:rtl
+
   accessibility-tests:
     name: Accessibility Tests
     runs-on: ubuntu-latest
