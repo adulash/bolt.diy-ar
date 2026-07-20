@@ -1,4 +1,5 @@
 import { useParams } from '@remix-run/react';
+import { useTranslation } from 'react-i18next';
 import { classNames } from '~/utils/classNames';
 import { type ChatHistoryItem } from '~/lib/persistence';
 import WithTooltip from '~/components/ui/Tooltip';
@@ -25,6 +26,7 @@ export function HistoryItem({
   isSelected = false,
   onToggleSelection,
 }: HistoryItemProps) {
+  const { t } = useTranslation('common');
   const { id: urlId } = useParams();
   const isActiveChat = urlId === item.urlId;
 
@@ -118,7 +120,7 @@ export function HistoryItem({
           >
             <div className="flex items-center gap-2.5 text-gray-400 dark:text-gray-500 opacity-0 group-hover:opacity-100 transition-opacity">
               <ChatActionButton
-                toolTipContent="Export"
+                toolTipContent={t('history.export')}
                 icon="i-ph:download-simple h-4 w-4"
                 onClick={(event) => {
                   event.preventDefault();
@@ -127,7 +129,7 @@ export function HistoryItem({
               />
               {onDuplicate && (
                 <ChatActionButton
-                  toolTipContent="Duplicate"
+                  toolTipContent={t('history.duplicate')}
                   icon="i-ph:copy h-4 w-4"
                   onClick={(event) => {
                     event.preventDefault();
@@ -136,7 +138,7 @@ export function HistoryItem({
                 />
               )}
               <ChatActionButton
-                toolTipContent="Rename"
+                toolTipContent={t('history.rename')}
                 icon="i-ph:pencil-fill h-4 w-4"
                 onClick={(event) => {
                   event.preventDefault();
@@ -144,7 +146,7 @@ export function HistoryItem({
                 }}
               />
               <ChatActionButton
-                toolTipContent="Delete"
+                toolTipContent={t('history.delete')}
                 icon="i-ph:trash h-4 w-4"
                 className="hover:text-red-500 dark:hover:text-red-400"
                 onClick={handleDeleteClick}

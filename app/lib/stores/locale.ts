@@ -20,6 +20,16 @@ export function localeDirection(locale: Locale): 'rtl' | 'ltr' {
   return isRTL(locale) ? 'rtl' : 'ltr';
 }
 
+/**
+ * Intl locale tag for the current UI locale. Arabic pins the Latin numbering
+ * system (0-9): ports, versions and token counts must not render as ٠-٩ in a
+ * developer tool.
+ */
+export function intlLocaleTag(locale?: Locale): string {
+  const value = locale ?? localeStore.get();
+  return value === 'ar' ? 'ar-u-nu-latn' : 'en-US';
+}
+
 export const localeStore = atom<Locale>(initStore());
 
 function initStore(): Locale {
