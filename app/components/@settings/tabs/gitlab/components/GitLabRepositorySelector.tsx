@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { Button } from '~/components/ui/Button';
 import { BranchSelector } from '~/components/ui/BranchSelector';
@@ -17,6 +18,7 @@ type SortOption = 'updated' | 'stars' | 'name' | 'created';
 type FilterOption = 'all' | 'owned' | 'member';
 
 export function GitLabRepositorySelector({ onClone, className }: GitLabRepositorySelectorProps) {
+  const { t } = useTranslation('settings');
   const { connection, isConnected } = useGitLabConnection();
   const [repositories, setRepositories] = useState<GitLabProjectInfo[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -54,15 +56,17 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
       });
 
       if (!response.ok) {
-        const errorData: any = await response.json().catch(() => ({ error: 'Failed to fetch repositories' }));
-        throw new Error(errorData.error || 'Failed to fetch repositories');
+        const errorData: any = await response
+          .json()
+          .catch(() => ({ error: t('connections.failedToFetchRepositories') }));
+        throw new Error(errorData.error || t('connections.failedToFetchRepositories'));
       }
 
       const data: any = await response.json();
       setRepositories(data.projects || []);
     } catch (err) {
       console.error('Failed to fetch GitLab repositories:', err);
-      setError(err instanceof Error ? err.message : 'Failed to fetch repositories');
+      setError(err instanceof Error ? err.message : t('connections.failedToFetchRepositories'));
 
       // Fallback to empty array on error
       setRepositories([]);
@@ -166,9 +170,11 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
   if (!isConnected || !connection) {
     return (
       <div className="text-center p-8">
-        <p className="text-bolt-elements-textSecondary mb-4">Please connect to GitLab first to browse repositories</p>
+        <p className="text-bolt-elements-textSecondary mb-4">
+          {t('connections.connectFirstToBrowse', { service: 'GitLab' })}
+        </p>
         <Button variant="outline" onClick={() => window.location.reload()}>
-          Refresh Connection
+          {t('connections.refreshConnection')}
         </Button>
       </div>
     );
@@ -179,12 +185,12 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
       <div className="text-center p-8">
         <div className="text-red-500 mb-4">
           <GitBranch className="w-12 h-12 mx-auto mb-2" />
-          <p className="font-medium">Failed to load repositories</p>
+          <p className="font-medium">{t('connections.failedToLoadRepositories')}</p>
           <p className="text-sm text-bolt-elements-textSecondary mt-1">{error}</p>
         </div>
         <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
           <RefreshCw className={classNames('w-4 h-4 me-2', { 'animate-spin': isRefreshing })} />
-          Try Again
+          {t('connections.tryAgain')}
         </Button>
       </div>
     );
@@ -194,7 +200,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
     return (
       <div className="flex flex-col items-center justify-center p-8 space-y-4">
         <div className="animate-spin w-8 h-8 border-2 border-bolt-elements-borderColorActive border-t-transparent rounded-full" />
-        <p className="text-sm text-bolt-elements-textSecondary">Loading repositories...</p>
+        <p className="text-sm text-bolt-elements-textSecondary">{t('connections.loadingRepositories')}</p>
       </div>
     );
   }
@@ -203,10 +209,10 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
     return (
       <div className="text-center p-8">
         <GitBranch className="w-12 h-12 text-bolt-elements-textTertiary mx-auto mb-4" />
-        <p className="text-bolt-elements-textSecondary mb-4">No repositories found</p>
+        <p className="text-bolt-elements-textSecondary mb-4">{t('connections.noRepositoriesFound')}</p>
         <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
           <RefreshCw className={classNames('w-4 h-4 me-2', { 'animate-spin': isRefreshing })} />
-          Refresh
+          {t('connections.refresh')}
         </Button>
       </div>
     );
@@ -222,9 +228,14 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
       {/* Header with stats */}
       <div className="flex items-center justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-bolt-elements-textPrimary">Select Repository to Clone</h3>
+          <h3 className="text-lg font-semibold text-bolt-elements-textPrimary">
+            {t('connections.selectRepositoryToClone')}
+          </h3>
           <p className="text-sm text-bolt-elements-textSecondary">
-            {filteredRepositories.length} of {repositories.length} repositories
+            {t('connections.repositoriesFilteredCount', {
+              filtered: filteredRepositories.length,
+              total: repositories.length,
+            })}
           </p>
         </div>
         <Button
@@ -235,13 +246,13 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
           className="flex items-center gap-2"
         >
           <RefreshCw className={classNames('w-4 h-4', { 'animate-spin': isRefreshing })} />
-          Refresh
+          {t('connections.refresh')}
         </Button>
       </div>
 
       {error && repositories.length > 0 && (
         <div className="p-3 rounded-lg bg-yellow-50 border border-yellow-200 dark:bg-yellow-900/20 dark:border-yellow-700">
-          <p className="text-sm text-yellow-800 dark:text-yellow-200">Warning: {error}. Showing cached data.</p>
+          <p className="text-sm text-yellow-800 dark:text-yellow-200">{t('connections.warningCached', { error })}</p>
         </div>
       )}
 
@@ -252,7 +263,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
           <Search className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bolt-elements-textTertiary" />
           <input
             type="text"
-            placeholder="Search repositories..."
+            placeholder={t('connections.searchRepositoriesPlaceholder')}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full ps-10 pe-4 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
@@ -267,10 +278,10 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
             onChange={(e) => setSortBy(e.target.value as SortOption)}
             className="px-3 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary text-sm focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
           >
-            <option value="updated">Recently updated</option>
-            <option value="stars">Most starred</option>
-            <option value="name">Name (A-Z)</option>
-            <option value="created">Recently created</option>
+            <option value="updated">{t('connections.sort.recentlyUpdated')}</option>
+            <option value="stars">{t('connections.sort.mostStarred')}</option>
+            <option value="name">{t('connections.sort.name')}</option>
+            <option value="created">{t('connections.sort.recentlyCreated')}</option>
           </select>
         </div>
 
@@ -282,9 +293,9 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
             onChange={(e) => setFilterBy(e.target.value as FilterOption)}
             className="px-3 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary text-sm focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
           >
-            <option value="all">All repositories</option>
-            <option value="owned">Owned repositories</option>
-            <option value="member">Member repositories</option>
+            <option value="all">{t('connections.filterAllRepositories')}</option>
+            <option value="owned">{t('gitlab.filter.owned')}</option>
+            <option value="member">{t('gitlab.filter.member')}</option>
           </select>
         </div>
       </div>
@@ -304,9 +315,11 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
           {totalPages > 1 && (
             <div className="flex items-center justify-between pt-4 border-t border-bolt-elements-borderColor">
               <div className="text-sm text-bolt-elements-textSecondary">
-                Showing {Math.min(startIndex + 1, filteredRepositories.length)} to{' '}
-                {Math.min(startIndex + REPOS_PER_PAGE, filteredRepositories.length)} of {filteredRepositories.length}{' '}
-                repositories
+                {t('connections.showingRange', {
+                  start: Math.min(startIndex + 1, filteredRepositories.length),
+                  end: Math.min(startIndex + REPOS_PER_PAGE, filteredRepositories.length),
+                  count: filteredRepositories.length,
+                })}
               </div>
               <div className="flex items-center gap-2">
                 <Button
@@ -315,10 +328,10 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
                   variant="outline"
                   size="sm"
                 >
-                  Previous
+                  {t('connections.previous')}
                 </Button>
                 <span className="text-sm text-bolt-elements-textSecondary px-3">
-                  {currentPage} of {totalPages}
+                  {t('connections.pageOf', { current: currentPage, total: totalPages })}
                 </span>
                 <Button
                   onClick={() => setCurrentPage((prev) => Math.min(totalPages, prev + 1))}
@@ -326,7 +339,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
                   variant="outline"
                   size="sm"
                 >
-                  Next
+                  {t('connections.next')}
                 </Button>
               </div>
             </div>
@@ -334,7 +347,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
         </>
       ) : (
         <div className="text-center py-8">
-          <p className="text-bolt-elements-textSecondary">No repositories found matching your search criteria.</p>
+          <p className="text-bolt-elements-textSecondary">{t('connections.noRepositoriesMatchCriteria')}</p>
         </div>
       )}
 

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useGitHubConnection, useGitHubStats } from '~/lib/hooks';
 import { LoadingState, ErrorState, ConnectionTestIndicator, RepositoryCard } from './components/shared';
@@ -30,6 +31,7 @@ const GithubLogo = () => (
 );
 
 export default function GitHubTab() {
+  const { t } = useTranslation('settings');
   const { connection, isConnected, isLoading, error, testConnection } = useGitHubConnection();
   const {
     stats,
@@ -52,7 +54,7 @@ export default function GitHubTab() {
     if (!connection?.user) {
       setConnectionTest({
         status: 'error',
-        message: 'No connection established',
+        message: t('connections.noConnectionEstablished'),
         timestamp: Date.now(),
       });
       return;
@@ -60,7 +62,7 @@ export default function GitHubTab() {
 
     setConnectionTest({
       status: 'testing',
-      message: 'Testing connection...',
+      message: t('connections.testingConnection'),
     });
 
     try {
@@ -69,20 +71,22 @@ export default function GitHubTab() {
       if (isValid) {
         setConnectionTest({
           status: 'success',
-          message: `Connected successfully as ${connection.user.login}`,
+          message: t('connections.connectedSuccessfullyAs', { user: connection.user.login }),
           timestamp: Date.now(),
         });
       } else {
         setConnectionTest({
           status: 'error',
-          message: 'Connection test failed',
+          message: t('connections.connectionTestFailed'),
           timestamp: Date.now(),
         });
       }
     } catch (error) {
       setConnectionTest({
         status: 'error',
-        message: `Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        message: t('connections.connectionFailed', {
+          error: error instanceof Error ? error.message : t('connections.unknownError'),
+        }),
         timestamp: Date.now(),
       });
     }
@@ -94,9 +98,9 @@ export default function GitHubTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GithubLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitHub Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('github.title')}</h2>
         </div>
-        <LoadingState message="Checking GitHub connection..." />
+        <LoadingState message={t('github.checkingConnection')} />
       </div>
     );
   }
@@ -107,13 +111,13 @@ export default function GitHubTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GithubLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitHub Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('github.title')}</h2>
         </div>
         <ErrorState
-          title="Connection Error"
+          title={t('connections.connectionError')}
           message={error}
           onRetry={() => window.location.reload()}
-          retryLabel="Reload Page"
+          retryLabel={t('connections.reloadPage')}
         />
       </div>
     );
@@ -125,12 +129,9 @@ export default function GitHubTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GithubLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitHub Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('github.title')}</h2>
         </div>
-        <p className="text-sm text-bolt-elements-textSecondary">
-          Connect your GitHub account to enable advanced repository management features, statistics, and seamless
-          integration.
-        </p>
+        <p className="text-sm text-bolt-elements-textSecondary">{t('github.connectPrompt')}</p>
         <GitHubConnection connectionTest={connectionTest} onTestConnection={handleTestConnection} />
       </div>
     );
@@ -149,14 +150,14 @@ export default function GitHubTab() {
           <div className="flex items-center gap-2">
             <GithubLogo />
             <h2 className="text-lg font-medium text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary">
-              GitHub Integration
+              {t('github.title')}
             </h2>
           </div>
           <div className="flex items-center gap-2">
             {connection?.rateLimit && (
               <div className="flex items-center gap-2 px-3 py-1 bg-bolt-elements-background-depth-1 rounded-lg text-xs">
                 <div className="i-ph:cloud w-4 h-4 text-bolt-elements-textSecondary" />
-                <span className="text-bolt-elements-textSecondary">
+                <span className="text-bolt-elements-textSecondary" dir="ltr">
                   API: {connection.rateLimit.remaining}/{connection.rateLimit.limit}
                 </span>
               </div>
@@ -165,7 +166,7 @@ export default function GitHubTab() {
         </motion.div>
 
         <p className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary">
-          Manage your GitHub integration with advanced repository features and comprehensive statistics
+          {t('github.manageDescription')}
         </p>
 
         {/* Connection Test Results */}
@@ -198,7 +199,7 @@ export default function GitHubTab() {
                   <div className="flex items-center gap-2">
                     <div className="i-ph:folder w-4 h-4 text-bolt-elements-item-contentAccent" />
                     <span className="text-sm font-medium text-bolt-elements-textPrimary">
-                      All Repositories ({stats.repos.length})
+                      {t('github.allRepositories', { count: stats.repos.length })}
                     </span>
                   </div>
                   <ChevronDown
@@ -232,7 +233,7 @@ export default function GitHubTab() {
                         onClick={() => setIsReposExpanded(true)}
                         className="text-bolt-elements-textSecondary hover:text-bolt-elements-textPrimary"
                       >
-                        Show {stats.repos.length - 12} more repositories
+                        {t('github.showMoreRepositories', { count: stats.repos.length - 12 })}
                       </Button>
                     </div>
                   )}
@@ -245,10 +246,10 @@ export default function GitHubTab() {
         {/* Stats Error State */}
         {statsError && !stats && (
           <ErrorState
-            title="Failed to Load Statistics"
+            title={t('github.failedToLoadStats')}
             message={statsError}
             onRetry={() => window.location.reload()}
-            retryLabel="Retry"
+            retryLabel={t('connections.retry')}
           />
         )}
 
@@ -256,13 +257,18 @@ export default function GitHubTab() {
         {isStatsLoading && !stats && (
           <GitHubProgressiveLoader
             isLoading={isStatsLoading}
-            loadingMessage="Loading GitHub statistics..."
+            loadingMessage={t('github.loadingStats')}
             showProgress={true}
             progressSteps={[
-              { key: 'user', label: 'Fetching user info', completed: !!connection?.user, loading: !connection?.user },
-              { key: 'repos', label: 'Loading repositories', completed: false, loading: true },
-              { key: 'stats', label: 'Calculating statistics', completed: false },
-              { key: 'cache', label: 'Updating cache', completed: false },
+              {
+                key: 'user',
+                label: t('github.steps.fetchingUser'),
+                completed: !!connection?.user,
+                loading: !connection?.user,
+              },
+              { key: 'repos', label: t('github.steps.loadingRepos'), completed: false, loading: true },
+              { key: 'stats', label: t('github.steps.calculatingStats'), completed: false },
+              { key: 'cache', label: t('github.steps.updatingCache'), completed: false },
             ]}
           >
             <div />

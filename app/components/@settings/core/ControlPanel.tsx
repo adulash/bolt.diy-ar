@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useStore } from '@nanostores/react';
+import { useTranslation } from 'react-i18next';
 import * as RadixDialog from '@radix-ui/react-dialog';
 import { classNames } from '~/utils/classNames';
 import { TabTile } from '~/components/@settings/shared/components/TabTile';
@@ -9,7 +10,7 @@ import { useConnectionStatus } from '~/lib/hooks/useConnectionStatus';
 import { tabConfigurationStore, resetTabConfiguration } from '~/lib/stores/settings';
 import { profileStore } from '~/lib/stores/profile';
 import type { TabType, Profile } from './types';
-import { TAB_LABELS, DEFAULT_TAB_CONFIG, TAB_DESCRIPTIONS } from './constants';
+import { DEFAULT_TAB_CONFIG } from './constants';
 import { DialogTitle } from '~/components/ui/Dialog';
 import { AvatarDropdown } from './AvatarDropdown';
 import BackgroundRays from '~/components/ui/BackgroundRays';
@@ -38,13 +39,19 @@ interface ControlPanelProps {
 // Beta status for experimental features
 const BETA_TABS = new Set<TabType>(['local-providers', 'mcp']);
 
-const BetaLabel = () => (
-  <div className="absolute top-2 end-2 px-1.5 py-0.5 rounded-full bg-purple-500/10 dark:bg-purple-500/20">
-    <span className="text-[10px] font-medium text-purple-600 dark:text-purple-400">BETA</span>
-  </div>
-);
+const BetaLabel = () => {
+  const { t } = useTranslation('settings');
+
+  return (
+    <div className="absolute top-2 end-2 px-1.5 py-0.5 rounded-full bg-purple-500/10 dark:bg-purple-500/20">
+      <span className="text-[10px] font-medium text-purple-600 dark:text-purple-400">{t('core.beta')}</span>
+    </div>
+  );
+};
 
 export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
+  const { t } = useTranslation('settings');
+
   // State
   const [activeTab, setActiveTab] = useState<TabType | null>(null);
   const [loadingTab, setLoadingTab] = useState<TabType | null>(null);
@@ -177,19 +184,19 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
   const getStatusMessage = (tabId: TabType): string => {
     switch (tabId) {
       case 'features':
-        return `${unviewedFeatures.length} new feature${unviewedFeatures.length === 1 ? '' : 's'} to explore`;
+        return t('core.status.newFeatures', { count: unviewedFeatures.length });
       case 'notifications':
-        return `${unreadNotifications.length} unread notification${unreadNotifications.length === 1 ? '' : 's'}`;
+        return t('core.status.unreadNotifications', { count: unreadNotifications.length });
       case 'github':
       case 'gitlab':
       case 'supabase':
       case 'vercel':
       case 'netlify':
         return currentIssue === 'disconnected'
-          ? 'Connection lost'
+          ? t('core.status.connectionLost')
           : currentIssue === 'high-latency'
-            ? 'High latency detected'
-            : 'Connection issues detected';
+            ? t('core.status.highLatency')
+            : t('core.status.connectionIssues');
       default:
         return '';
     }
@@ -261,7 +268,11 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                       </button>
                     )}
                     <DialogTitle className="text-xl font-semibold text-gray-900 dark:text-white">
-                      {showTabManagement ? 'Tab Management' : activeTab ? TAB_LABELS[activeTab] : 'Control Panel'}
+                      {showTabManagement
+                        ? t('core.tabManagement')
+                        : activeTab
+                          ? t(`core.tabs.${activeTab}.label`)
+                          : t('core.controlPanel')}
                     </DialogTitle>
                   </div>
 
@@ -323,7 +334,7 @@ export const ControlPanel = ({ open, onClose }: ControlPanelProps) => {
                               isActive={activeTab === tab.id}
                               hasUpdate={getTabUpdateStatus(tab.id)}
                               statusMessage={getStatusMessage(tab.id)}
-                              description={TAB_DESCRIPTIONS[tab.id]}
+                              description={t(`core.tabs.${tab.id}.description`)}
                               isLoading={loadingTab === tab.id}
                               className="h-full relative"
                             >

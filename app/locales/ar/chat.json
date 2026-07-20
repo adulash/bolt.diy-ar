@@ -65,5 +65,23 @@
     "e4": "أنشئ نموذج موافقة على ملفات تعريف الارتباط بواجهة Material UI",
     "e5": "اصنع لعبة غزاة الفضاء",
     "e6": "اصنع لعبة إكس-أو بـ HTML وCSS وJS فقط"
+  },
+  "llmErrors": {
+    "authentication": "فشلت المصادقة مع {{provider}}. تحقق من مفتاح API الخاص بك.",
+    "rateLimit": "تم تجاوز حد الطلبات لدى {{provider}}. انتظر قليلاً قبل المحاولة مجدداً.",
+    "quota": "تم تجاوز الحصة لدى {{provider}}. تحقق من حدود حسابك.",
+    "generic": "حدث خطأ أثناء معالجة طلبك.",
+    "detailsPrefix": "تفاصيل الخطأ:"
+  },
+  "supabase": {
+    "queryTitle": "استعلام Supabase",
+    "connectionRequiredTitle": "مطلوب اتصال بـ Supabase",
+    "executeQuery": "تنفيذ استعلام قاعدة البيانات",
+    "connectionRequired": "مطلوب اتصال بـ Supabase",
+    "reviewChanges": "راجع التغييرات المقترحة ثم طبّقها على قاعدة بياناتك.",
+    "pleaseConnect": "اتصل بـ Supabase لمتابعة هذه العملية.",
+    "defaultAction": "إنشاء جدول وتهيئة المصادقة",
+    "applying": "جارٍ التطبيق...",
+    "applyChanges": "تطبيق التغييرات"
   }
 }

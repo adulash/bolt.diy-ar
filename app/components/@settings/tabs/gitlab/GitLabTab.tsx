@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { motion } from 'framer-motion';
 import { useGitLabConnection } from '~/lib/hooks';
 import GitLabConnection from './components/GitLabConnection';
@@ -22,6 +23,7 @@ interface ConnectionTestResult {
 }
 
 export default function GitLabTab() {
+  const { t } = useTranslation('settings');
   const { connection, isConnected, isLoading, error, testConnection, refreshStats } = useGitLabConnection();
   const [connectionTest, setConnectionTest] = useState<ConnectionTestResult | null>(null);
   const [isRefreshingStats, setIsRefreshingStats] = useState(false);
@@ -30,7 +32,7 @@ export default function GitLabTab() {
     if (!connection?.user) {
       setConnectionTest({
         status: 'error',
-        message: 'No connection established',
+        message: t('connections.noConnectionEstablished'),
         timestamp: Date.now(),
       });
       return;
@@ -38,7 +40,7 @@ export default function GitLabTab() {
 
     setConnectionTest({
       status: 'testing',
-      message: 'Testing connection...',
+      message: t('connections.testingConnection'),
     });
 
     try {
@@ -47,20 +49,22 @@ export default function GitLabTab() {
       if (isValid) {
         setConnectionTest({
           status: 'success',
-          message: `Connected successfully as ${connection.user.username}`,
+          message: t('connections.connectedSuccessfullyAs', { user: connection.user.username }),
           timestamp: Date.now(),
         });
       } else {
         setConnectionTest({
           status: 'error',
-          message: 'Connection test failed',
+          message: t('connections.connectionTestFailed'),
           timestamp: Date.now(),
         });
       }
     } catch (error) {
       setConnectionTest({
         status: 'error',
-        message: `Connection failed: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        message: t('connections.connectionFailed', {
+          error: error instanceof Error ? error.message : t('connections.unknownError'),
+        }),
         timestamp: Date.now(),
       });
     }
@@ -72,12 +76,12 @@ export default function GitLabTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GitLabLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitLab Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('gitlab.title')}</h2>
         </div>
         <div className="flex items-center justify-center p-4">
           <div className="flex items-center gap-2">
             <div className="i-ph:spinner-gap-bold animate-spin w-4 h-4" />
-            <span className="text-bolt-elements-textSecondary">Loading...</span>
+            <span className="text-bolt-elements-textSecondary">{t('connections.loading')}</span>
           </div>
         </div>
       </div>
@@ -90,7 +94,7 @@ export default function GitLabTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GitLabLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitLab Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('gitlab.title')}</h2>
         </div>
         <div className="text-sm text-red-600 dark:text-red-400 p-3 rounded-lg bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800">
           {error}
@@ -105,12 +109,9 @@ export default function GitLabTab() {
       <div className="space-y-6">
         <div className="flex items-center gap-2">
           <GitLabLogo />
-          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">GitLab Integration</h2>
+          <h2 className="text-lg font-medium text-bolt-elements-textPrimary">{t('gitlab.title')}</h2>
         </div>
-        <p className="text-sm text-bolt-elements-textSecondary">
-          Connect your GitLab account to enable advanced repository management features, statistics, and seamless
-          integration.
-        </p>
+        <p className="text-sm text-bolt-elements-textSecondary">{t('gitlab.connectPrompt')}</p>
         <GitLabConnection connectionTest={connectionTest} onTestConnection={handleTestConnection} />
       </div>
     );
@@ -128,14 +129,14 @@ export default function GitLabTab() {
         <div className="flex items-center gap-2">
           <GitLabLogo />
           <h2 className="text-lg font-medium text-bolt-elements-textPrimary dark:text-bolt-elements-textPrimary">
-            GitLab Integration
+            {t('gitlab.title')}
           </h2>
         </div>
         <div className="flex items-center gap-2">
           {connection?.rateLimit && (
             <div className="flex items-center gap-2 px-3 py-1 bg-bolt-elements-background-depth-1 rounded-lg text-xs">
               <div className="i-ph:cloud w-4 h-4 text-bolt-elements-textSecondary" />
-              <span className="text-bolt-elements-textSecondary">
+              <span className="text-bolt-elements-textSecondary" dir="ltr">
                 API: {connection.rateLimit.remaining}/{connection.rateLimit.limit}
               </span>
             </div>
@@ -144,7 +145,7 @@ export default function GitLabTab() {
       </motion.div>
 
       <p className="text-sm text-bolt-elements-textSecondary dark:text-bolt-elements-textSecondary">
-        Manage your GitLab integration with advanced repository features and comprehensive statistics
+        {t('gitlab.manageDescription')}
       </p>
 
       {/* Connection Test Results */}
@@ -256,7 +257,7 @@ export default function GitLabTab() {
           transition={{ delay: 0.4 }}
           className="border-t border-bolt-elements-borderColor pt-6"
         >
-          <h3 className="text-base font-medium text-bolt-elements-textPrimary mb-4">Statistics</h3>
+          <h3 className="text-base font-medium text-bolt-elements-textPrimary mb-4">{t('gitlab.statistics')}</h3>
           <StatsDisplay
             stats={connection.stats}
             onRefresh={async () => {

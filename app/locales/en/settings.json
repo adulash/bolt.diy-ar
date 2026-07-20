@@ -1,1 +1,835 @@
-{}
+{
+  "connections": {
+    "accessToken": "Access Token",
+    "activitySummary": "Activity Summary",
+    "archived": "Archived",
+    "archivedRepository": "Archived repository",
+    "cancel": "Cancel",
+    "clone": "Clone",
+    "cloneRepository": "Clone repository",
+    "connect": "Connect",
+    "connectFirstToBrowse": "Connect your account first to browse repositories",
+    "connectedSuccessfullyAs": "Connected successfully as {{user}}",
+    "connectedTo": "Connected to {{service}}",
+    "connecting": "Connecting...",
+    "connectionError": "Connection Error",
+    "connectionFailed": "Connection failed: {{error}}",
+    "connectionTestFailed": "Connection test failed",
+    "continue": "Continue",
+    "contributors": "Contributors",
+    "dashboard": "Dashboard",
+    "daysAgo_one": "{{count}} day ago",
+    "daysAgo_other": "{{count}} days ago",
+    "defaultBranch": "Default Branch",
+    "disconnect": "Disconnect",
+    "disconnectedFrom": "Disconnected from {{service}}",
+    "envTipAfter": "environment variable to connect automatically.",
+    "envTipBefore": "Tip: You can also set the token via the",
+    "error": "Error",
+    "failedToFetchRepositories": "Failed to fetch repositories",
+    "failedToLoad": "Failed to Load",
+    "failedToLoadRepositories": "Failed to load repositories",
+    "failedToRefreshRepositories": "Failed to refresh repositories",
+    "filterAllRepositories": "All repositories",
+    "followers": "Followers",
+    "fork": "Fork",
+    "forkedRepository": "Forked repository",
+    "forks": "Forks",
+    "getYourToken": "Get your token",
+    "gotIt": "Got it",
+    "health": {
+      "archived": "Archived",
+      "healthy": "Healthy",
+      "needsAttention": "Needs Attention",
+      "veryActive": "Very Active"
+    },
+    "healthScore": "Health Score: {{percentage}}% ({{score}}/{{max}})",
+    "lastUpdated": "Last Updated",
+    "lastUpdatedAt": "Last updated: {{date}}",
+    "loading": "Loading...",
+    "loadingConnection": "Loading connection...",
+    "loadingRepositories": "Loading repositories...",
+    "moreTopics": "+{{count}} more",
+    "never": "Never",
+    "next": "Next",
+    "noConnectionEstablished": "No connection established",
+    "noRepositoriesAvailable": "No repositories available",
+    "noRepositoriesFound": "No repositories found",
+    "noRepositoriesMatchCriteria": "No repositories found matching your search criteria.",
+    "noRepositoriesMatchingSearch": "No repositories match your search",
+    "openIssues": "Open Issues",
+    "pageOf": "{{current}} of {{total}}",
+    "personalAccessToken": "Personal Access Token",
+    "previous": "Previous",
+    "primaryLanguage": "Primary Language",
+    "privateRepository": "Private repository",
+    "pullRequests": "Pull Requests",
+    "refresh": "Refresh",
+    "refreshConnection": "Refresh Connection",
+    "refreshing": "Refreshing...",
+    "reloadPage": "Reload Page",
+    "repositoriesCount_one": "Repositories ({{count}})",
+    "repositoriesCount_other": "Repositories ({{count}})",
+    "repositoriesFilteredCount": "{{filtered}} of {{total}} repositories",
+    "repositoryHealth": "Repository Health: {{status}}",
+    "requiredScopes": "Required scopes: {{scopes}}",
+    "retry": "Retry",
+    "searchRepositoriesPlaceholder": "Search repositories...",
+    "selectRepositoryToClone": "Select a repository to clone",
+    "showDetails": "Show details",
+    "showingRange_one": "Showing {{start}} to {{end}} of {{count}} repository",
+    "showingRange_other": "Showing {{start}} to {{end}} of {{count}} repositories",
+    "sizeLabel": "Size",
+    "sizeMb": "{{size}} MB",
+    "sort": {
+      "mostStarred": "Most starred",
+      "name": "Name (A-Z)",
+      "recentlyCreated": "Recently created",
+      "recentlyUpdated": "Recently updated"
+    },
+    "stars": "Stars",
+    "success": "Success",
+    "testConnection": "Test Connection",
+    "testing": "Testing...",
+    "testingConnection": "Testing connection...",
+    "timeToday": "Today",
+    "tip": "Tip",
+    "topicTitle": "Topic: {{topic}}",
+    "topics": "Topics",
+    "totalBranches": "Total Branches",
+    "tryAgain": "Try Again",
+    "unknownError": "Unknown error",
+    "unknownErrorOccurred": "An unknown error occurred",
+    "view": "View",
+    "warningCached": "Warning: {{error}}. Showing cached data.",
+    "weeksAgo_one": "{{count}} week ago",
+    "weeksAgo_other": "{{count}} weeks ago"
+  },
+  "core": {
+    "beta": "BETA",
+    "controlPanel": "Control Panel",
+    "status": {
+      "connectionIssues": "Connection issues detected",
+      "connectionLost": "Connection lost",
+      "highLatency": "High latency detected",
+      "newFeatures_one": "{{count}} new feature",
+      "newFeatures_other": "{{count}} new features",
+      "unreadNotifications_one": "{{count}} unread notification",
+      "unreadNotifications_other": "{{count}} unread notifications"
+    },
+    "tabManagement": "Tab Management",
+    "tabs": {
+      "cloud-providers": {
+        "description": "Configure cloud AI providers and models",
+        "label": "Cloud Providers"
+      },
+      "data": {
+        "description": "Manage your data and storage",
+        "label": "Data Management"
+      },
+      "event-logs": {
+        "description": "View system events and logs",
+        "label": "Event Logs"
+      },
+      "features": {
+        "description": "Explore new and upcoming features",
+        "label": "Features"
+      },
+      "github": {
+        "description": "Connect and manage GitHub integration",
+        "label": "GitHub"
+      },
+      "gitlab": {
+        "description": "Connect and manage GitLab integration",
+        "label": "GitLab"
+      },
+      "local-providers": {
+        "description": "Configure local AI providers and models",
+        "label": "Local Providers"
+      },
+      "mcp": {
+        "description": "Configure MCP (Model Context Protocol) servers",
+        "label": "MCP Servers"
+      },
+      "netlify": {
+        "description": "Configure Netlify deployment settings",
+        "label": "Netlify"
+      },
+      "notifications": {
+        "description": "View and manage your notifications",
+        "label": "Notifications"
+      },
+      "profile": {
+        "description": "Manage your profile and account settings",
+        "label": "Profile"
+      },
+      "settings": {
+        "description": "Configure application preferences",
+        "label": "Settings"
+      },
+      "supabase": {
+        "description": "Setup Supabase database connection",
+        "label": "Supabase"
+      },
+      "vercel": {
+        "description": "Manage Vercel projects and deployments",
+        "label": "Vercel"
+      }
+    }
+  },
+  "data": {
+    "buttons": {
+      "deleteAll": "Delete All",
+      "deleting": "Deleting...",
+      "download": "Download",
+      "downloading": "Downloading...",
+      "exportAll": "Export All",
+      "exporting": "Exporting...",
+      "importChats": "Import Chats",
+      "importKeys": "Import Keys",
+      "importSettings": "Import Settings",
+      "importing": "Importing...",
+      "noChatsToExport": "No Chats to Export",
+      "resetAll": "Reset All",
+      "resetting": "Resetting...",
+      "selectChats": "Select Chats",
+      "selectSettings": "Select Settings"
+    },
+    "cards": {
+      "deleteAllChats": {
+        "description": "Delete all your chat history.",
+        "title": "Delete All Chats"
+      },
+      "downloadTemplate": {
+        "description": "Download a template file for your API keys.",
+        "title": "Download Template"
+      },
+      "exportAllChats": {
+        "description": "Export all your chats to a JSON file.",
+        "title": "Export All Chats"
+      },
+      "exportAllSettings": {
+        "description": "Export all your settings to a JSON file.",
+        "title": "Export All Settings"
+      },
+      "exportSelectedChats": {
+        "description": "Choose specific chats to export.",
+        "title": "Export Selected Chats"
+      },
+      "exportSelectedSettings": {
+        "description": "Choose specific settings to export.",
+        "title": "Export Selected Settings"
+      },
+      "importApiKeys": {
+        "description": "Import API keys from a JSON file.",
+        "title": "Import API Keys"
+      },
+      "importChats": {
+        "description": "Import chats from a JSON file.",
+        "title": "Import Chats"
+      },
+      "importSettings": {
+        "description": "Import settings from a JSON file.",
+        "title": "Import Settings"
+      },
+      "resetAllSettings": {
+        "description": "Reset all settings to their default values.",
+        "title": "Reset All Settings"
+      }
+    },
+    "categories": {
+      "connections": {
+        "description": "External service connections",
+        "label": "Connections"
+      },
+      "core": {
+        "description": "User profile and main settings",
+        "label": "Core Settings"
+      },
+      "debug": {
+        "description": "Debug settings and logs",
+        "label": "Debug"
+      },
+      "features": {
+        "description": "Feature flags and settings",
+        "label": "Features"
+      },
+      "providers": {
+        "description": "id: 'connections', label: 'Connections', description: 'External service connections",
+        "label": "id: 'ui', label: 'UI', description: 'UI configuration and preferences"
+      },
+      "ui": {
+        "description": "UI configuration and preferences",
+        "label": "UI"
+      },
+      "updates": {
+        "description": "Update settings and notifications",
+        "label": "Updates"
+      }
+    },
+    "chatDescription_one": "{{count}} message · {{date}}",
+    "chatDescription_other": "{{count}} messages · {{date}}",
+    "chatFallbackLabel": "Chat {{id}}",
+    "dialogs": {
+      "cancel": "Cancel",
+      "deleteChatsConfirm": "Delete All",
+      "deleteChatsDescription": "This will permanently delete all your chat history. This action cannot be undone.",
+      "deleteChatsTitle": "Delete All Chats?",
+      "exportSelected": "Export Selected",
+      "resetSettingsConfirm": "Reset Settings",
+      "resetSettingsDescription": "This will reset all your settings to their default values. This action cannot be undone.",
+      "resetSettingsTitle": "Reset All Settings?",
+      "selectChatsTitle": "Select Chats to Export",
+      "selectSettingsTitle": "Select Settings to Export"
+    },
+    "loadingChatsDb": "Loading chats database...",
+    "sections": {
+      "apiKeys": "API Keys",
+      "chats": "Chats",
+      "dataUsage": "Data Usage",
+      "settings": "Settings"
+    },
+    "toasts": {
+      "dbUnavailable": "Database not available",
+      "exportChatsFailed": "Failed to export chats: {{error}}`,",
+      "loadChatsFailed": "Failed to load chats: {{error}}",
+      "noChatsToExport": "No chats available to export",
+      "unknownError": "Unknown error"
+    }
+  },
+  "eventLogs": {
+    "details": {
+      "duration": "Duration: {{duration}}ms",
+      "error": "Error:",
+      "model": "Model: {{model}}",
+      "prompt": "Prompt:",
+      "request": "Request:",
+      "response": "Response:",
+      "status": "Status: {{status}}",
+      "tokens": "Tokens: {{count}}",
+      "tokens_one": "Tokens: {{count}}",
+      "tokens_other": "Tokens: {{count}}"
+    },
+    "empty": {
+      "description": "Try adjusting your search or filters",
+      "title": "No Logs Found"
+    },
+    "export": {
+      "asCsv": "Export as CSV",
+      "asCsvDescription": "Export as a CSV spreadsheet",
+      "asJson": "Export as JSON",
+      "asJsonDescription": "Export as a structured JSON file",
+      "asPdf": "Export as PDF",
+      "asPdfDescription": "Export as a formatted PDF document",
+      "asText": "Export as Text",
+      "asTextDescription": "Export as a formatted text file",
+      "button": "Export",
+      "csvHeaders": {
+        "category": "Category",
+        "details": "Details",
+        "level": "Level",
+        "message": "Message",
+        "timestamp": "Timestamp"
+      },
+      "dialogTitle": "Export Event Logs",
+      "textCategory": "Category: {{category}}",
+      "textDetails": "Details:"
+    },
+    "hideDetails": "Hide Details",
+    "levels": {
+      "all": "All Types",
+      "api": "API",
+      "debug": "Debug",
+      "error": "Errors",
+      "info": "Info",
+      "provider": "LLM",
+      "warning": "Warnings"
+    },
+    "preferences": {
+      "autoExpand": "Auto Expand",
+      "showTimestamps": "Show Timestamps",
+      "use24Hour": "24h Time"
+    },
+    "refresh": "Refresh",
+    "searchPlaceholder": "Search logs...",
+    "showDetails": "Show Details",
+    "toasts": {
+      "exportCsvFailed": "Failed to export event logs as CSV",
+      "exportJsonFailed": "Failed to export event logs as JSON",
+      "exportPdfFailed": "Failed to export event logs as PDF",
+      "exportTextFailed": "Failed to export event logs as text file",
+      "exportedCsv": "Event logs exported successfully as CSV",
+      "exportedJson": "Event logs exported successfully as JSON",
+      "exportedPdf": "Event logs exported successfully as PDF",
+      "exportedText": "Event logs exported successfully as text file"
+    }
+  },
+  "features": {
+    "badges": {
+      "beta": "Experimental",
+      "experimental": "Experimental"
+    },
+    "items": {
+      "autoSelectTemplate": {
+        "description": "Automatically select starter template",
+        "title": "Auto Select Template",
+        "tooltip": "Enabled by default to automatically select the most appropriate starter template"
+      },
+      "contextOptimization": {
+        "description": "Optimize context for better responses",
+        "title": "Context Optimization",
+        "tooltip": "Enabled by default for improved AI responses"
+      },
+      "eventLogs": {
+        "description": "Enable detailed event logging and history",
+        "title": "Event Logging",
+        "tooltip": "Enabled by default to record detailed logs of system events and user actions"
+      },
+      "latestBranch": {
+        "description": "Get the latest updates from the main branch",
+        "title": "Main Branch Updates",
+        "tooltip": "Enabled by default to receive updates from the main development branch"
+      }
+    },
+    "promptLibrary": {
+      "description": "Choose a prompt from the library to use as the system prompt",
+      "title": "Prompt Library"
+    },
+    "sections": {
+      "beta": {
+        "description": "New features that are ready for testing but may have some rough edges",
+        "title": "Beta Features"
+      },
+      "core": {
+        "description": "Essential features that are enabled by default for optimal performance",
+        "title": "Core Features"
+      }
+    },
+    "toasts": {
+      "autoSelectTemplateDisabled": "Auto select template disabled",
+      "autoSelectTemplateEnabled": "Auto select template enabled",
+      "contextOptimizationDisabled": "Context optimization disabled",
+      "contextOptimizationEnabled": "Context optimization enabled",
+      "eventLogsDisabled": "Event logging disabled",
+      "eventLogsEnabled": "Event logging enabled",
+      "latestBranchDisabled": "Main branch updates disabled",
+      "latestBranchEnabled": "Main branch updates enabled",
+      "promptUpdated": "Prompt template updated"
+    }
+  },
+  "general": {
+    "keyboardShortcuts": "Keyboard Shortcuts",
+    "notifications": "Notifications",
+    "notificationsDisabled": "Notifications are disabled",
+    "notificationsEnabled": "Notifications are enabled",
+    "preferences": "Preferences",
+    "timeSettings": "Time Settings",
+    "timezone": "Timezone",
+    "toasts": {
+      "notificationsDisabled": "Notifications disabled",
+      "notificationsEnabled": "Notifications enabled",
+      "settingsUpdateFailed": "Failed to update settings",
+      "settingsUpdated": "Settings updated"
+    },
+    "toggleTheme": "Toggle Theme",
+    "toggleThemeDescription": "Switch between light and dark mode"
+  },
+  "github": {
+    "allRepositories_one": "All Repositories ({{count}})",
+    "allRepositories_other": "All Repositories ({{count}})",
+    "cache": {
+      "active": "Cache active",
+      "clearAll": "Clear All",
+      "clearExpired": "Clear Expired",
+      "clearedAt": "Cache cleared successfully at {{time}}",
+      "compact": "Compact",
+      "empty": "Cache is empty",
+      "entries": "Entries",
+      "entriesHeading_one": "Cache Entries ({{count}})",
+      "entriesHeading_other": "Cache Entries ({{count}})",
+      "notAvailable": "Cache not available",
+      "oldest": "Oldest",
+      "status": "Status",
+      "title": "GitHub Cache Management",
+      "totalSize": "Total size: {{size}}"
+    },
+    "checkingConnection": "Checking GitHub connection...",
+    "connectGitHub": "Connect GitHub",
+    "connectPrompt": "Connect your GitHub account to manage repositories and deploy projects",
+    "connectToGitHub": "Connect to GitHub",
+    "connectionRequired": "GitHub Connection Required",
+    "connectionRequiredMessage": "A GitHub connection is required to use this feature. Please connect your account first.",
+    "deployTokenTip": "For deployments, make sure your token has repo scope so Bolt can create and push to repositories.",
+    "errorBoundary": {
+      "message": "Something went wrong while loading GitHub data. This could be due to network issues, API limits, or a",
+      "showDetails": "Show details",
+      "title": "Something went wrong in the GitHub tab"
+    },
+    "failedToLoadStats": "Failed to Load Statistics",
+    "filter": {
+      "archived": "Archived repositories",
+      "forks": "Forked repositories",
+      "own": "Own repositories"
+    },
+    "fineGrainedEnvTip": "For fine-grained tokens, also set",
+    "followersCount_one": "{{count}} follower",
+    "followersCount_other": "{{count}} followers",
+    "gistsCount_one": "{{count}} gist",
+    "gistsCount_other": "{{count}} gists",
+    "loadingStats": "Loading GitHub statistics...",
+    "manageDescription": "Manage your GitHub integration with advanced repository features and comprehensive statistics",
+    "publicReposCount_one": "{{count}} public repo",
+    "publicReposCount_other": "{{count}} public repos",
+    "requiredScopesFineGrained": "Required permissions: Repository access, Organization access",
+    "showMoreRepositories_one": "Show {{count}} more repository",
+    "showMoreRepositories_other": "Show {{count}} more repositories",
+    "stats": {
+      "basedOnCodebase": "Based on your codebase",
+      "issues": "Issues",
+      "languageTooltip_one": "{{language}}: {{count}} repository, {{size}} MB",
+      "languageTooltip_other": "{{language}}: {{count}} repositories, {{size}} MB",
+      "languagesUsed": "Languages Used",
+      "loading": "Loading GitHub stats...",
+      "none": "No stats available",
+      "organizations": "Organizations",
+      "overview": "GitHub Overview",
+      "stale": "(Stale)",
+      "title": "GitHub Stats",
+      "topLanguages": "Top Languages",
+      "totalBranches": "Total Branches",
+      "totalRepositories": "Total Repositories"
+    },
+    "steps": {
+      "calculatingStats": "Calculating statistics...",
+      "fetchingUser": "Fetching user information...",
+      "loadingRepos": "Loading repositories...",
+      "updatingCache": "Updating cache..."
+    },
+    "title": "GitHub Integration",
+    "tokenClassicOption": "Personal Access Token (Classic)",
+    "tokenFineGrained": "Fine-grained Token",
+    "tokenPlaceholderClassic": "ghp_xxxxxxxxxxxxxxxxxxxx",
+    "tokenPlaceholderFineGrained": "github_pat_xxxxxxxxxxxxxxxxxxxx",
+    "tokenTypeLabel": "Token Type"
+  },
+  "gitlab": {
+    "authDescription": "Connect your GitLab account to deploy your projects",
+    "connectPrompt": "Connect your GitLab account to manage repositories and deploy projects",
+    "connectToGitLab": "Connect to GitLab",
+    "connectedToast": "Successfully connected to GitLab!",
+    "connectionHeading": "GitLab Connection",
+    "contributionStats": "Contribution Stats",
+    "enterTokenError": "Please enter your GitLab access token",
+    "filter": {
+      "member": "Member repositories",
+      "owned": "Owned repositories"
+    },
+    "manageDescription": "Manage your GitLab integration with advanced repository features and comprehensive statistics",
+    "privateRepos": "Private Repos",
+    "publicRepos": "Public Repos",
+    "repositoryStats": "Repository Stats",
+    "selfHostedEnvTip": "For self-hosted GitLab instances, also set",
+    "statistics": "Statistics",
+    "testValues": "Test Values",
+    "title": "GitLab Integration",
+    "tokenPlaceholder": "Enter your GitLab access token",
+    "urlLabel": "GitLab URL"
+  },
+  "mcp": {
+    "availableTools": "Available Tools",
+    "checkAvailability": "Check availability",
+    "configuration": "Configuration",
+    "configurationJson": "Configuration JSON",
+    "errorLabel": "Error:",
+    "errors": {
+      "checkFailed": "Failed to check server availability: {{error}}",
+      "initFailed": "Failed to initialize MCP settings: {{error}}",
+      "invalidJson": "Invalid JSON format: {{error}}",
+      "saveFailed": "Failed to save configuration"
+    },
+    "formatNote": "The MCP configuration format is identical to the one used in Claude Desktop.",
+    "loadExample": "Load Example",
+    "maxLlmStepsLabel": "Maximum number of sequential LLM calls (steps)",
+    "maxLlmStepsPlaceholder": "Maximum number of sequential LLM calls",
+    "noDescription": "No description available",
+    "noServersConfigured": "No MCP servers configured",
+    "noToolsAvailable": "No tools available",
+    "parameters": "Parameters:",
+    "saveConfiguration": "Save Configuration",
+    "saving": "Saving...",
+    "serversConfigured": "MCP Servers Configured",
+    "status": {
+      "available": "Available",
+      "availableAria": "Server available",
+      "checking": "Checking...",
+      "checkingAria": "Checking server status",
+      "unavailable": "Unavailable",
+      "unavailableAria": "Server unavailable"
+    },
+    "toasts": {
+      "loadFailed": "Failed to load MCP configuration",
+      "saveFailed": "Failed to save MCP configuration",
+      "saved": "MCP configuration saved"
+    },
+    "viewExampleServers": "View example servers"
+  },
+  "notifications": {
+    "category": "Category: {{category}}",
+    "clearAll": "Clear All",
+    "empty": {
+      "description": "You're all caught up!",
+      "title": "No Notifications"
+    },
+    "filters": {
+      "all": "All Notifications",
+      "errors": "Errors",
+      "fallback": "Filter Notifications",
+      "info": "Information",
+      "network": "Network",
+      "providers": "Providers",
+      "system": "System",
+      "updates": "Updates",
+      "warnings": "Warnings"
+    },
+    "update": {
+      "branch": "Branch: {{branch}}",
+      "currentVersion": "Current Version: {{version}}",
+      "latestVersion": "Latest Version: {{version}}",
+      "viewChanges": "View Changes"
+    }
+  },
+  "profile": {
+    "avatarAlt": "Profile",
+    "bio": "Bio",
+    "bioPlaceholder": "Tell us about yourself",
+    "profilePicture": "Profile Picture",
+    "profilePictureDescription": "Upload a profile picture or avatar",
+    "toasts": {
+      "avatarUpdateFailed": "Failed to update profile picture",
+      "avatarUpdated": "Profile picture updated",
+      "bioUpdated": "Bio updated",
+      "usernameUpdated": "Username updated"
+    },
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username"
+  },
+  "providers": {
+    "cloud": {
+      "allDisabled": "All cloud providers disabled",
+      "allEnabled": "All cloud providers enabled",
+      "baseUrlUpdated": "{{provider}} base URL updated",
+      "clickToSetBaseUrl": "Click to set base URL",
+      "configurable": "Configurable",
+      "description": "Connect to cloud-based AI models and services",
+      "descriptions": {
+        "configurableDefault": "Configurable cloud provider",
+        "default": "Cloud AI provider"
+      },
+      "enableAll": "Enable All Cloud",
+      "enterBaseUrl": "Enter {{provider}} base URL",
+      "envUrlSet": "Environment URL set in .env file",
+      "logoAlt": "{{provider}} logo",
+      "providerDisabled": "{{provider}} disabled",
+      "providerEnabled": "{{provider}} enabled",
+      "title": "Cloud Providers"
+    },
+    "local": {
+      "allDisabled": "All local providers disabled",
+      "allEnabled": "All local providers enabled",
+      "availableBadge": "Available",
+      "availableModels_one": "{{count}} available model",
+      "availableModels_other": "{{count}} available models",
+      "baseUrlUpdated": "{{provider}} base URL updated",
+      "browseModels": "Browse Models",
+      "card": {
+        "apiEndpoint": "API Endpoint",
+        "clickToSetBaseUrl": "Click to set base URL",
+        "enterBaseUrl": "Enter {{provider}} base URL",
+        "localBadge": "Local",
+        "toggleAria": "Toggle {{provider}} provider"
+      },
+      "createdOn": "Created on {{date}}",
+      "deleteModelConfirm": "Are you sure you want to delete {{model}}?",
+      "description": "Configure and manage your local AI models",
+      "enableAll": "Enable All",
+      "errorBoundary": {
+        "description": "An error occurred while loading local providers. Try reloading the page.",
+        "errorDetails": "Error details",
+        "title": "<p className=\"text-sm text-red-400 mb-4\">There was an error loading the local providers section.</p>",
+        "tryAgain": "Try Again"
+      },
+      "getLmStudio": "Get LM Studio",
+      "health": {
+        "checking": "Checking",
+        "healthy": "Healthy",
+        "unhealthy": "Unhealthy",
+        "unknown": "Unknown"
+      },
+      "installedModels_one": "{{count}} installed model",
+      "installedModels_other": "{{count}} installed models",
+      "lmStudioNotRunning": "Make sure LM Studio is running with the local server started and CORS enabled.",
+      "model": {
+        "delete": "Delete",
+        "error": "Error",
+        "update": "Update",
+        "updated": "Updated",
+        "updating": "Updating"
+      },
+      "modelDeleteFailed": "Failed to delete {{model}}",
+      "modelDeleted": "Deleted {{model}}",
+      "modelUpdateFailed": "Failed to update {{model}}",
+      "modelUpdated": "Successfully updated {{model}}",
+      "noModelsAvailable": "No models available",
+      "noModelsInstalled": "No models installed",
+      "noProviders": "<p className=\"text-sm text-bolt-elements-textSecondary\">",
+      "noProvidersDescription": "Enable a local provider to run models on your machine",
+      "ownedBy": "Owned by: {{owner}}",
+      "providerDisabled": "{{name}} disabled",
+      "providerEnabled": "{{name}} enabled",
+      "refresh": "Refresh",
+      "setupGuideButton": "Setup Guide",
+      "status": {
+        "backAria": "Back to Dashboard",
+        "description": "Monitor the health of your local AI providers",
+        "lastCheck": "Last Check",
+        "models": "Models",
+        "never": "Never",
+        "noEndpoints": "No endpoints configured",
+        "noEndpointsDescription": "Configure and enable local providers to see their endpoint status here.",
+        "title": "Provider Status",
+        "unknown": "Unknown",
+        "version": "Version"
+      },
+      "statusButton": "Status",
+      "title": "Local AI Providers",
+      "toggleAllAria": "Toggle all local providers",
+      "visitPrefix": "Visit",
+      "visitSuffix": "to browse available models"
+    },
+    "setupGuide": {
+      "alternatives": {
+        "cloud": "Cloud providers (OpenAI, Anthropic, Google) — no local setup needed",
+        "groq": "Groq — fast cloud inference with a free tier",
+        "jan": "Modern interface with built-in model marketplace",
+        "kobold": "KoboldCpp — local inference with a web UI",
+        "oobabooga": "Advanced text generation web UI with extensions",
+        "openrouter": "OpenRouter — one API for many models",
+        "otherLocal": "Other local options",
+        "subtitle": "Other local AI solutions and cloud alternatives",
+        "title": "Alternatives",
+        "together": "Together AI — hosted open-source models"
+      },
+      "backAria": "Back to Dashboard",
+      "lmstudio": {
+        "adv1": "Built-in model downloader with search",
+        "adv2": "Easy model switching and management",
+        "adv3": "Built-in chat interface for testing",
+        "adv4": "GGUF format support (most compatible)",
+        "adv5": "Regular updates with new features",
+        "advantages": "LM Studio Advantages",
+        "cors1": "In Server Settings, check \"Enable CORS",
+        "cors2": "Set Network Interface to \"0.0.0.0\" for external access",
+        "cors3": "Alternatively, use CLI:",
+        "corsDescription": "To work with Bolt DIY, you MUST enable CORS in LM Studio:",
+        "corsTitle": "Critical: Enable CORS",
+        "download": "Download LM Studio",
+        "downloadDescription": "Download LM Studio for Windows, macOS, or Linux from the official website.",
+        "server1": "Download a model from the \"My Models\" tab",
+        "server2": "Go to \"Local Server\" tab",
+        "server3": "Select your downloaded model",
+        "server4": "Set port to 1234 (default)",
+        "server5": "Click \"Start Server",
+        "startServer": "Start the local server from the Developer tab",
+        "step1": "1. Download & Install",
+        "step2": "2. Configure Local Server",
+        "subtitle": "Desktop app for running local models",
+        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">"
+      },
+      "localai": {
+        "adv1": "Full OpenAI API compatibility",
+        "adv2": "Supports multiple model formats",
+        "adv3": "Docker deployment option",
+        "adv4": "Built-in model gallery",
+        "adv5": "REST API for model management",
+        "advantages": "LocalAI Advantages",
+        "configDescription": "LocalAI supports many model formats and provides a full OpenAI-compatible API.",
+        "configuration": "Configuration",
+        "docker": "Run with Docker",
+        "installOptions": "Installation Options",
+        "quickInstall": "Quick install",
+        "subtitle": "Self-hosted OpenAI-compatible API",
+        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">"
+      },
+      "ollama": {
+        "cli": "Command Line (Advanced)",
+        "codeDev": "Code & Development",
+        "commonIssues": "Common Issues",
+        "desktopApp": "🆕 Desktop App (Recommended)",
+        "desktopAppDescription": "New user-friendly desktop application with built-in model management and web interface.",
+        "downloadDesktopApp": "Download the desktop app",
+        "generalChat": "General Purpose & Chat",
+        "issue1": "Desktop app not starting: Restart system",
+        "issue2": "GPU not detected: Update drivers",
+        "issue3": "Port 11434 blocked: Change port in settings",
+        "issue4": "Models not loading: Check available disk space",
+        "issue5": "Slow performance: Use smaller models or enable GPU",
+        "managementTools": "🔧 Management Tools",
+        "mgmt1": "Automatic updates",
+        "mgmt2": "Model size optimization",
+        "mgmt3": "GPU acceleration detection",
+        "mgmt4": "Cross-platform compatibility",
+        "perf1": "Llama 3.2: 3B - Fastest, 8GB RAM",
+        "perf2": "Phi-3.5: 3.8B - Great balance",
+        "perf3": "Qwen2.5: 7B - Excellent quality",
+        "perf4": "Mistral: 7B - Popular choice",
+        "performanceOptimized": "Performance optimized",
+        "proTips": "Pro Tips",
+        "step1": "1. Choose Installation Method",
+        "step2": "2. Download Latest Models",
+        "step3": "3. Desktop App Features",
+        "step4": "4. Troubleshooting & Commands",
+        "subtitle": "The easiest way to run local models",
+        "tip1": "Start with 3B-7B models for best performance",
+        "tip2": "Use quantized versions for faster loading",
+        "tip3": "Desktop app auto-manages model storage",
+        "tip4": "Web UI available at localhost:11434",
+        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">",
+        "ui1": "Model library browser",
+        "ui2": "One-click model downloads",
+        "ui3": "Built-in chat interface",
+        "ui4": "System resource monitoring",
+        "uiFeatures": "🖥️ User Interface",
+        "usefulCommands": "Useful Commands",
+        "webInterface": "Web interface available",
+        "webInterfaceAt": "Desktop app includes a web interface at"
+      },
+      "perfOpt": {
+        "hardware": "Hardware",
+        "hw1": "Use NVIDIA GPU with CUDA for 5-10x speedup",
+        "hw2": "Increase RAM for larger context windows",
+        "hw3": "Use SSD storage for faster model loading",
+        "hw4": "Close other applications to free up RAM",
+        "software": "Software",
+        "subtitle": "Get the best performance from local models",
+        "sw1": "Use smaller models for faster responses",
+        "sw2": "Enable quantization (4-bit, 8-bit models)",
+        "sw3": "Reduce context length for chat applications",
+        "sw4": "Use streaming responses for better UX",
+        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">Tips to improve local AI performance</p>"
+      },
+      "recommended": "Recommended",
+      "subtitle": "Set up a local AI provider to run models on your machine",
+      "sysReq": {
+        "cpu": "CPU",
+        "cpuSpec": "8+ cores, modern architecture",
+        "gpu": "GPU",
+        "gpuSpec": "NVIDIA RTX 30xx+ or AMD RX 6000+",
+        "ram": "RAM",
+        "ramSpec": "16GB minimum, 32GB+ recommended",
+        "subtitle": "Minimum requirements for running local models",
+        "title": "<p className=\"text-sm text-bolt-elements-textSecondary\">Recommended hardware for optimal performance</p>"
+      },
+      "title": "Local Provider Setup Guide"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import type { ReactNode, ErrorInfo } from 'react';
+import i18n from '~/lib/i18n';
 import { Button } from '~/components/ui/Button';
 import { AlertTriangle } from 'lucide-react';
 
@@ -49,15 +50,18 @@ export class GitHubErrorBoundary extends Component<Props, State> {
           </div>
 
           <div>
-            <h3 className="text-lg font-medium text-bolt-elements-textPrimary mb-2">GitHub Integration Error</h3>
+            <h3 className="text-lg font-medium text-bolt-elements-textPrimary mb-2">
+              {i18n.t('settings:github.errorBoundary.title')}
+            </h3>
             <p className="text-sm text-bolt-elements-textSecondary mb-4 max-w-md">
-              Something went wrong while loading GitHub data. This could be due to network issues, API limits, or a
-              temporary problem.
+              {i18n.t('settings:github.errorBoundary.message')}
             </p>
 
             {this.state.error && (
               <details className="text-xs text-bolt-elements-textTertiary mb-4">
-                <summary className="cursor-pointer hover:text-bolt-elements-textSecondary">Show error details</summary>
+                <summary className="cursor-pointer hover:text-bolt-elements-textSecondary">
+                  {i18n.t('settings:github.errorBoundary.showDetails')}
+                </summary>
                 <pre className="mt-2 p-2 bg-bolt-elements-background-depth-2 rounded text-start overflow-auto">
                   {this.state.error.message}
                 </pre>
@@ -67,10 +71,10 @@ export class GitHubErrorBoundary extends Component<Props, State> {
 
           <div className="flex gap-2">
             <Button variant="outline" size="sm" onClick={this.handleRetry}>
-              Try Again
+              {i18n.t('settings:connections.tryAgain')}
             </Button>
             <Button variant="outline" size="sm" onClick={() => window.location.reload()}>
-              Reload Page
+              {i18n.t('settings:connections.reloadPage')}
             </Button>
           </div>
         </div>
@@ -98,7 +102,7 @@ export function useGitHubErrorHandler() {
      * For example: Sentry, LogRocket, etc.
      */
 
-    return error instanceof Error ? error.message : 'An unknown error occurred';
+    return error instanceof Error ? error.message : i18n.t('settings:connections.unknownErrorOccurred');
   }, []);
 
   return { handleError };
