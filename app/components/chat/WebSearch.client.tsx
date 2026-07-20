@@ -116,7 +116,7 @@ export function WebSearch({ onSearchResult, disabled = false }: WebSearchProps) 
       {isOpen && (
         <div
           className={classNames(
-            'absolute bottom-full left-0 mb-2 flex items-center gap-2',
+            'absolute bottom-full start-0 mb-2 flex items-center gap-2',
             'rounded-lg border border-bolt-elements-borderColor bg-bolt-elements-background-depth-2 p-2 shadow-lg',
           )}
         >

@@ -145,11 +145,11 @@ export function LockManager() {
       <div className="flex items-center gap-1 px-2 py-1 border-b border-bolt-elements-borderColor">
         {/* Search Input */}
         <div className="relative flex-1">
-          <span className="absolute left-2 top-1/2 -translate-y-1/2 text-bolt-elements-textTertiary i-ph:magnifying-glass text-xs pointer-events-none" />
+          <span className="absolute start-2 top-1/2 -translate-y-1/2 text-bolt-elements-textTertiary i-ph:magnifying-glass text-xs pointer-events-none" />
           <input
             type="text"
             placeholder="Search..."
-            className="w-full text-xs pl-6 pr-2 py-0.5 h-6 bg-bolt-elements-background-depth-2 text-bolt-elements-textPrimary rounded border border-bolt-elements-borderColor focus:outline-none"
+            className="w-full text-xs ps-6 pe-2 py-0.5 h-6 bg-bolt-elements-background-depth-2 text-bolt-elements-textPrimary rounded border border-bolt-elements-borderColor focus:outline-none"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             style={{ minWidth: 0 }}
@@ -173,7 +173,7 @@ export function LockManager() {
           <Checkbox
             checked={selectAllCheckedState}
             onCheckedChange={handleSelectAll}
-            className="w-3 h-3 rounded border-bolt-elements-borderColor mr-2"
+            className="w-3 h-3 rounded border-bolt-elements-borderColor me-2"
             aria-label="Select all items"
             disabled={filteredAndSortedItems.length === 0} // Disable if no items to select
           />
@@ -181,7 +181,7 @@ export function LockManager() {
         </div>
         {selectedItems.size > 0 && (
           <button
-            className="ml-auto px-2 py-0.5 rounded bg-bolt-elements-button-secondary-background hover:bg-bolt-elements-button-secondary-backgroundHover text-bolt-elements-button-secondary-text text-xs flex items-center gap-1"
+            className="ms-auto px-2 py-0.5 rounded bg-bolt-elements-button-secondary-background hover:bg-bolt-elements-button-secondary-backgroundHover text-bolt-elements-button-secondary-text text-xs flex items-center gap-1"
             onClick={handleUnlockSelected}
             title="Unlock all selected items"
           >

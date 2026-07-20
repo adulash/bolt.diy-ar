@@ -128,7 +128,7 @@ export default function ProfileTab() {
           <div className="mb-6">
             <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">Username</label>
             <div className="relative group">
-              <div className="absolute left-3.5 top-1/2 -translate-y-1/2">
+              <div className="absolute start-3.5 top-1/2 -translate-y-1/2">
                 <div className="i-ph:user-circle-fill w-5 h-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-purple-500" />
               </div>
               <input
@@ -136,7 +136,7 @@ export default function ProfileTab() {
                 value={profile.username}
                 onChange={(e) => handleProfileUpdate('username', e.target.value)}
                 className={classNames(
-                  'w-full pl-11 pr-4 py-2.5 rounded-xl',
+                  'w-full ps-11 pe-4 py-2.5 rounded-xl',
                   'bg-white dark:bg-gray-800/50',
                   'border border-gray-200 dark:border-gray-700/50',
                   'text-gray-900 dark:text-white',
@@ -153,14 +153,14 @@ export default function ProfileTab() {
           <div className="mb-8">
             <label className="block text-sm font-medium text-gray-900 dark:text-gray-100 mb-2">Bio</label>
             <div className="relative group">
-              <div className="absolute left-3.5 top-3">
+              <div className="absolute start-3.5 top-3">
                 <div className="i-ph:text-aa w-5 h-5 text-gray-400 dark:text-gray-500 transition-colors group-focus-within:text-purple-500" />
               </div>
               <textarea
                 value={profile.bio}
                 onChange={(e) => handleProfileUpdate('bio', e.target.value)}
                 className={classNames(
-                  'w-full pl-11 pr-4 py-2.5 rounded-xl',
+                  'w-full ps-11 pe-4 py-2.5 rounded-xl',
                   'bg-white dark:bg-gray-800/50',
                   'border border-gray-200 dark:border-gray-700/50',
                   'text-gray-900 dark:text-white',

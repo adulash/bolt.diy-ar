@@ -69,8 +69,9 @@ export const FileBreadcrumb = memo<FileBreadcrumbProps>(({ files, pathSegments =
     return null;
   }
 
+  // File paths are technical content: segment order stays LTR in RTL UI.
   return (
-    <div className="flex">
+    <div className="flex force-ltr" dir="ltr">
       {pathSegments.map((segment, index) => {
         const isLast = index === pathSegments.length - 1;
 
@@ -93,7 +94,7 @@ export const FileBreadcrumb = memo<FileBreadcrumbProps>(({ files, pathSegments =
                   className={classNames('flex items-center gap-1.5 cursor-pointer shrink-0', {
                     'text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary': !isActive,
                     'text-bolt-elements-textPrimary underline': isActive,
-                    'pr-4': isLast,
+                    'pe-4': isLast,
                   })}
                   onClick={() => handleSegmentClick(index)}
                 >

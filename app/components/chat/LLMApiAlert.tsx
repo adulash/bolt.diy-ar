@@ -55,7 +55,7 @@ export default function LlmErrorAlert({ alert, clearAlert }: Props) {
             <div className={`${getErrorIcon()} text-xl text-bolt-elements-button-danger-text`}></div>
           </motion.div>
 
-          <div className="ml-3 flex-1">
+          <div className="ms-3 flex-1">
             <motion.h3
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

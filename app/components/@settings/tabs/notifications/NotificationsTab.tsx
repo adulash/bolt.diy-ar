@@ -207,7 +207,7 @@ const NotificationsTab = () => {
                   className="group flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-500/10 dark:hover:bg-purple-500/20 cursor-pointer transition-colors"
                   onClick={() => handleFilterChange(option.id)}
                 >
-                  <div className="mr-3 flex h-5 w-5 items-center justify-center">
+                  <div className="me-3 flex h-5 w-5 items-center justify-center">
                     <div
                       className={classNames(option.icon, 'text-lg group-hover:text-purple-500 transition-colors')}
                       style={{ color: option.color }}

@@ -158,13 +158,13 @@ export function GitHubProgressiveLoader({
         <div className="flex gap-2">
           {onRetry && (
             <Button variant="outline" size="sm" onClick={onRetry} className="text-xs">
-              <RefreshCw className="w-3 h-3 mr-1" />
+              <RefreshCw className="w-3 h-3 me-1" />
               Try Again
             </Button>
           )}
           {onRefresh && (
             <Button variant="outline" size="sm" onClick={onRefresh} className="text-xs">
-              <RefreshCw className="w-3 h-3 mr-1" />
+              <RefreshCw className="w-3 h-3 me-1" />
               Refresh
             </Button>
           )}
@@ -177,7 +177,7 @@ export function GitHubProgressiveLoader({
   return (
     <div className={classNames('relative', className)}>
       {isRefreshing && (
-        <div className="absolute top-0 right-0 z-10">
+        <div className="absolute top-0 end-0 z-10">
           <div className="flex items-center gap-2 px-2 py-1 bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor rounded-lg shadow-sm">
             <Loader2 className="w-3 h-3 animate-spin text-bolt-elements-item-contentAccent" />
             <span className="text-xs text-bolt-elements-textSecondary">{refreshingMessage}</span>

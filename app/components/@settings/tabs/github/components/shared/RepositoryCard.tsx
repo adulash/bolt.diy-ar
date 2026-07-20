@@ -138,7 +138,7 @@ export function RepositoryCard({
       <button
         onClick={onSelect}
         className={classNames(
-          'w-full text-left p-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive hover:bg-bolt-elements-background-depth-1 transition-all duration-200',
+          'w-full text-start p-3 rounded-lg border border-bolt-elements-borderColor hover:border-bolt-elements-borderColorActive hover:bg-bolt-elements-background-depth-1 transition-all duration-200',
           className,
         )}
       >
@@ -208,7 +208,7 @@ export function RepositoryCard({
       {/* Repository Health Indicator */}
       {variant === 'detailed' && (
         <div
-          className={`absolute top-2 right-2 w-2 h-2 rounded-full ${getHealthIndicatorColor()}`}
+          className={`absolute top-2 end-2 w-2 h-2 rounded-full ${getHealthIndicatorColor()}`}
           title={`Repository Health: ${getHealthTitle()}`}
         />
       )}
@@ -345,7 +345,7 @@ export function RepositoryCard({
             {onSelect && (
               <span
                 className={classNames(
-                  'flex items-center gap-1 ml-2 transition-colors',
+                  'flex items-center gap-1 ms-2 transition-colors',
                   'group-hover:text-bolt-elements-item-contentAccent',
                 )}
               >

@@ -196,7 +196,7 @@ export function Search() {
       <div className="flex-1 overflow-auto py-2">
         {isSearching && (
           <div className="flex items-center justify-center h-32 text-bolt-elements-textTertiary">
-            <div className="i-ph:circle-notch animate-spin mr-2" /> Searching...
+            <div className="i-ph:circle-notch animate-spin me-2" /> Searching...
           </div>
         )}
         {!isSearching && hasSearched && searchResults.length === 0 && searchQuery.trim() !== '' && (
@@ -206,7 +206,7 @@ export function Search() {
           Object.keys(groupedResults).map((file) => (
             <div key={file} className="mb-2">
               <button
-                className="flex gap-2 items-center w-full text-left py-1 px-2 text-bolt-elements-textSecondary bg-transparent hover:bg-bolt-elements-background-depth-3 group"
+                className="flex gap-2 items-center w-full text-start py-1 px-2 text-bolt-elements-textSecondary bg-transparent hover:bg-bolt-elements-background-depth-3 group"
                 onClick={() => setExpandedFiles((prev) => ({ ...prev, [file]: !prev[file] }))}
               >
                 <span
@@ -214,7 +214,7 @@ export function Search() {
                   style={{ transform: expandedFiles[file] ? 'rotate(180deg)' : undefined }}
                 />
                 <span className="font-normal text-sm">{file.split('/').pop()}</span>
-                <span className="h-5.5 w-5.5 flex items-center justify-center text-xs ml-auto bg-bolt-elements-item-backgroundAccent text-bolt-elements-item-contentAccent rounded-full">
+                <span className="h-5.5 w-5.5 flex items-center justify-center text-xs ms-auto bg-bolt-elements-item-backgroundAccent text-bolt-elements-item-contentAccent rounded-full">
                   {groupedResults[file].length}
                 </span>
               </button>
@@ -233,7 +233,7 @@ export function Search() {
                     return (
                       <div
                         key={idx}
-                        className="hover:bg-bolt-elements-background-depth-3 cursor-pointer transition-colors pl-6 py-1"
+                        className="hover:bg-bolt-elements-background-depth-3 cursor-pointer transition-colors ps-6 py-1"
                         onClick={() => handleResultClick(match.path, match.lineNumber)}
                       >
                         <pre className="font-mono text-xs text-bolt-elements-textTertiary truncate">

@@ -39,7 +39,7 @@ interface FullscreenButtonProps {
 const FullscreenButton = memo(({ onClick, isFullscreen }: FullscreenButtonProps) => (
   <button
     onClick={onClick}
-    className="ml-4 p-1 rounded hover:bg-bolt-elements-background-depth-3 text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary transition-colors"
+    className="ms-4 p-1 rounded hover:bg-bolt-elements-background-depth-3 text-bolt-elements-textTertiary hover:text-bolt-elements-textPrimary transition-colors"
     title={isFullscreen ? 'Exit Fullscreen' : 'Enter Fullscreen'}
   >
     <div className={isFullscreen ? 'i-ph:corners-in' : 'i-ph:corners-out'} />
@@ -315,12 +315,14 @@ const lineNumberStyles =
   'w-9 shrink-0 pl-2 py-1 text-left font-mono text-bolt-elements-textTertiary border-r border-bolt-elements-borderColor bg-bolt-elements-background-depth-1';
 const lineContentStyles =
   'px-1 py-1 font-mono whitespace-pre flex-1 group-hover:bg-bolt-elements-background-depth-2 text-bolt-elements-textPrimary';
-const diffPanelStyles = 'h-full overflow-auto diff-panel-content';
+
+// Diff code panes are code surfaces: always LTR regardless of UI direction.
+const diffPanelStyles = 'h-full overflow-auto diff-panel-content force-ltr';
 
 // Updated color styles for better consistency
 const diffLineStyles = {
-  added: 'bg-green-500/10 dark:bg-green-500/20 border-l-4 border-green-500',
-  removed: 'bg-red-500/10 dark:bg-red-500/20 border-l-4 border-red-500',
+  added: 'bg-green-500/10 dark:bg-green-500/20 border-s-4 border-green-500',
+  removed: 'bg-red-500/10 dark:bg-red-500/20 border-s-4 border-red-500',
   unchanged: '',
 };
 
@@ -371,7 +373,7 @@ const NoChangesView = memo(
             <div key={index} className="flex group min-w-fit">
               <div className={lineNumberStyles}>{index + 1}</div>
               <div className={lineContentStyles}>
-                <span className="mr-2"> </span>
+                <span className="me-2"> </span>
                 <span
                   dangerouslySetInnerHTML={{
                     __html: highlighter
@@ -517,9 +519,9 @@ const FileInfo = memo(
 
     return (
       <div className="flex items-center bg-bolt-elements-background-depth-1 p-2 text-sm text-bolt-elements-textPrimary shrink-0">
-        <div className="i-ph:file mr-2 h-4 w-4 shrink-0" />
+        <div className="i-ph:file me-2 h-4 w-4 shrink-0" />
         <span className="truncate">{filename}</span>
-        <span className="ml-auto shrink-0 flex items-center gap-2">
+        <span className="ms-auto shrink-0 flex items-center gap-2">
           {hasChanges ? (
             <>
               {showStats && (

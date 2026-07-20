@@ -43,7 +43,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
             ></div>
           </motion.div>
           {/* Content */}
-          <div className="ml-3 flex-1">
+          <div className="ms-3 flex-1">
             <motion.h3
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -88,7 +88,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                           <span className="text-white text-xs">1</span>
                         )}
                       </div>
-                      <span className="ml-2">Build</span>
+                      <span className="ms-2">Build</span>
                     </div>
 
                     {/* Connector Line */}
@@ -123,7 +123,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                           <span className="text-white text-xs">2</span>
                         )}
                       </div>
-                      <span className="ml-2">Deploy</span>
+                      <span className="ms-2">Deploy</span>
                     </div>
                   </div>
                 </div>
@@ -142,7 +142,7 @@ export default function DeployChatAlert({ alert, clearAlert, postMessage }: Depl
                     rel="noopener noreferrer"
                     className="text-bolt-elements-item-contentAccent hover:underline flex items-center"
                   >
-                    <span className="mr-1">View deployed site</span>
+                    <span className="me-1">View deployed site</span>
                     <div className="i-ph:arrow-square-out"></div>
                   </a>
                 </div>

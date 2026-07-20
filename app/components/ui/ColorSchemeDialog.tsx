@@ -75,7 +75,7 @@ export const ColorSchemeDialog: React.FC<ColorSchemeDialogProps> = ({ setDesignS
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-3 max-h-80 overflow-y-auto pe-2 custom-scrollbar">
         {paletteRoles.map((role) => (
           <div
             key={role.key}
@@ -98,7 +98,7 @@ export const ColorSchemeDialog: React.FC<ColorSchemeDialogProps> = ({ setDesignS
                 className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
                 tabIndex={-1}
               />
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-bolt-elements-bg-depth-1 rounded-full flex items-center justify-center shadow-sm">
+              <div className="absolute -bottom-1 -end-1 w-4 h-4 bg-bolt-elements-bg-depth-1 rounded-full flex items-center justify-center shadow-sm">
                 <span className="i-ph:pencil-simple text-xs text-bolt-elements-textSecondary" />
               </div>
             </div>
@@ -124,7 +124,7 @@ export const ColorSchemeDialog: React.FC<ColorSchemeDialogProps> = ({ setDesignS
         Typography
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 max-h-80 overflow-y-auto pe-2 custom-scrollbar">
         {designFonts.map((f) => (
           <button
             key={f.key}
@@ -171,7 +171,7 @@ export const ColorSchemeDialog: React.FC<ColorSchemeDialogProps> = ({ setDesignS
         Design Features
       </h3>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-80 overflow-y-auto pr-2 custom-scrollbar">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-h-80 overflow-y-auto pe-2 custom-scrollbar">
         {designFeatures.map((f) => {
           const isSelected = features.includes(f.key);
 
@@ -235,7 +235,7 @@ export const ColorSchemeDialog: React.FC<ColorSchemeDialogProps> = ({ setDesignS
                           }`}
                         />
                         <div
-                          className={`absolute top-1 left-1 w-6 h-6 bg-current rounded-lg transition-all duration-200 ${
+                          className={`absolute top-1 start-1 w-6 h-6 bg-current rounded-lg transition-all duration-200 ${
                             isSelected ? 'opacity-40' : 'opacity-30'
                           }`}
                         />

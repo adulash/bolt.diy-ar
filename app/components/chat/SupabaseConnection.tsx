@@ -77,7 +77,7 @@ export function SupabaseConnection() {
 
   return (
     <div className="relative">
-      <div className="flex border border-bolt-elements-borderColor rounded-md overflow-hidden mr-2 text-sm">
+      <div className="flex border border-bolt-elements-borderColor rounded-md overflow-hidden me-2 text-sm">
         <Button
           active
           disabled={connecting}
@@ -92,7 +92,7 @@ export function SupabaseConnection() {
             src="https://cdn.simpleicons.org/supabase"
           />
           {isConnected && supabaseConn.project && (
-            <span className="ml-1 text-xs max-w-[100px] truncate">{supabaseConn.project.name}</span>
+            <span className="ms-1 text-xs max-w-[100px] truncate">{supabaseConn.project.name}</span>
           )}
         </Button>
       </div>
@@ -203,7 +203,7 @@ export function SupabaseConnection() {
                     <div className="flex items-center justify-between mb-2">
                       <button
                         onClick={() => setIsProjectsExpanded(!isProjectsExpanded)}
-                        className="bg-transparent text-left text-sm font-medium text-bolt-elements-textPrimary flex items-center gap-2"
+                        className="bg-transparent text-start text-sm font-medium text-bolt-elements-textPrimary flex items-center gap-2"
                       >
                         <div className="i-ph:database w-4 h-4" />
                         Your Projects ({supabaseConn.stats?.totalProjects || 0})

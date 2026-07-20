@@ -77,9 +77,9 @@ export function RepositoryList({ repositories, onClone, onRefresh, isRefreshing 
           placeholder="Search repositories..."
           value={searchQuery}
           onChange={(e) => handleSearch(e.target.value)}
-          className="w-full px-4 py-2 pl-10 rounded-lg bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
+          className="w-full px-4 py-2 ps-10 rounded-lg bg-bolt-elements-background-depth-2 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
         />
-        <div className="absolute left-3 top-1/2 -translate-y-1/2">
+        <div className="absolute start-3 top-1/2 -translate-y-1/2">
           {isSearching ? (
             <div className="i-ph:spinner animate-spin w-4 h-4 text-bolt-elements-textSecondary" />
           ) : (
@@ -116,7 +116,7 @@ export function RepositoryList({ repositories, onClone, onRefresh, isRefreshing 
                     variant="outline"
                     size="sm"
                   >
-                    <div className="i-ph:caret-left w-4 h-4" />
+                    <div className="i-ph:caret-left icon-flip w-4 h-4" />
                     Previous
                   </Button>
                   <span className="text-sm text-bolt-elements-textSecondary px-3">
@@ -129,7 +129,7 @@ export function RepositoryList({ repositories, onClone, onRefresh, isRefreshing 
                     size="sm"
                   >
                     Next
-                    <div className="i-ph:caret-right w-4 h-4" />
+                    <div className="i-ph:caret-right icon-flip w-4 h-4" />
                   </Button>
                 </div>
               </div>

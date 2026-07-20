@@ -183,7 +183,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
           <p className="text-sm text-bolt-elements-textSecondary mt-1">{error}</p>
         </div>
         <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
-          <RefreshCw className={classNames('w-4 h-4 mr-2', { 'animate-spin': isRefreshing })} />
+          <RefreshCw className={classNames('w-4 h-4 me-2', { 'animate-spin': isRefreshing })} />
           Try Again
         </Button>
       </div>
@@ -205,7 +205,7 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
         <GitBranch className="w-12 h-12 text-bolt-elements-textTertiary mx-auto mb-4" />
         <p className="text-bolt-elements-textSecondary mb-4">No repositories found</p>
         <Button variant="outline" onClick={handleRefresh} disabled={isRefreshing}>
-          <RefreshCw className={classNames('w-4 h-4 mr-2', { 'animate-spin': isRefreshing })} />
+          <RefreshCw className={classNames('w-4 h-4 me-2', { 'animate-spin': isRefreshing })} />
           Refresh
         </Button>
       </div>
@@ -249,13 +249,13 @@ export function GitLabRepositorySelector({ onClone, className }: GitLabRepositor
       <div className="flex flex-col sm:flex-row gap-4">
         {/* Search */}
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bolt-elements-textTertiary" />
+          <Search className="absolute start-3 top-1/2 -translate-y-1/2 w-4 h-4 text-bolt-elements-textTertiary" />
           <input
             type="text"
             placeholder="Search repositories..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
+            className="w-full ps-10 pe-4 py-2 rounded-lg bg-bolt-elements-background-depth-1 border border-bolt-elements-borderColor text-bolt-elements-textPrimary placeholder-bolt-elements-textTertiary focus:outline-none focus:ring-1 focus:ring-bolt-elements-borderColorActive"
           />
         </div>
 

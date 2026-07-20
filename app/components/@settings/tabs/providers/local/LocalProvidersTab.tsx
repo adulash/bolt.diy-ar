@@ -375,9 +375,9 @@ export default function LocalProvidersTab() {
                         className="bg-transparent hover:bg-bolt-elements-background-depth-2"
                       >
                         {isLoadingModels ? (
-                          <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                          <Loader2 className="w-4 h-4 animate-spin me-2" />
                         ) : (
-                          <RotateCw className="w-4 h-4 mr-2" />
+                          <RotateCw className="w-4 h-4 me-2" />
                         )}
                         Refresh
                       </Button>
@@ -457,9 +457,9 @@ export default function LocalProvidersTab() {
                         className="bg-transparent hover:bg-bolt-elements-background-depth-2"
                       >
                         {isLoadingLMStudioModels ? (
-                          <Loader2 className="w-4 h-4 animate-spin mr-2" />
+                          <Loader2 className="w-4 h-4 animate-spin me-2" />
                         ) : (
-                          <RotateCw className="w-4 h-4 mr-2" />
+                          <RotateCw className="w-4 h-4 me-2" />
                         )}
                         Refresh
                       </Button>

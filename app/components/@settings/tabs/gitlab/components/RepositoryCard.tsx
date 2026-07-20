@@ -52,7 +52,7 @@ export function RepositoryCard({ repo, onClone }: RepositoryCardProps) {
               day: 'numeric',
             })}
           </span>
-          <div className="flex items-center gap-2 ml-auto">
+          <div className="flex items-center gap-2 ms-auto">
             {onClone && (
               <button
                 onClick={(e) => {

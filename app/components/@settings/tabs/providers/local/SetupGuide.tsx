@@ -419,7 +419,7 @@ function SetupGuide({ onBack }: { onBack: () => void }) {
                   <p className="text-xs text-bolt-elements-textSecondary">
                     To work with Bolt DIY, you MUST enable CORS in LM Studio:
                   </p>
-                  <ol className="text-xs text-bolt-elements-textSecondary space-y-1 list-decimal list-inside ml-2">
+                  <ol className="text-xs text-bolt-elements-textSecondary space-y-1 list-decimal list-inside ms-2">
                     <li>In Server Settings, check "Enable CORS"</li>
                     <li>Set Network Interface to "0.0.0.0" for external access</li>
                     <li>

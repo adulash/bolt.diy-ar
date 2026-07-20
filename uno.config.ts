@@ -102,8 +102,12 @@ export default defineConfig({
   shortcuts: {
     'bolt-ease-cubic-bezier': 'ease-[cubic-bezier(0.4,0,0.2,1)]',
     'transition-theme': 'transition-[background-color,border-color,color] duration-150 bolt-ease-cubic-bezier',
-    kdb: 'bg-bolt-elements-code-background text-bolt-elements-code-text py-1 px-1.5 rounded-md',
+    kdb: 'force-ltr bg-bolt-elements-code-background text-bolt-elements-code-text py-1 px-1.5 rounded-md',
     'max-w-chat': 'max-w-[var(--chat-max-width)]',
+
+    // Mirror direction-semantic icons (arrows, chevrons, send) under RTL.
+    // Never apply to direction-neutral icons (search, gear, plus, refresh).
+    'icon-flip': 'rtl:scale-x-[-1]',
   },
   rules: [
     /**
@@ -111,6 +115,13 @@ export default defineConfig({
      * any conflicts with minified CSS classes.
      */
     ['b', {}],
+
+    /**
+     * LTR enclave for technical content (code, paths, URLs, keys, shortcuts):
+     * keeps internal order left-to-right and bidi-isolates it from the
+     * surrounding RTL text.
+     */
+    ['force-ltr', { direction: 'ltr', 'unicode-bidi': 'isolate' }],
   ],
   theme: {
     fontFamily: {

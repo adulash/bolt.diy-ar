@@ -82,7 +82,7 @@ function GitHubStatsContent({
               <div className="i-ph:chart-bar w-4 h-4 text-bolt-elements-item-contentAccent" />
               <span className="text-sm font-medium text-bolt-elements-textPrimary">
                 GitHub Stats
-                {isStale && <span className="text-bolt-elements-textTertiary ml-1">(Stale)</span>}
+                {isStale && <span className="text-bolt-elements-textTertiary ms-1">(Stale)</span>}
               </span>
             </div>
             <div className="flex items-center gap-2">

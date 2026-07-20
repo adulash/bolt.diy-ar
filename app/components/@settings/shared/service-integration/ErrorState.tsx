@@ -60,7 +60,7 @@ export function ErrorState({
                 size="sm"
                 className="text-red-700 border-red-300 hover:bg-red-100 dark:text-red-300 dark:border-red-600 dark:hover:bg-red-900/30"
               >
-                <div className="i-ph:arrows-clockwise w-4 h-4 mr-1" />
+                <div className="i-ph:arrows-clockwise w-4 h-4 me-1" />
                 {retryLabel}
               </Button>
             )}

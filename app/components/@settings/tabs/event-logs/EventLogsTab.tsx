@@ -829,7 +829,7 @@ export function EventLogsTab() {
                   key={format.id}
                   onClick={() => handleFormatClick(format.handler)}
                   className={classNames(
-                    'flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-colors w-full text-left',
+                    'flex items-center gap-3 px-4 py-3 text-sm rounded-lg transition-colors w-full text-start',
                     'bg-white dark:bg-[#0A0A0A]',
                     'border border-[#E5E5E5] dark:border-[#1A1A1A]',
                     'hover:bg-purple-50 dark:hover:bg-[#1a1a1a]',
@@ -894,7 +894,7 @@ export function EventLogsTab() {
                   className="group flex items-center px-4 py-2.5 text-sm text-gray-700 dark:text-gray-200 hover:bg-purple-500/10 dark:hover:bg-purple-500/20 cursor-pointer transition-colors"
                   onClick={() => handleLevelFilterChange(option.value)}
                 >
-                  <div className="mr-3 flex h-5 w-5 items-center justify-center">
+                  <div className="me-3 flex h-5 w-5 items-center justify-center">
                     <div
                       className={classNames(option.icon, 'text-lg group-hover:text-purple-500 transition-colors')}
                       style={{ color: option.color }}
@@ -966,7 +966,7 @@ export function EventLogsTab() {
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className={classNames(
-              'w-full px-4 py-2 pl-10 rounded-lg',
+              'w-full px-4 py-2 ps-10 rounded-lg',
               'bg-[#FAFAFA] dark:bg-[#0A0A0A]',
               'border border-[#E5E5E5] dark:border-[#1A1A1A]',
               'text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400',
@@ -974,7 +974,7 @@ export function EventLogsTab() {
               'transition-all duration-200',
             )}
           />
-          <div className="absolute left-3 top-1/2 -translate-y-1/2">
+          <div className="absolute start-3 top-1/2 -translate-y-1/2">
             <div className="i-ph:magnifying-glass text-lg text-gray-500 dark:text-gray-400" />
           </div>
         </div>

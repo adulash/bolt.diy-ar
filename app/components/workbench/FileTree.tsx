@@ -257,13 +257,13 @@ function InlineInput({ depth, placeholder, initialValue = '', onSubmit, onCancel
   return (
     <div
       className="flex items-center w-full px-2 bg-bolt-elements-background-depth-4 border border-bolt-elements-item-contentAccent py-0.5 text-bolt-elements-textPrimary"
-      style={{ paddingLeft: `${6 + depth * NODE_PADDING_LEFT}px` }}
+      style={{ paddingInlineStart: `${6 + depth * NODE_PADDING_LEFT}px` }}
     >
       <div className="scale-120 shrink-0 i-ph:file-plus text-bolt-elements-textTertiary" />
       <input
         ref={inputRef}
         type="text"
-        className="ml-2 flex-1 bg-transparent border-none outline-none py-0.5 text-sm text-bolt-elements-textPrimary placeholder:text-bolt-elements-textTertiary min-w-0"
+        className="ms-2 flex-1 bg-transparent border-none outline-none py-0.5 text-sm text-bolt-elements-textPrimary placeholder:text-bolt-elements-textTertiary min-w-0"
         placeholder={placeholder}
         onKeyDown={handleKeyDown}
         onBlur={() => {
@@ -601,13 +601,15 @@ function Folder({ folder, collapsed, selected = false, onCopyPath, onCopyRelativ
         })}
         depth={folder.depth}
         iconClasses={classNames({
-          'i-ph:caret-right scale-98': collapsed,
+          'i-ph:caret-right icon-flip scale-98': collapsed,
           'i-ph:caret-down scale-98': !collapsed,
         })}
         onClick={onClick}
       >
         <div className="flex items-center w-full">
-          <div className="flex-1 truncate pr-2">{folder.name}</div>
+          <div className="flex-1 truncate pe-2">
+            <span dir="ltr">{folder.name}</span>
+          </div>
           {isLocked && (
             <span
               className={classNames('shrink-0', 'i-ph:lock-simple scale-80 text-red-500')}
@@ -702,7 +704,9 @@ function File({
             'group-hover:text-bolt-elements-item-contentActive': !selected,
           })}
         >
-          <div className="flex-1 truncate pr-2">{name}</div>
+          <div className="flex-1 truncate pe-2">
+            <span dir="ltr">{name}</span>
+          </div>
           <div className="flex items-center gap-1">
             {showStats && (
               <div className="flex items-center gap-1 text-xs">
@@ -736,14 +740,14 @@ function NodeButton({ depth, iconClasses, onClick, className, children }: Button
   return (
     <button
       className={classNames(
-        'flex items-center gap-1.5 w-full pr-2 border-2 border-transparent text-faded py-0.5',
+        'flex items-center gap-1.5 w-full pe-2 border-2 border-transparent text-faded py-0.5',
         className,
       )}
-      style={{ paddingLeft: `${6 + depth * NODE_PADDING_LEFT}px` }}
+      style={{ paddingInlineStart: `${6 + depth * NODE_PADDING_LEFT}px` }}
       onClick={() => onClick?.()}
     >
       <div className={classNames('scale-120 shrink-0', iconClasses)}></div>
-      <div className="truncate w-full text-left">{children}</div>
+      <div className="truncate w-full text-start">{children}</div>
     </button>
   );
 }

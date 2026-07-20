@@ -3,6 +3,7 @@ import { WebLinksAddon } from '@xterm/addon-web-links';
 import { Terminal as XTerm } from '@xterm/xterm';
 import { forwardRef, memo, useEffect, useImperativeHandle, useRef } from 'react';
 import type { Theme } from '~/lib/stores/theme';
+import { classNames } from '~/utils/classNames';
 import { createScopedLogger } from '~/utils/logger';
 import { getTerminalTheme } from './theme';
 
@@ -125,7 +126,8 @@ export const Terminal = memo(
         };
       }, [readonly]);
 
-      return <div className={className} ref={terminalElementRef} />;
+      // xterm.js has no RTL support: the terminal surface is always LTR.
+      return <div className={classNames(className, 'force-ltr')} dir="ltr" ref={terminalElementRef} />;
     },
   ),
 );

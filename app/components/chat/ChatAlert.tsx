@@ -37,7 +37,7 @@ export default function ChatAlert({ alert, clearAlert, postMessage }: Props) {
             <div className={`i-ph:warning-duotone text-xl text-bolt-elements-button-danger-text`}></div>
           </motion.div>
           {/* Content */}
-          <div className="ml-3 flex-1">
+          <div className="ms-3 flex-1">
             <motion.h3
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
